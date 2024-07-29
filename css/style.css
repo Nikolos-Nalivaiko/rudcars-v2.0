@@ -398,7 +398,7 @@ h1 {
     padding: .5rem
   }
   .hero {
-    padding-bottom: 15.625rem
+    padding-bottom: 18.75rem
   }
   .hero__block {
     padding-top: 1.5625rem
@@ -442,13 +442,13 @@ h1 {
 }
 @media (max-width:47.99875em)and (max-width:20em) {
   .hero__image {
-    top: 28.125rem
+    top: 25.3125rem
   }
   .hero__image {
-    width: 20rem
+    width: 18.75rem
   }
   .hero__image img {
-    width: 37.5rem
+    width: 42.5rem
   }
 }
 @media (max-width:29.99875em) {
@@ -481,7 +481,7 @@ h1 {
     height: clamp(2.1875rem ,2.0180084746srem + .8474576271svw ,2.8125srem)
   }
   .hero {
-    padding-bottom: clamp(6.25rem ,18.1673728814rem + -12.7118644068vw ,15.625rem)
+    padding-bottom: clamp(6.25rem ,22.1398305085rem + -16.9491525424vw ,18.75rem)
   }
   .hero__block {
     padding-top: clamp(1.5625rem ,.7150423729rem + 4.2372881356vw ,4.6875rem)
@@ -565,12 +565,12 @@ h1 {
 }
 @media (max-width:47.99875em)and (min-width:20em)and (max-width:48em) {
   .hero__image {
-    top: clamp(21.875rem ,32.5892857143rem + -22.3214285714vw ,28.125rem)
+    top: clamp(21.875rem ,27.7678571429rem + -12.2767857143vw ,25.3125rem)
   }
   .hero__image {
-    width: clamp(20rem ,7.5rem + 62.5vw ,37.5rem)
+    width: clamp(18.75rem ,5.3571428571rem + 66.9642857143vw ,37.5rem)
   }
   .hero__image img {
-    width: clamp(37.5rem ,33.0357142857rem + 22.3214285714vw ,43.75rem)
+    width: clamp(42.5rem ,41.6071428571rem + 4.4642857143vw ,43.75rem)
   }
 }
