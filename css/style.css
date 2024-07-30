@@ -174,6 +174,12 @@ h3 {
   line-height: 0;
   color: red
 }
+.advantages__icon_white {
+  border-color: #fff
+}
+.advantages__icon_white svg {
+  color: #fff
+}
 .advantages__subtitle {
   align-self: flex-end
 }
@@ -437,6 +443,34 @@ h3 {
   align-items: center;
   flex-wrap: wrap
 }
+.tradeIn {
+  padding-bottom: 100px
+}
+.tradeIn__image {
+  width: 100%;
+  height: auto;
+  -o-object-fit: cover;
+  object-fit: cover;
+  border-radius: 1.25rem
+}
+.tradeIn__advantages {
+  display: inline-grid;
+  background-color: red;
+  color: #fff;
+  border-radius: .9375rem
+}
+.tradeIn__title {
+  margin-bottom: .9375rem
+}
+.tradeIn__subtitle {
+  line-height: 1.1
+}
+.tradeIn__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap
+}
 .swiper {
   overflow: hidden
 }
@@ -663,6 +697,30 @@ h3 {
   .delivery__advantages {
     margin-top: 3.4375rem
   }
+  .tradeIn__image {
+    margin-bottom: 3.125rem
+  }
+  .tradeIn__advantages {
+    padding-top: 1.875rem
+  }
+  .tradeIn__advantages {
+    padding-bottom: 1.875rem
+  }
+  .tradeIn__advantages {
+    padding-right: 3.4375rem
+  }
+  .tradeIn__advantages {
+    padding-left: 3.4375rem
+  }
+  .tradeIn__subtitle {
+    font-size: 1.125rem
+  }
+  .tradeIn__text {
+    max-width: 43.125rem
+  }
+  .tradeIn__inner {
+    gap: 6.25rem
+  }
 }
 @media (max-width:62em) {
   .delivery__image {
@@ -682,6 +740,15 @@ h3 {
   }
   .delivery__advantages {
     gap: 2.1875rem
+  }
+  .tradeIn__advantages {
+    padding-right: 1.875rem
+  }
+  .tradeIn__advantages {
+    padding-left: 1.875rem
+  }
+  .tradeIn__text {
+    max-width: 31.25rem
   }
 }
 @media (max-width:48em) {
@@ -833,6 +900,21 @@ h3 {
   .delivery__advantages {
     margin-top: 2.1875rem
   }
+  .tradeIn__image {
+    margin-bottom: 1.875rem
+  }
+  .tradeIn__advantages {
+    padding-top: 1.25rem
+  }
+  .tradeIn__advantages {
+    padding-bottom: 1.25rem
+  }
+  .tradeIn__subtitle {
+    font-size: .875rem
+  }
+  .tradeIn__inner {
+    gap: 1.5625rem
+  }
 }
 @media (max-width:61.99875em) {
   .header__btn {
@@ -898,6 +980,15 @@ h3 {
   .steps__title {
     max-width: 100%;
     margin-bottom: 1.25rem
+  }
+  .tradeIn__image {
+    height: 170px
+  }
+  .tradeIn__advantages {
+    width: 100%
+  }
+  .tradeIn__text {
+    max-width: 100%
   }
 }
 @media (max-width:47.99875em)and (max-width:20em) {
@@ -1039,6 +1130,21 @@ h3 {
   .delivery__advantages {
     margin-top: clamp(2.1875rem ,1.8485169492rem + 1.6949152542vw ,3.4375rem)
   }
+  .tradeIn__image {
+    margin-bottom: clamp(1.875rem ,1.5360169492rem + 1.6949152542vw ,3.125rem)
+  }
+  .tradeIn__advantages {
+    padding-top: clamp(1.25rem ,1.0805084746rem + .8474576271vw ,1.875rem)
+  }
+  .tradeIn__advantages {
+    padding-bottom: clamp(1.25rem ,1.0805084746rem + .8474576271vw ,1.875rem)
+  }
+  .tradeIn__subtitle {
+    font-size: clamp(.875rem ,.8072033898rem + .3389830508vw ,1.125rem)
+  }
+  .tradeIn__inner {
+    gap: clamp(1.5625rem ,.2913135593rem + 6.3559322034vw ,6.25rem)
+  }
 }
 @media (min-width:61.99875em)and (min-width:48em)and (max-width:93.75em) {
   .menu__list {
@@ -1133,5 +1239,14 @@ h3 {
   }
   .delivery__advantages {
     gap: clamp(2.1875rem ,-7.5762795276rem + 15.7480314961vw ,7.1875rem)
+  }
+  .tradeIn__advantages {
+    padding-right: clamp(1.875rem ,-1.1761811024rem + 4.9212598425vw ,3.4375rem)
+  }
+  .tradeIn__advantages {
+    padding-left: clamp(1.875rem ,-1.1761811024rem + 4.9212598425vw ,3.4375rem)
+  }
+  .tradeIn__text {
+    max-width: clamp(31.25rem ,8.061023622rem + 37.4015748031vw ,43.125rem)
   }
 }
