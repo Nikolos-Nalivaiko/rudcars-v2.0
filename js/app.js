@@ -3380,7 +3380,7 @@
         });
     }
     function initSliders() {
-        if (document.querySelector(".swiper")) new swiper_core_Swiper(".swiper", {
+        if (document.querySelector(".hero__slider")) new swiper_core_Swiper(".hero__slider", {
             modules: [ Navigation, Autoplay ],
             observer: true,
             observeParents: true,
@@ -3394,6 +3394,28 @@
             autoplay: {
                 delay: 2e3,
                 disableOnInteraction: false
+            },
+            on: {}
+        });
+        if (document.querySelector(".offers__slider")) new swiper_core_Swiper(".offers__slider", {
+            modules: [ Navigation, Autoplay ],
+            observer: true,
+            observeParents: true,
+            slidesPerView: 1,
+            direction: "horizontal",
+            spaceBetween: 30,
+            autoHeight: false,
+            speed: 1100,
+            breakpoints: {
+                625: {
+                    slidesPerView: 2
+                },
+                992: {
+                    slidesPerView: 3
+                },
+                1400: {
+                    slidesPerView: 4
+                }
             },
             on: {}
         });

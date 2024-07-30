@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Play:wght@400; 700&display=swap');
 * {
   padding: 0;
   margin: 0;
@@ -131,6 +131,32 @@ h1 {
   font-weight: 700;
   line-height: 1.1
 }
+h2 {
+  font-weight: 700;
+  line-height: 1.1
+}
+.nav__item--hover {
+  cursor: pointer;
+  position: relative
+}
+.nav__item--hover:after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background-color: rgba(0,0,0,0);
+  transition: width .3s,background-color .3s
+}
+.nav__item--hover:hover::after {
+  width: 100%;
+  background-color: red
+}
+.nav__item--hover:hover {
+  color: red;
+  transition: .3s
+}
 .advantages__block {
   display: grid;
   grid-template-columns: auto 1fr;
@@ -150,6 +176,65 @@ h1 {
 .advantages__title {
   align-self: baseline;
   font-weight: 700
+}
+.card {
+  border-radius: .9375rem;
+  border: 1px solid #ebebeb;
+  transition: .2s
+}
+.card:hover {
+  border-color: red;
+  transition: .2s
+}
+.card__image img {
+  width: 100%;
+  -o-object-fit: cover;
+  object-fit: cover;
+  border-radius: .9375rem .9375rem 0 0
+}
+.card__inner {
+  padding: 1.25rem
+}
+.card__title {
+  font-weight: 700;
+  font-size: 1.25rem;
+  margin-bottom: .625rem
+}
+.card__prices {
+  display: flex;
+  align-items: center;
+  gap: .625rem;
+  margin-bottom: 1.25rem
+}
+.card__price {
+  font-size: 1.25rem;
+  color: red
+}
+.card__price-old {
+  color: #505050;
+  border-left: 1px solid #505050;
+  padding-left: .625rem
+}
+.card__insights {
+  display: flex;
+  gap: .9375rem;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 1.25rem
+}
+.card__insights-item {
+  padding: .625rem 1.5625rem;
+  border-radius: .625rem;
+  border: 1px solid #ebebeb
+}
+.card__details {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap
+}
+.card__details-item {
+  color: #505050
 }
 .header__container {
   display: flex;
@@ -177,24 +262,6 @@ h1 {
   right: 1.25rem;
   border-radius: 5px;
   border: 1px solid #dbdbdb
-}
-.menu__item {
-  position: relative;
-  transition: .2s
-}
-.menu__item:hover {
-  color: red;
-  transition: .2s
-}
-.menu__item:hover::after {
-  position: absolute;
-  bottom: -8px;
-  right: 0;
-  content: "";
-  width: 100%;
-  height: 1px;
-  background: red;
-  transition: 1s
 }
 .hero {
   position: relative
@@ -230,6 +297,29 @@ h1 {
 }
 .hero__slider {
   max-height: 4.375rem
+}
+.offers {
+  padding-bottom: 200px
+}
+.offers__title {
+  margin-bottom: 1.25rem
+}
+.offers__nav {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between
+}
+.offers__list {
+  display: flex;
+  align-items: center
+}
+.offers__link {
+  font-size: 1.25rem;
+  transition: .2s
+}
+.offers__link:hover {
+  color: red;
+  transition: .2s
 }
 .swiper {
   overflow: hidden
@@ -302,6 +392,9 @@ h1 {
   h1 {
     font-size: 4.5rem
   }
+  h2 {
+    font-size: 3.5rem
+  }
   .advantages__block {
     -webkit-column-gap: 1.5625rem;
     -moz-column-gap: 1.5625rem;
@@ -316,11 +409,23 @@ h1 {
   .advantages__title {
     font-size: 1.25rem
   }
+  .card__image img {
+    height: 12.5rem
+  }
+  .card__insights {
+    font-size: 1rem
+  }
+  .card__details {
+    font-size: 1rem
+  }
   .header__btn {
     font-size: 1.125rem
   }
   .header__logo {
     height: 2.8125srem
+  }
+  .hero {
+    margin-bottom: 6.25rem
   }
   .hero {
     padding-bottom: 6.25rem
@@ -358,8 +463,20 @@ h1 {
   .hero__slider {
     margin-top: 2.8125rem
   }
+  .offers__nav {
+    margin-bottom: 2.8125rem
+  }
+  .offers__list {
+    gap: 3.4375rem
+  }
+  .offers__list {
+    font-size: 1.125rem
+  }
 }
 @media (max-width:48em) {
+  .hero {
+    margin-bottom: .0000000625rem
+  }
   .hero__text {
     margin-bottom: 4.25rem
   }
@@ -370,9 +487,18 @@ h1 {
     width: 20rem
   }
 }
+@media (max-width:767px) {
+  .hero {
+    padding-bottom: 250px;
+    margin-bottom: 65px
+  }
+}
 @media (max-width:20em) {
   h1 {
     font-size: 2.625rem
+  }
+  h2 {
+    font-size: 2.375rem
   }
   .advantages__block {
     -webkit-column-gap: 1.25rem;
@@ -388,6 +514,15 @@ h1 {
   .advantages__title {
     font-size: 1rem
   }
+  .card__image img {
+    height: 15.625rem
+  }
+  .card__insights {
+    font-size: .875rem
+  }
+  .card__details {
+    font-size: .875rem
+  }
   .header__btn {
     font-size: 1rem
   }
@@ -398,7 +533,7 @@ h1 {
     padding: .5rem
   }
   .hero {
-    padding-bottom: 18.75rem
+    padding-bottom: 11.25rem
   }
   .hero__block {
     padding-top: 1.5625rem
@@ -421,6 +556,15 @@ h1 {
   .hero__slider {
     margin-top: 2.1875rem
   }
+  .offers__nav {
+    margin-bottom: 2.1875rem
+  }
+  .offers__list {
+    gap: 2.8125rem
+  }
+  .offers__list {
+    font-size: 1rem
+  }
 }
 @media (max-width:61.99875em) {
   .header__btn {
@@ -433,11 +577,23 @@ h1 {
   }
 }
 @media (max-width:47.99875em) {
+  .card__details {
+    gap: 20px;
+    justify-content: start
+  }
   .hero__text {
     margin-bottom: 25px
   }
   .hero__btn {
     width: 100%
+  }
+  .offers__nav {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap
+  }
+  .offers__link {
+    display: none
   }
 }
 @media (max-width:47.99875em)and (max-width:20em) {
@@ -460,6 +616,9 @@ h1 {
   h1 {
     font-size: clamp(2.625rem ,2.1165254237rem + 2.5423728814vw ,4.5rem)
   }
+  h2 {
+    font-size: clamp(2.375rem ,2.0699152542rem + 1.5254237288vw ,3.5rem)
+  }
   .advantages__block {
     -webkit-column-gap: clamp(1.25rem ,1.1652542373rem + .4237288136vw ,1.5625rem);
     -moz-column-gap: clamp(1.25rem ,1.1652542373rem + .4237288136vw ,1.5625rem);
@@ -474,6 +633,15 @@ h1 {
   .advantages__title {
     font-size: clamp(1rem ,.9322033898rem + .3389830508vw ,1.25rem)
   }
+  .card__image img {
+    height: clamp(12.5rem ,16.4724576271rem + -4.2372881356vw ,15.625rem)
+  }
+  .card__insights {
+    font-size: clamp(.875rem ,.8411016949rem + .1694915254vw ,1rem)
+  }
+  .card__details {
+    font-size: clamp(.875rem ,.8411016949rem + .1694915254vw ,1rem)
+  }
   .header__btn {
     font-size: clamp(1rem ,.9661016949rem + .1694915254vw ,1.125rem)
   }
@@ -481,7 +649,7 @@ h1 {
     height: clamp(2.1875rem ,2.0180084746srem + .8474576271svw ,2.8125srem)
   }
   .hero {
-    padding-bottom: clamp(6.25rem ,22.1398305085rem + -16.9491525424vw ,18.75rem)
+    padding-bottom: clamp(6.25rem ,12.6059322034rem + -6.7796610169vw ,11.25rem)
   }
   .hero__block {
     padding-top: clamp(1.5625rem ,.7150423729rem + 4.2372881356vw ,4.6875rem)
@@ -504,6 +672,15 @@ h1 {
   .hero__slider {
     margin-top: clamp(2.1875rem ,2.0180084746rem + .8474576271vw ,2.8125rem)
   }
+  .offers__nav {
+    margin-bottom: clamp(2.1875rem ,2.0180084746rem + .8474576271vw ,2.8125rem)
+  }
+  .offers__list {
+    gap: clamp(2.8125rem ,2.6430084746rem + .8474576271vw ,3.4375rem)
+  }
+  .offers__list {
+    font-size: clamp(1rem ,.9661016949rem + .1694915254vw ,1.125rem)
+  }
 }
 @media (min-width:61.99875em)and (min-width:48em)and (max-width:93.75em) {
   .menu__list {
@@ -521,6 +698,9 @@ h1 {
   }
 }
 @media (min-width:48em)and (max-width:93.75em) {
+  .hero {
+    margin-bottom: clamp(.0000000625rem ,-6.5573769211rem + 13.6612020492vw ,6.25rem)
+  }
   .hero__text {
     margin-bottom: clamp(1.875rem ,6.7418032787rem + -5.1912568306vw ,4.25rem)
   }
