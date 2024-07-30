@@ -180,17 +180,28 @@ h2 {
 .card {
   border-radius: .9375rem;
   border: 1px solid #ebebeb;
-  transition: .2s
+  transition: .2s;
+  display: block
 }
 .card:hover {
   border-color: red;
   transition: .2s
 }
-.card__image img {
-  width: 100%;
-  -o-object-fit: cover;
-  object-fit: cover;
+.card__image {
+  position: relative;
+  overflow: hidden;
   border-radius: .9375rem .9375rem 0 0
+}
+.card__image img {
+  position: absolute;
+  left: 0;
+  top: 65%;
+  -webkit-transform: translateY(-65%);
+  transform: translateY(-65%);
+  width: 100%;
+  height: auto;
+  -o-object-fit: cover;
+  object-fit: cover
 }
 .card__inner {
   padding: 1.25rem
@@ -231,9 +242,8 @@ h2 {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  flex-wrap: wrap
-}
-.card__details-item {
+  flex-wrap: wrap;
+  gap: 15px;
   color: #505050
 }
 .header__container {
@@ -315,11 +325,36 @@ h2 {
 }
 .offers__link {
   font-size: 1.25rem;
-  transition: .2s
+  position: relative;
+  transition: .3s;
+  padding-right: 2.1875rem
+}
+.offers__link svg {
+  width: 1.25rem;
+  height: 1.25rem;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%)
+}
+.offers__link::before {
+  content: "";
+  height: .0625rem;
+  width: 0;
+  position: absolute;
+  bottom: -.625rem;
+  left: 0;
+  background-color: rgba(0,0,0,0);
+  transition: width .3s,background-color .3s
+}
+.offers__link:hover::before {
+  width: 100%;
+  background-color: red
 }
 .offers__link:hover {
-  color: red;
-  transition: .2s
+  transition: .3s;
+  color: red
 }
 .swiper {
   overflow: hidden
@@ -409,7 +444,7 @@ h2 {
   .advantages__title {
     font-size: 1.25rem
   }
-  .card__image img {
+  .card__image {
     height: 12.5rem
   }
   .card__insights {
@@ -428,7 +463,7 @@ h2 {
     margin-bottom: 6.25rem
   }
   .hero {
-    padding-bottom: 6.25rem
+    padding-bottom: 11.25rem
   }
   .hero__block {
     padding-top: 4.6875rem
@@ -490,7 +525,7 @@ h2 {
 @media (max-width:767px) {
   .hero {
     padding-bottom: 250px;
-    margin-bottom: 65px
+    margin-bottom: 130px
   }
 }
 @media (max-width:20em) {
@@ -514,7 +549,7 @@ h2 {
   .advantages__title {
     font-size: 1rem
   }
-  .card__image img {
+  .card__image {
     height: 15.625rem
   }
   .card__insights {
@@ -533,7 +568,7 @@ h2 {
     padding: .5rem
   }
   .hero {
-    padding-bottom: 11.25rem
+    padding-bottom: 12.5rem
   }
   .hero__block {
     padding-top: 1.5625rem
@@ -577,10 +612,6 @@ h2 {
   }
 }
 @media (max-width:47.99875em) {
-  .card__details {
-    gap: 20px;
-    justify-content: start
-  }
   .hero__text {
     margin-bottom: 25px
   }
@@ -633,7 +664,7 @@ h2 {
   .advantages__title {
     font-size: clamp(1rem ,.9322033898rem + .3389830508vw ,1.25rem)
   }
-  .card__image img {
+  .card__image {
     height: clamp(12.5rem ,16.4724576271rem + -4.2372881356vw ,15.625rem)
   }
   .card__insights {
@@ -649,7 +680,7 @@ h2 {
     height: clamp(2.1875rem ,2.0180084746srem + .8474576271svw ,2.8125srem)
   }
   .hero {
-    padding-bottom: clamp(6.25rem ,12.6059322034rem + -6.7796610169vw ,11.25rem)
+    padding-bottom: clamp(11.25rem ,12.8389830508rem + -1.6949152542vw ,12.5rem)
   }
   .hero__block {
     padding-top: clamp(1.5625rem ,.7150423729rem + 4.2372881356vw ,4.6875rem)

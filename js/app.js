@@ -3407,7 +3407,7 @@
             autoHeight: false,
             speed: 1100,
             breakpoints: {
-                625: {
+                650: {
                     slidesPerView: 2
                 },
                 992: {
