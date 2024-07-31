@@ -285,6 +285,17 @@ h3 {
   transition: .3s;
   color: red
 }
+.social {
+  border-radius: 50px;
+  background: #f9f9fb;
+  line-height: 0;
+  transition: .3s
+}
+.social:hover {
+  color: #fff;
+  background: red;
+  transition: .3s
+}
 .header__container {
   display: flex;
   justify-content: space-between;
@@ -443,9 +454,6 @@ h3 {
   align-items: center;
   flex-wrap: wrap
 }
-.tradeIn {
-  padding-bottom: 100px
-}
 .tradeIn__image {
   width: 100%;
   height: auto;
@@ -470,6 +478,32 @@ h3 {
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap
+}
+.contacts {
+  padding-bottom: 6.25rem
+}
+.contacts__socials {
+  display: flex;
+  gap: 2.1875rem
+}
+.contacts__header {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 2.8125rem
+}
+.contacts__inner {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 2.1875rem
+}
+.contacts__item-title {
+  margin-bottom: .5rem
+}
+.contacts__map {
+  width: 100%;
+  border-radius: 1.25rem
 }
 .swiper {
   overflow: hidden
@@ -585,6 +619,15 @@ h3 {
   }
   .link svg {
     height: 1.25rem
+  }
+  .social {
+    padding: 1.125rem
+  }
+  .social svg {
+    height: 1.375rem
+  }
+  .social svg {
+    width: 1.375rem
   }
   .header__btn {
     font-size: 1.125rem
@@ -721,6 +764,21 @@ h3 {
   .tradeIn__inner {
     gap: 6.25rem
   }
+  .contacts__header {
+    gap: 3.4375rem
+  }
+  .contacts__inner {
+    gap: 9.375rem
+  }
+  .contacts__item-title {
+    font-size: 2rem
+  }
+  .contacts__item-subtitle {
+    font-size: 1.25rem
+  }
+  .contacts__map {
+    height: 25rem
+  }
 }
 @media (max-width:62em) {
   .delivery__image {
@@ -766,6 +824,9 @@ h3 {
   }
   .steps__btn {
     left: 21.875rem
+  }
+  .contacts__inner {
+    gap: 2.8125rem
   }
 }
 @media (max-width:767px) {
@@ -821,6 +882,15 @@ h3 {
   }
   .link svg {
     height: .9375rem
+  }
+  .social {
+    padding: .9375rem
+  }
+  .social svg {
+    height: 1.25rem
+  }
+  .social svg {
+    width: 1.25rem
   }
   .header__btn {
     font-size: 1rem
@@ -914,6 +984,18 @@ h3 {
   }
   .tradeIn__inner {
     gap: 1.25rem
+  }
+  .contacts__header {
+    gap: 1.25rem
+  }
+  .contacts__item-title {
+    font-size: 1.75rem
+  }
+  .contacts__item-subtitle {
+    font-size: 1rem
+  }
+  .contacts__map {
+    height: 17.1875rem
   }
 }
 @media (max-width:61.99875em) {
@@ -1055,6 +1137,15 @@ h3 {
   .link svg {
     height: clamp(.9375rem ,.8527542373rem + .4237288136vw ,1.25rem)
   }
+  .social {
+    padding: clamp(.9375rem ,.8866525424rem + .2542372881vw ,1.125rem)
+  }
+  .social svg {
+    height: clamp(1.25rem ,1.2161016949rem + .1694915254vw ,1.375rem)
+  }
+  .social svg {
+    width: clamp(1.25rem ,1.2161016949rem + .1694915254vw ,1.375rem)
+  }
   .header__btn {
     font-size: clamp(1rem ,.9661016949rem + .1694915254vw ,1.125rem)
   }
@@ -1145,6 +1236,18 @@ h3 {
   .tradeIn__inner {
     gap: clamp(1.25rem ,-.1059322034rem + 6.7796610169vw ,6.25rem)
   }
+  .contacts__header {
+    gap: clamp(1.25rem ,.656779661rem + 2.9661016949vw ,3.4375rem)
+  }
+  .contacts__item-title {
+    font-size: clamp(1.75rem ,1.6822033898rem + .3389830508vw ,2rem)
+  }
+  .contacts__item-subtitle {
+    font-size: clamp(1rem ,.9322033898rem + .3389830508vw ,1.25rem)
+  }
+  .contacts__map {
+    height: clamp(17.1875rem ,15.0688559322rem + 10.593220339vw ,25rem)
+  }
 }
 @media (min-width:61.99875em)and (min-width:48em)and (max-width:93.75em) {
   .menu__list {
@@ -1179,6 +1282,9 @@ h3 {
   }
   .steps__btn {
     left: clamp(21.875rem ,13.3504098361rem + 17.7595628415vw ,30rem)
+  }
+  .contacts__inner {
+    gap: clamp(2.8125rem ,-4.0727459016rem + 14.3442622951vw ,9.375rem)
   }
 }
 @media (min-width:47.99875em)and (min-width:48em)and (max-width:93.75em) {
