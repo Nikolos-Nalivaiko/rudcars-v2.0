@@ -298,11 +298,16 @@ h3 {
 }
 .social_footer {
   background-color: none;
-  border: 1px solid #e0e0e0
+  border: 1px solid #e0e0e0;
+  padding: 1.125rem
 }
 .social_footer:hover {
   transition: .3s;
   border-color: red
+}
+.social_footer svg {
+  width: 1.375rem;
+  height: 1.375rem
 }
 .header__container {
   display: flex;
@@ -350,7 +355,6 @@ h3 {
 .footer__socials {
   display: flex;
   align-items: center;
-  gap: 35px;
   flex-wrap: wrap
 }
 .footer__list {
@@ -524,9 +528,6 @@ h3 {
   justify-content: space-between;
   flex-wrap: wrap
 }
-.contacts {
-  padding-bottom: 6.25rem
-}
 .contacts__socials {
   display: flex;
   gap: 2.1875rem
@@ -549,6 +550,75 @@ h3 {
 .contacts__map {
   width: 100%;
   border-radius: 1.25rem
+}
+.catalog__nav {
+  margin-top: 1.25rem;
+  margin-bottom: 2.5rem
+}
+.catalog__cars {
+  display: grid;
+  grid-template-columns: repeat(auto-fill,minmax(295px,1fr))
+}
+.filter {
+  border-radius: 1.25rem;
+  border: 1px solid #ebebeb;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1.875rem
+}
+.filter__wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: start
+}
+.filter__wrapper:not(:last-child) {
+  border-right: 1px solid #ebebeb
+}
+.filter__select {
+  font-weight: 700;
+  outline: 0
+}
+.filter__select-dates {
+  display: flex;
+  align-items: center;
+  gap: 20px
+}
+.filter__date {
+  display: flex;
+  align-items: center;
+  gap: 20px
+}
+.filter__option {
+  font-size: 1rem
+}
+.filter__label {
+  margin-bottom: .3125rem
+}
+.filter__selects {
+  display: flex;
+  flex-wrap: wrap
+}
+.filter__btn {
+  padding-top: 1.125rem;
+  padding-bottom: 1.125rem;
+  width: 11.25rem;
+  text-align: center;
+  border-radius: 1.25rem;
+  border: .0625rem solid #ebebeb;
+  font-size: 1.125rem;
+  transition: .3s
+}
+.filter__btn svg {
+  margin-left: .9375rem;
+  width: .9375rem;
+  height: .9375rem
+}
+.filter__btn:hover {
+  background-color: #272121;
+  color: #fff;
+  transition: .3s
 }
 .swiper {
   overflow: hidden
@@ -677,14 +747,23 @@ h3 {
   .logo {
     height: 2.8125rem
   }
+  .page__new {
+    margin-top: 5.3125rem
+  }
   .header__btn {
     font-size: 1.125rem
+  }
+  .footer {
+    margin-top: 9.375rem
   }
   .footer__wrapper {
     padding: 4.6875rem
   }
   .footer__subtitle {
     font-size: 1rem
+  }
+  .footer__socials {
+    gap: 2.1875rem
   }
   .footer__list {
     gap: 1.25rem
@@ -842,6 +921,24 @@ h3 {
   .contacts__map {
     height: 25rem
   }
+  .catalog__cars {
+    gap: 1.875rem
+  }
+  .catalog__cars {
+    margin-top: 2.8125rem
+  }
+  .filter {
+    padding: 2.1875rem
+  }
+  .filter__wrapper:not(:last-child) {
+    padding-right: 3.4375rem
+  }
+  .filter__select {
+    font-size: 1.25rem
+  }
+  .filter__selects {
+    gap: 3.4375rem
+  }
 }
 @media (max-width:62em) {
   .delivery__image {
@@ -958,17 +1055,26 @@ h3 {
   .logo {
     height: 2.1875rem
   }
+  .page__new {
+    margin-top: 4.0625rem
+  }
   .header__btn {
     font-size: 1rem
   }
   .menu__burger {
     padding: .5rem
   }
+  .footer {
+    margin-top: 7.5rem
+  }
   .footer__wrapper {
     padding: 1.875rem
   }
   .footer__subtitle {
     font-size: .875rem
+  }
+  .footer__socials {
+    gap: 1.5625rem
   }
   .footer__list {
     gap: .9375rem
@@ -1078,6 +1184,24 @@ h3 {
   .contacts__map {
     height: 17.1875rem
   }
+  .catalog__cars {
+    gap: 1.5625rem
+  }
+  .catalog__cars {
+    margin-top: 2.5rem
+  }
+  .filter {
+    padding: 1.5625rem
+  }
+  .filter__wrapper:not(:last-child) {
+    padding-right: 1.25rem
+  }
+  .filter__select {
+    font-size: 1.125rem
+  }
+  .filter__selects {
+    gap: 1.25rem
+  }
 }
 @media (max-width:61.99875em) {
   .header__btn {
@@ -1148,9 +1272,28 @@ h3 {
     margin-bottom: 1.25rem
   }
   .tradeIn__image {
-    height: 250px
+    height: 12.5rem
   }
   .tradeIn__advantages {
+    width: 100%
+  }
+  .catalog__nav {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap
+  }
+  .filter__wrapper:not(:last-child) {
+    padding-right: 0;
+    padding-bottom: 1.25rem;
+    border-right: none;
+    border-bottom: 1px solid #ebebeb;
+    width: 100%
+  }
+  .filter__selects {
+    flex-direction: column;
+    width: 100%
+  }
+  .filter__btn {
     width: 100%
   }
 }
@@ -1171,6 +1314,9 @@ h3 {
   }
   .footer__inner {
     width: 100%
+  }
+  .footer__subtitle {
+    max-width: 100%
   }
   .footer__socials {
     justify-content: space-between
@@ -1236,14 +1382,23 @@ h3 {
   .logo {
     height: clamp(2.1875rem ,2.0180084746rem + .8474576271vw ,2.8125rem)
   }
+  .page__new {
+    margin-top: clamp(4.0625rem ,3.7235169492rem + 1.6949152542vw ,5.3125rem)
+  }
   .header__btn {
     font-size: clamp(1rem ,.9661016949rem + .1694915254vw ,1.125rem)
+  }
+  .footer {
+    margin-top: clamp(7.5rem ,6.9915254237rem + 2.5423728814vw ,9.375rem)
   }
   .footer__wrapper {
     padding: clamp(1.875rem ,1.1122881356rem + 3.813559322vw ,4.6875rem)
   }
   .footer__subtitle {
     font-size: clamp(.875rem ,.8411016949rem + .1694915254vw ,1rem)
+  }
+  .footer__socials {
+    gap: clamp(1.5625rem ,1.3930084746rem + .8474576271vw ,2.1875rem)
   }
   .footer__list {
     gap: clamp(.9375rem ,.8527542373rem + .4237288136vw ,1.25rem)
@@ -1352,6 +1507,24 @@ h3 {
   }
   .contacts__map {
     height: clamp(17.1875rem ,15.0688559322rem + 10.593220339vw ,25rem)
+  }
+  .catalog__cars {
+    gap: clamp(1.5625rem ,1.4777542373rem + .4237288136vw ,1.875rem)
+  }
+  .catalog__cars {
+    margin-top: clamp(2.5rem ,2.4152542373rem + .4237288136vw ,2.8125rem)
+  }
+  .filter {
+    padding: clamp(1.5625rem ,1.3930084746rem + .8474576271vw ,2.1875rem)
+  }
+  .filter__wrapper:not(:last-child) {
+    padding-right: clamp(1.25rem ,.656779661rem + 2.9661016949vw ,3.4375rem)
+  }
+  .filter__select {
+    font-size: clamp(1.125rem ,1.0911016949rem + .1694915254vw ,1.25rem)
+  }
+  .filter__selects {
+    gap: clamp(1.25rem ,.656779661rem + 2.9661016949vw ,3.4375rem)
   }
 }
 @media (min-width:61.99875em)and (min-width:48em)and (max-width:93.75em) {

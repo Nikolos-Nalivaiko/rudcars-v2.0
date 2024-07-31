@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>Home Page</title>
+	<meta charset="UTF-8">
+	<meta name="format-detection" content="telephone=no">
+	<!-- <style>body{opacity: 0;}</style> -->
+	<link rel="stylesheet" href="css/style.min.css?_v=20240731233545">
+	<link rel="shortcut icon" href="favicon.ico">
+	<!-- <meta name="robots" content="noindex, nofollow"> -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+	<div class="wrapper">
+		<header class="header">
+			<div class="header__container">
+				<a href="">
+					<img src="img/logo.svg" alt="Логотип" class="logo">
+				</a>
+
+				<div class="menu">
+					<ul class="menu__list">
+						<li class="menu__item"><a href="index.html" class="menu__link nav__item--hover">Головна</a></li>
+						<li class="menu__item"><a href="catalog.html" class="menu__link nav__item--hover">Асортимент</a></li>
+						<li class="menu__item"><a href="" class="menu__link nav__item--hover">Послуги</a></li>
+						<li class="menu__item"><a href="" class="menu__link nav__item--hover">Контакти</a></li>
+					</ul>
+				</div>
+
+				<div class="header__btn">Замовити авто</div>
+
+				<div class="menu__burger"><img src="img/menu.svg" alt="Menu burger"></div>
+			</div>
+		</header>
+		<main class="page__new">
+			<section class="catalog__container">
+				<h2>Каталог автомобілів</h2>
+				<ul class="offers__list catalog__nav">
+					<li class="offers__item nav__item--hover">Офіційні авто</li>
+					<li class="offers__item nav__item--hover">Авто із США</li>
+					<li class="offers__item nav__item--hover">Авто із Европи</li>
+					<li class="offers__item nav__item--hover">Авто у дорозі</li>
+				</ul>
+
+				<form action="" method="post" class="filter">
+
+					<div class="filter__selects">
+						<div class="filter__wrapper">
+							<label for="" class="filter__label">Оберіть марку</label>
+							<select value="" class="filter__select">
+								<option value="" class="filter__option" selected>Весь ассортимент</option>
+								<option value="" class="filter__option">Mercedes-Benz</option>
+								<option value="" class="filter__option">Skoda</option>
+								<option value="" class="filter__option">Chevrolet</option>
+							</select>
+						</div>
+
+						<div class="filter__wrapper">
+							<label for="" class="filter__label">Оберіть модель</label>
+							<select value="" class="filter__select">
+								<option value="" class="filter__option" selected>Весь ассортимент</option>
+								<option value="" class="filter__option">GLE-Class</option>
+								<option value="" class="filter__option">Octavia</option>
+								<option value="" class="filter__option">Corvette</option>
+							</select>
+						</div>
+
+						<div class="filter__wrapper">
+							<label for="" class="filter__label">Рік випуску</label>
+							<div class="filter__select-dates">
+
+								<div class="filter__date">
+									<label for="" class="filter__date-label">від:</label>
+									<select name="" id="" class="filter__select">
+										<option value="" class="filter__option">2024</option>
+										<option value="" class="filter__option">2023</option>
+									</select>
+								</div>
+
+								<div class="filter__date">
+									<label for="" class="filter__date-label">до:</label>
+									<select name="" id="" class="filter__select">
+										<option value="" class="filter__option">2024</option>
+										<option value="" class="filter__option">2023</option>
+									</select>
+								</div>
+
+							</div>
+						</div>
+					</div>
+
+					<button type="submit" class="filter__btn">Знайти
+						<svg>
+							<use xlink:href="img/icons/icons.svg#arrowTop"></use>
+						</svg>
+					</button>
+				</form>
+
+				<div class="catalog__cars">
+					<a href="" class="card">
+						<div class="card__image">
+							<img src="img/mercedes.webp" alt="Image">
+						</div>
+
+						<div class="card__inner">
+							<p class="card__title">Mercedes-Benz E-Class</p>
+
+							<ul class="card__prices">
+								<li class="card__price">76,500$</li>
+								<li class="card__price-old">77,777$</li>
+							</ul>
+
+							<ul class="card__insights">
+								<li class="card__insights-item">2018</li>
+								<li class="card__insights-item">Офіційне авто</li>
+							</ul>
+
+							<ul class="card__details">
+								<li class="card__detaild-item">4.0 Бензин</li>
+								<li class="card__detaild-item">Автомат</li>
+								<li class="card__detaild-item">61,000 км.</li>
+							</ul>
+						</div>
+					</a>
+					<a href="" class="card">
+						<div class="card__image">
+							<img src="img/corvette.webp" alt="Image">
+						</div>
+
+						<div class="card__inner">
+							<p class="card__title">Chevrolet Corvette</p>
+
+							<ul class="card__prices">
+								<li class="card__price">69,999$</li>
+								<li class="card__price-old">71,000$</li>
+							</ul>
+
+							<ul class="card__insights">
+								<li class="card__insights-item">2015</li>
+								<li class="card__insights-item">Офіційне авто</li>
+							</ul>
+
+							<ul class="card__details">
+								<li class="card__detaild-item">6.2 Бензин</li>
+								<li class="card__detaild-item">Автомат</li>
+								<li class="card__detaild-item">23,000 км.</li>
+							</ul>
+						</div>
+					</a>
+					<a href="" class="card">
+						<div class="card__image">
+							<img src="img/rangeRover.webp" alt="Image">
+						</div>
+
+						<div class="card__inner">
+							<p class="card__title">Range Rover Sport</p>
+
+							<ul class="card__prices">
+								<li class="card__price">68,900$</li>
+								<li class="card__price-old">69,000$</li>
+							</ul>
+
+							<ul class="card__insights">
+								<li class="card__insights-item">2021</li>
+								<li class="card__insights-item">Офіційне авто</li>
+							</ul>
+
+							<ul class="card__details">
+								<li class="card__detaild-item">4.0 Гібрид</li>
+								<li class="card__detaild-item">Автомат</li>
+								<li class="card__detaild-item">48,000 км.</li>
+							</ul>
+						</div>
+					</a>
+					<a href="" class="card">
+						<div class="card__image">
+							<img src="img/bmw.webp" alt="Image">
+						</div>
+
+						<div class="card__inner">
+							<p class="card__title">BMW 8 Series</p>
+
+							<ul class="card__prices">
+								<li class="card__price">81,900$</li>
+								<li class="card__price-old">85,555$</li>
+							</ul>
+
+							<ul class="card__insights">
+								<li class="card__insights-item">2020</li>
+								<li class="card__insights-item">Офіційне авто</li>
+							</ul>
+
+							<ul class="card__details">
+								<li class="card__detaild-item">3.0 Дизель</li>
+								<li class="card__detaild-item">Автомат</li>
+								<li class="card__detaild-item">68,888 км.</li>
+							</ul>
+						</div>
+					</a>
+					<a href="" class="card">
+						<div class="card__image">
+							<img src="img/mercedes.webp" alt="Image">
+						</div>
+
+						<div class="card__inner">
+							<p class="card__title">Mercedes-Benz E-Class</p>
+
+							<ul class="card__prices">
+								<li class="card__price">76,500$</li>
+								<li class="card__price-old">77,777$</li>
+							</ul>
+
+							<ul class="card__insights">
+								<li class="card__insights-item">2018</li>
+								<li class="card__insights-item">Офіційне авто</li>
+							</ul>
+
+							<ul class="card__details">
+								<li class="card__detaild-item">4.0 Бензин</li>
+								<li class="card__detaild-item">Автомат</li>
+								<li class="card__detaild-item">61,000 км.</li>
+							</ul>
+						</div>
+					</a>
+					<a href="" class="card">
+						<div class="card__image">
+							<img src="img/corvette.webp" alt="Image">
+						</div>
+
+						<div class="card__inner">
+							<p class="card__title">Chevrolet Corvette</p>
+
+							<ul class="card__prices">
+								<li class="card__price">69,999$</li>
+								<li class="card__price-old">71,000$</li>
+							</ul>
+
+							<ul class="card__insights">
+								<li class="card__insights-item">2015</li>
+								<li class="card__insights-item">Офіційне авто</li>
+							</ul>
+
+							<ul class="card__details">
+								<li class="card__detaild-item">6.2 Бензин</li>
+								<li class="card__detaild-item">Автомат</li>
+								<li class="card__detaild-item">23,000 км.</li>
+							</ul>
+						</div>
+					</a>
+					<a href="" class="card">
+						<div class="card__image">
+							<img src="img/rangeRover.webp" alt="Image">
+						</div>
+
+						<div class="card__inner">
+							<p class="card__title">Range Rover Sport</p>
+
+							<ul class="card__prices">
+								<li class="card__price">68,900$</li>
+								<li class="card__price-old">69,000$</li>
+							</ul>
+
+							<ul class="card__insights">
+								<li class="card__insights-item">2021</li>
+								<li class="card__insights-item">Офіційне авто</li>
+							</ul>
+
+							<ul class="card__details">
+								<li class="card__detaild-item">4.0 Гібрид</li>
+								<li class="card__detaild-item">Автомат</li>
+								<li class="card__detaild-item">48,000 км.</li>
+							</ul>
+						</div>
+					</a>
+					<a href="" class="card">
+						<div class="card__image">
+							<img src="img/bmw.webp" alt="Image">
+						</div>
+
+						<div class="card__inner">
+							<p class="card__title">BMW 8 Series</p>
+
+							<ul class="card__prices">
+								<li class="card__price">81,900$</li>
+								<li class="card__price-old">85,555$</li>
+							</ul>
+
+							<ul class="card__insights">
+								<li class="card__insights-item">2020</li>
+								<li class="card__insights-item">Офіційне авто</li>
+							</ul>
+
+							<ul class="card__details">
+								<li class="card__detaild-item">3.0 Дизель</li>
+								<li class="card__detaild-item">Автомат</li>
+								<li class="card__detaild-item">68,888 км.</li>
+							</ul>
+						</div>
+					</a>
+				</div>
+
+			</section>
+		</main>
+		<footer class="footer">
+			<div class="footer__container">
+				<div class="footer__wrapper">
+					<div class="footer__inner">
+						<a href="">
+							<img src="img/logo.svg" alt="Image" class="logo">
+						</a>
+						<p class="footer__subtitle">Пориньте в магію керування та насолоджуйтесь кожною подорожжю</p>
+						<div class="footer__socials">
+							<a href="" class="social social_footer">
+								<svg>
+									<use xlink:href="img/icons/icons.svg#instagram"></use>
+								</svg>
+							</a>
+							<a href="" class="social social_footer">
+								<svg>
+									<use xlink:href="img/icons/icons.svg#telegram"></use>
+								</svg>
+							</a>
+							<a href="" class="social social_footer">
+								<svg>
+									<use xlink:href="img/icons/icons.svg#facebook"></use>
+								</svg>
+							</a>
+						</div>
+					</div>
+					<div class="footer__nav">
+						<ul class="footer__list">
+							<li class="footer__item-title"><a href="">Головна</a></li>
+							<li class="footer__item-subtitle"><a href="">Акційні пропозиції</a></li>
+							<li class="footer__item-subtitle"><a href="">Послуги</a></li>
+							<li class="footer__item-subtitle"><a href="">Контакти</a></li>
+							<li class="footer__item-subtitle"><a href="">Про нас</a></li>
+						</ul>
+
+						<ul class="footer__list">
+							<li class="footer__item-title">Послуги</li>
+							<li class="footer__item-subtitle"><a href="">Пригін авто з США</a></li>
+							<li class="footer__item-subtitle"><a href="">Пригін авто з Европи</a></li>
+							<li class="footer__item-subtitle"><a href="">Пригін авто під ключ</a></li>
+						</ul>
+
+						<ul class="footer__list">
+							<li class="footer__item-title">Ресурси</li>
+							<li class="footer__item-subtitle"><a href="">Політика конфедеційності</a></li>
+							<li class="footer__item-subtitle"><a href="">Умови користування</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</footer>
+	</div>
+	<!-- Документація: https://template.fls.guru/template-docs/modul-preloader.html -->
+	<div id="fls-preloader">
+		<!-- Скріпт прелоадера -->
+		<script>
+			function preloader() {
+				const preloaderImages = document.querySelector('[data-preloader]') ? document.querySelectorAll('[data-preloader] img') : document.querySelectorAll('img');
+				const preloaderContainer = document.querySelector('#fls-preloader');
+				if (preloaderImages.length) {
+					const preloaderStyleTemplate = `
+				<style>
+					* {
+						padding: 0px;
+						margin: 0px;
+						border: 0px;
+						box-sizing: border-box;
+					}
+					/* Головний блок */
+					.fls-preloader{
+						pointer-events: none;
+						z-index: 10;
+						position: fixed;
+						width: 100%;
+						height: 100%;
+						top: 0;
+						left: 0;
+						display: flex;
+						justify-content:center;
+						align-items: center;
+						background-color: #ffff;
+					}
+					/* Блок з елементами */
+					.fls-preloader__body{
+						padding: 0.93rem;
+						max-width: 31.25rem;
+						display: flex;
+						flex-direction: column;
+					}
+					/* Блок з лічильником */
+					.fls-preloader__counter{
+						font-size: 10rem;
+					}
+					/* Прогресбар */
+					.fls-preloader__line{}
+					/* Лінія прогресбару */
+					.fls-preloader__line span{
+						display: inline-block;
+						transition: width 0.2s ease;
+						height: 0.8rem;
+						background-color: #FF0000;
+					}
+					.lock body{
+						overflow: hidden;
+						touch-action: none;
+						overscroll-behavior: none;
+					}
+					.loading body>*:not(.fls-preloader){
+						opacity: 0;
+						visibility: hidden;
+					}
+					.loaded body>*:not(.fls-preloader){
+						transition: opacity 0.5s ease 0s;
+						opacity: 1;
+						visibility: visible;
+					}
+				</style>`;
+
+					document.head.insertAdjacentHTML("beforeend", preloaderStyleTemplate);
+
+					const preloaderTemplate = `
+					<div class="fls-preloader">
+						<div class="fls-preloader__body">
+							<div class="fls-preloader__counter">0%</div>
+							<div class="fls-preloader__line"><span></span></div>
+						</div>
+					</div>`;
+					document.body.insertAdjacentHTML("beforeend", preloaderTemplate);
+
+					const
+						preloader = document.querySelector('.fls-preloader'),
+						showPecentLoad = document.querySelector('.fls-preloader__counter'),
+						showLineLoad = document.querySelector('.fls-preloader__line span'),
+						htmlDocument = document.documentElement;
+
+					let imagesLoadedCount = counter = progress = 0;
+
+					htmlDocument.classList.add('loading');
+					htmlDocument.classList.add('lock');
+
+					preloaderImages.forEach(preloaderImage => {
+						const imgClone = document.createElement('img');
+						if (imgClone) {
+							imgClone.onload = imageLoaded;
+							imgClone.onerror = imageLoaded;
+							preloaderImage.dataset.src ? imgClone.src = preloaderImage.dataset.src : imgClone.src = preloaderImage.src;
+						}
+					});
+
+					function setValueProgress(progress) {
+						showPecentLoad ? showPecentLoad.innerText = `${progress}%` : null;
+						showLineLoad ? showLineLoad.style.width = `${progress}%` : null;
+					}
+					showPecentLoad ? setValueProgress(progress) : null;
+
+					function imageLoaded() {
+						imagesLoadedCount++;
+						progress = Math.round((100 / preloaderImages.length) * imagesLoadedCount);
+						const intervalId = setInterval(() => {
+							counter >= progress ? clearInterval(intervalId) : setValueProgress(++counter);
+							counter >= 100 ? addLoadedClass() : null;
+						}, 10);
+					}
+
+					function addLoadedClass() {
+						htmlDocument.classList.add('loaded');
+						htmlDocument.classList.remove('lock');
+						htmlDocument.classList.remove('loading');
+						setInterval(() => {
+							preloader.remove();
+							preloaderContainer.remove();
+						}, 500);
+					}
+				} else {
+					preloaderContainer.remove();
+				}
+			}
+			preloader();
+		</script>
+	</div>
+	<script src="js/app.min.js?_v=20240731233545"></script>
+</body>
+
+</html>
