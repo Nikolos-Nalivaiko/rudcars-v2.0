@@ -296,6 +296,14 @@ h3 {
   background: red;
   transition: .3s
 }
+.social_footer {
+  background-color: none;
+  border: 1px solid #e0e0e0
+}
+.social_footer:hover {
+  transition: .3s;
+  border-color: red
+}
 .header__container {
   display: flex;
   justify-content: space-between;
@@ -322,6 +330,43 @@ h3 {
   right: 1.25rem;
   border-radius: 5px;
   border: 1px solid #dbdbdb
+}
+.footer__wrapper {
+  border-radius: 20px;
+  background: #f9f9fb;
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 35px
+}
+.footer__subtitle {
+  color: #787878;
+  margin-top: .9375rem;
+  max-width: 14.375rem;
+  line-height: 1.1;
+  margin-bottom: 1.875rem
+}
+.footer__socials {
+  display: flex;
+  align-items: center;
+  gap: 35px;
+  flex-wrap: wrap
+}
+.footer__list {
+  display: flex;
+  flex-direction: column
+}
+.footer__item-title {
+  font-weight: 700
+}
+.footer__item-subtitle {
+  color: #787878
+}
+.footer__nav {
+  display: flex;
+  align-items: start;
+  flex-wrap: wrap
 }
 .hero {
   position: relative
@@ -629,11 +674,29 @@ h3 {
   .social svg {
     width: 1.375rem
   }
+  .logo {
+    height: 2.8125rem
+  }
   .header__btn {
     font-size: 1.125rem
   }
-  .header__logo {
-    height: 2.8125srem
+  .footer__wrapper {
+    padding: 4.6875rem
+  }
+  .footer__subtitle {
+    font-size: 1rem
+  }
+  .footer__list {
+    gap: 1.25rem
+  }
+  .footer__item-title {
+    font-size: 1.25rem
+  }
+  .footer__item-subtitle {
+    font-size: 1.125rem
+  }
+  .footer__nav {
+    gap: 6.25rem
   }
   .hero {
     margin-bottom: 6.25rem
@@ -892,14 +955,32 @@ h3 {
   .social svg {
     width: 1.25rem
   }
+  .logo {
+    height: 2.1875rem
+  }
   .header__btn {
     font-size: 1rem
   }
-  .header__logo {
-    height: 2.1875rem
-  }
   .menu__burger {
     padding: .5rem
+  }
+  .footer__wrapper {
+    padding: 1.875rem
+  }
+  .footer__subtitle {
+    font-size: .875rem
+  }
+  .footer__list {
+    gap: .9375rem
+  }
+  .footer__item-title {
+    font-size: 1rem
+  }
+  .footer__item-subtitle {
+    font-size: 1rem
+  }
+  .footer__nav {
+    gap: 2.1875rem
   }
   .hero {
     padding-bottom: 12.5rem
@@ -1088,6 +1169,12 @@ h3 {
   .header__btn {
     display: none
   }
+  .footer__inner {
+    width: 100%
+  }
+  .footer__socials {
+    justify-content: space-between
+  }
 }
 @media (min-width:20em)and (max-width:93.75em) {
   h1 {
@@ -1146,11 +1233,29 @@ h3 {
   .social svg {
     width: clamp(1.25rem ,1.2161016949rem + .1694915254vw ,1.375rem)
   }
+  .logo {
+    height: clamp(2.1875rem ,2.0180084746rem + .8474576271vw ,2.8125rem)
+  }
   .header__btn {
     font-size: clamp(1rem ,.9661016949rem + .1694915254vw ,1.125rem)
   }
-  .header__logo {
-    height: clamp(2.1875rem ,2.0180084746srem + .8474576271svw ,2.8125srem)
+  .footer__wrapper {
+    padding: clamp(1.875rem ,1.1122881356rem + 3.813559322vw ,4.6875rem)
+  }
+  .footer__subtitle {
+    font-size: clamp(.875rem ,.8411016949rem + .1694915254vw ,1rem)
+  }
+  .footer__list {
+    gap: clamp(.9375rem ,.8527542373rem + .4237288136vw ,1.25rem)
+  }
+  .footer__item-title {
+    font-size: clamp(1rem ,.9322033898rem + .3389830508vw ,1.25rem)
+  }
+  .footer__item-subtitle {
+    font-size: clamp(1rem ,.9661016949rem + .1694915254vw ,1.125rem)
+  }
+  .footer__nav {
+    gap: clamp(2.1875rem ,1.0858050847rem + 5.5084745763vw ,6.25rem)
   }
   .hero {
     padding-bottom: clamp(11.25rem ,12.8389830508rem + -1.6949152542vw ,12.5rem)
