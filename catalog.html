@@ -6,7 +6,7 @@
 	<meta charset="UTF-8">
 	<meta name="format-detection" content="telephone=no">
 	<!-- <style>body{opacity: 0;}</style> -->
-	<link rel="stylesheet" href="css/style.min.css?_v=20240731233545">
+	<link rel="stylesheet" href="css/style.min.css?_v=20240801163438">
 	<link rel="shortcut icon" href="favicon.ico">
 	<!-- <meta name="robots" content="noindex, nofollow"> -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -98,8 +98,13 @@
 					</button>
 				</form>
 
+				<div class="catalog__found">
+					<h3>Знайдені авто</h3>
+					<p class="catalog__count">12</p>
+				</div>
+
 				<div class="catalog__cars">
-					<a href="" class="card">
+					<a href="info.html" class="card">
 						<div class="card__image">
 							<img src="img/mercedes.webp" alt="Image">
 						</div>
@@ -299,6 +304,26 @@
 							</ul>
 						</div>
 					</a>
+				</div>
+
+				<div class="pagging">
+					<ul class="pagging__list">
+						<li>
+							<a href="" class="pagging__item _active">1</a>
+						</li>
+						<li>
+							<a href="" class="pagging__item">2</a>
+						</li>
+						<li>
+							<a href="" class="pagging__item">3</a>
+						</li>
+						<li>
+							<a href="" class="pagging__item">4</a>
+						</li>
+						<li>
+							<a href="" class="pagging__item">5</a>
+						</li>
+					</ul>
 				</div>
 
 			</section>
@@ -394,7 +419,8 @@
 					}
 					/* Блок з лічильником */
 					.fls-preloader__counter{
-						font-size: 10rem;
+						font-size: 7rem;
+						
 					}
 					/* Прогресбар */
 					.fls-preloader__line{}
@@ -483,7 +509,7 @@
 			preloader();
 		</script>
 	</div>
-	<script src="js/app.min.js?_v=20240731233545"></script>
+	<script src="js/app.min.js?_v=20240801163438"></script>
 </body>
 
 </html>
