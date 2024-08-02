@@ -457,7 +457,7 @@ h3 {
 .header__btn_mobile {
   display: none;
   width: 100%;
-  margin-top: 1.5625rem;
+  margin-top: 2.1875rem;
   text-align: center
 }
 .menu__list {
@@ -475,8 +475,7 @@ h3 {
 }
 .menu__burger_close {
   position: static;
-  z-index: 20;
-  top: 45px
+  z-index: 20
 }
 .menu__header {
   display: flex;
@@ -1889,10 +1888,10 @@ h3 {
   }
   .menu__list {
     z-index: 25;
-    margin-top: 45px;
+    margin-top: 2.1875rem;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 25px;
     font-size: 1.125rem
   }
   .hero__title {
