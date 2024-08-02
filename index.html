@@ -6,7 +6,7 @@
 	<meta charset="UTF-8">
 	<meta name="format-detection" content="telephone=no">
 	<!-- <style>body{opacity: 0;}</style> -->
-	<link rel="stylesheet" href="css/style.min.css?_v=20240802130842">
+	<link rel="stylesheet" href="css/style.min.css?_v=20240802185301">
 	<link rel="shortcut icon" href="favicon.ico">
 	<!-- <meta name="robots" content="noindex, nofollow"> -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,22 +16,40 @@
 	<div class="wrapper">
 		<header class="header">
 			<div class="header__container">
-				<a href="index.html">
-					<img src="img/logo.svg" alt="Логотип" class="logo">
-				</a>
+				<div class="header__menu menu">
+					<a href="index.html">
+						<img src="img/logo.svg" alt="Логотип" class="logo">
+					</a>
 
-				<div class="menu">
-					<ul class="menu__list">
-						<li class="menu__item"><a href="index.html" class="menu__link nav__item--hover">Головна</a></li>
-						<li class="menu__item"><a href="catalog.html" class="menu__link nav__item--hover">Асортимент</a></li>
-						<li class="menu__item"><a href="#" data-goto-speed="1000" data-goto-top="70" data-goto=".delivery" class="menu__link nav__item--hover">Послуги</a></li>
-						<li class="menu__item"><a href="index.html" data-goto-speed="1000" data-goto-top="70" data-goto=".contacts" class="menu__link nav__item--hover">Контакти</a></li>
-					</ul>
+					<nav class="menu__body">
+						<div class="menu__header">
+							<a href="index.html">
+								<img src="img/logo.svg" alt="Логотип" class="logo logo_mobile">
+							</a>
+
+							<div class="menu__burger menu__burger_close icon-menu menu-close">
+								<svg>
+									<use xlink:href="img/icons/icons.svg#close"></use>
+								</svg>
+							</div>
+						</div>
+
+						<ul class="menu__list">
+							<li class="menu__item"><a href="index.html" class="menu__link nav__item--hover">Головна</a></li>
+							<li class="menu__item"><a href="catalog.html" class="menu__link nav__item--hover">Асортимент</a></li>
+							<li class="menu__item"><a href="#" data-goto-speed="1000" data-goto-top="70" data-goto=".delivery" class="menu__link nav__item--hover">Послуги</a></li>
+							<li class="menu__item"><a href="index.html" data-goto-speed="1000" data-goto-top="70" data-goto=".contacts" class="menu__link nav__item--hover">Контакти</a></li>
+						</ul>
+
+						<a href="" class="header__btn header__btn_mobile" data-popup="#popup">Замовити авто</a>
+
+					</nav>
+
+					<a href="" class="header__btn" data-popup="#popup">Замовити авто</a>
+					<div class="menu__burger icon-menu menu-open"><img src="img/menu.svg" alt="Menu burger"></div>
+
 				</div>
 
-				<a href="" class="header__btn" data-popup="#popup">Замовити авто</a>
-
-				<div class="menu__burger"><img src="img/menu.svg" alt="Menu burger"></div>
 			</div>
 		</header>
 		<div id="popup" aria-hidden="true" class="popup">
@@ -143,156 +161,229 @@
 
 				<h2 class="offers__title">Акційні пропозиції</h2>
 
-				<div class="offers__nav">
-					<ul class="offers__list">
-						<li class="offers__item nav__item--hover">Офіційні авто</li>
-						<li class="offers__item nav__item--hover">Авто із США</li>
-						<li class="offers__item nav__item--hover">Авто із Европи</li>
-					</ul>
-					<a href="catalog.html" class="link link_unvisible">
-						Переглянути всі
-						<svg>
-							<use xlink:href="img/icons/icons.svg#arrowTop"></use>
-						</svg>
-					</a>
-				</div>
+				<div data-tabs class="offers-tabs">
+					<div class="offers__nav">
+						<nav data-tabs-titles class="offers__list">
+							<button type="button" class="offers__item nav__item--hover _tab-active">Офіційні авто</button>
+							<button type="button" class="offers__item nav__item--hover">Авто із США</button>
+							<button type="button" class="offers__item nav__item--hover">Авто із Европи</button>
+						</nav>
 
-				<div class="offers__slider swiper">
-					<div class="offers__wrapper swiper-wrapper">
-						<div class="offers__slide swiper-slide">
-							<a href="info.html" class="card">
-								<div class="card__image">
-									<img src="img/mercedes.webp" alt="Image">
+						<a href="catalog.html" class="link link_unvisible">
+							Переглянути всі
+							<svg>
+								<use xlink:href="img/icons/icons.svg#arrowTop"></use>
+							</svg>
+						</a>
+					</div>
+
+					<div data-tabs-body class="offers-tabs__content">
+						<div class="offers-tabs__body">
+							<div class="offers__slider swiper">
+								<div class="offers__wrapper swiper-wrapper">
+									<div class="offers__slide swiper-slide">
+										<a href="info.html" class="card">
+											<div class="card__image">
+												<img src="img/mercedes.webp" alt="Image">
+											</div>
+
+											<div class="card__inner">
+												<p class="card__title">Mercedes-Benz E-Class</p>
+
+												<ul class="card__prices">
+													<li class="card__price">76,500$</li>
+													<li class="card__price-old">77,777$</li>
+												</ul>
+
+												<ul class="card__insights">
+													<li class="card__insights-item">2018</li>
+													<li class="card__insights-item">Офіційне авто</li>
+												</ul>
+
+												<ul class="card__details">
+													<li class="card__detaild-item">4.0 Бензин</li>
+													<li class="card__detaild-item">Автомат</li>
+													<li class="card__detaild-item">61,000 км.</li>
+												</ul>
+											</div>
+										</a>
+									</div>
+									<div class="offers__slide swiper-slide">
+										<a href="" class="card">
+											<div class="card__image">
+												<img src="img/corvette.webp" alt="Image">
+											</div>
+
+											<div class="card__inner">
+												<p class="card__title">Chevrolet Corvette</p>
+
+												<ul class="card__prices">
+													<li class="card__price">69,999$</li>
+													<li class="card__price-old">71,000$</li>
+												</ul>
+
+												<ul class="card__insights">
+													<li class="card__insights-item">2015</li>
+													<li class="card__insights-item">Офіційне авто</li>
+												</ul>
+
+												<ul class="card__details">
+													<li class="card__detaild-item">6.2 Бензин</li>
+													<li class="card__detaild-item">Автомат</li>
+													<li class="card__detaild-item">23,000 км.</li>
+												</ul>
+											</div>
+										</a>
+									</div>
+									<div class="offers__slide swiper-slide">
+										<a href="" class="card">
+											<div class="card__image">
+												<img src="img/rangeRover.webp" alt="Image">
+											</div>
+
+											<div class="card__inner">
+												<p class="card__title">Range Rover Sport</p>
+
+												<ul class="card__prices">
+													<li class="card__price">68,900$</li>
+													<li class="card__price-old">69,000$</li>
+												</ul>
+
+												<ul class="card__insights">
+													<li class="card__insights-item">2021</li>
+													<li class="card__insights-item">Офіційне авто</li>
+												</ul>
+
+												<ul class="card__details">
+													<li class="card__detaild-item">4.0 Гібрид</li>
+													<li class="card__detaild-item">Автомат</li>
+													<li class="card__detaild-item">48,000 км.</li>
+												</ul>
+											</div>
+										</a>
+									</div>
+									<div class="offers__slide swiper-slide">
+										<a href="" class="card">
+											<div class="card__image">
+												<img src="img/bmw.webp" alt="Image">
+											</div>
+
+											<div class="card__inner">
+												<p class="card__title">BMW 8 Series</p>
+
+												<ul class="card__prices">
+													<li class="card__price">81,900$</li>
+													<li class="card__price-old">85,555$</li>
+												</ul>
+
+												<ul class="card__insights">
+													<li class="card__insights-item">2020</li>
+													<li class="card__insights-item">Офіційне авто</li>
+												</ul>
+
+												<ul class="card__details">
+													<li class="card__detaild-item">3.0 Дизель</li>
+													<li class="card__detaild-item">Автомат</li>
+													<li class="card__detaild-item">68,888 км.</li>
+												</ul>
+											</div>
+										</a>
+									</div>
 								</div>
-
-								<div class="card__inner">
-									<p class="card__title">Mercedes-Benz E-Class</p>
-
-									<ul class="card__prices">
-										<li class="card__price">76,500$</li>
-										<li class="card__price-old">77,777$</li>
-									</ul>
-
-									<ul class="card__insights">
-										<li class="card__insights-item">2018</li>
-										<li class="card__insights-item">Офіційне авто</li>
-									</ul>
-
-									<ul class="card__details">
-										<li class="card__detaild-item">4.0 Бензин</li>
-										<li class="card__detaild-item">Автомат</li>
-										<li class="card__detaild-item">61,000 км.</li>
-									</ul>
-								</div>
-							</a>
+							</div>
 						</div>
-						<div class="offers__slide swiper-slide">
-							<a href="" class="card">
-								<div class="card__image">
-									<img src="img/corvette.webp" alt="Image">
+						<div class="offers-tabs__body">
+							<div class="offers__slider swiper">
+								<div class="offers__wrapper swiper-wrapper">
+									<div class="offers__slide swiper-slide">
+										<a href="info.html" class="card">
+											<div class="card__image">
+												<img src="img/mercedes.webp" alt="Image">
+											</div>
+
+											<div class="card__inner">
+												<p class="card__title">Mercedes-Benz E-Class</p>
+
+												<ul class="card__prices">
+													<li class="card__price">76,500$</li>
+													<li class="card__price-old">77,777$</li>
+												</ul>
+
+												<ul class="card__insights">
+													<li class="card__insights-item">2018</li>
+													<li class="card__insights-item">Офіційне авто</li>
+												</ul>
+
+												<ul class="card__details">
+													<li class="card__detaild-item">4.0 Бензин</li>
+													<li class="card__detaild-item">Автомат</li>
+													<li class="card__detaild-item">61,000 км.</li>
+												</ul>
+											</div>
+										</a>
+									</div>
+									<div class="offers__slide swiper-slide">
+										<a href="" class="card">
+											<div class="card__image">
+												<img src="img/corvette.webp" alt="Image">
+											</div>
+
+											<div class="card__inner">
+												<p class="card__title">Chevrolet Corvette</p>
+
+												<ul class="card__prices">
+													<li class="card__price">69,999$</li>
+													<li class="card__price-old">71,000$</li>
+												</ul>
+
+												<ul class="card__insights">
+													<li class="card__insights-item">2015</li>
+													<li class="card__insights-item">Офіційне авто</li>
+												</ul>
+
+												<ul class="card__details">
+													<li class="card__detaild-item">6.2 Бензин</li>
+													<li class="card__detaild-item">Автомат</li>
+													<li class="card__detaild-item">23,000 км.</li>
+												</ul>
+											</div>
+										</a>
+									</div>
 								</div>
-
-								<div class="card__inner">
-									<p class="card__title">Chevrolet Corvette</p>
-
-									<ul class="card__prices">
-										<li class="card__price">69,999$</li>
-										<li class="card__price-old">71,000$</li>
-									</ul>
-
-									<ul class="card__insights">
-										<li class="card__insights-item">2015</li>
-										<li class="card__insights-item">Офіційне авто</li>
-									</ul>
-
-									<ul class="card__details">
-										<li class="card__detaild-item">6.2 Бензин</li>
-										<li class="card__detaild-item">Автомат</li>
-										<li class="card__detaild-item">23,000 км.</li>
-									</ul>
-								</div>
-							</a>
+							</div>
 						</div>
-						<div class="offers__slide swiper-slide">
-							<a href="" class="card">
-								<div class="card__image">
-									<img src="img/rangeRover.webp" alt="Image">
+						<div class="offers-tabs__body">
+							<div class="offers__slider swiper">
+								<div class="offers__wrapper swiper-wrapper">
+									<div class="offers__slide swiper-slide">
+										<a href="info.html" class="card">
+											<div class="card__image">
+												<img src="img/mercedes.webp" alt="Image">
+											</div>
+
+											<div class="card__inner">
+												<p class="card__title">Mercedes-Benz E-Class</p>
+
+												<ul class="card__prices">
+													<li class="card__price">76,500$</li>
+													<li class="card__price-old">77,777$</li>
+												</ul>
+
+												<ul class="card__insights">
+													<li class="card__insights-item">2018</li>
+													<li class="card__insights-item">Офіційне авто</li>
+												</ul>
+
+												<ul class="card__details">
+													<li class="card__detaild-item">4.0 Бензин</li>
+													<li class="card__detaild-item">Автомат</li>
+													<li class="card__detaild-item">61,000 км.</li>
+												</ul>
+											</div>
+										</a>
+									</div>
 								</div>
-
-								<div class="card__inner">
-									<p class="card__title">Range Rover Sport</p>
-
-									<ul class="card__prices">
-										<li class="card__price">68,900$</li>
-										<li class="card__price-old">69,000$</li>
-									</ul>
-
-									<ul class="card__insights">
-										<li class="card__insights-item">2021</li>
-										<li class="card__insights-item">Офіційне авто</li>
-									</ul>
-
-									<ul class="card__details">
-										<li class="card__detaild-item">4.0 Гібрид</li>
-										<li class="card__detaild-item">Автомат</li>
-										<li class="card__detaild-item">48,000 км.</li>
-									</ul>
-								</div>
-							</a>
-						</div>
-						<div class="offers__slide swiper-slide">
-							<a href="" class="card">
-								<div class="card__image">
-									<img src="img/bmw.webp" alt="Image">
-								</div>
-
-								<div class="card__inner">
-									<p class="card__title">BMW 8 Series</p>
-
-									<ul class="card__prices">
-										<li class="card__price">81,900$</li>
-										<li class="card__price-old">85,555$</li>
-									</ul>
-
-									<ul class="card__insights">
-										<li class="card__insights-item">2020</li>
-										<li class="card__insights-item">Офіційне авто</li>
-									</ul>
-
-									<ul class="card__details">
-										<li class="card__detaild-item">3.0 Дизель</li>
-										<li class="card__detaild-item">Автомат</li>
-										<li class="card__detaild-item">68,888 км.</li>
-									</ul>
-								</div>
-							</a>
-						</div>
-						<div class="offers__slide swiper-slide">
-							<a href="" class="card">
-								<div class="card__image">
-									<img src="img/audi.webp" alt="Image">
-								</div>
-
-								<div class="card__inner">
-									<p class="card__title">Audi A6</p>
-
-									<ul class="card__prices">
-										<li class="card__price">59,999$</li>
-										<li class="card__price-old">62,000$</li>
-									</ul>
-
-									<ul class="card__insights">
-										<li class="card__insights-item">2023</li>
-										<li class="card__insights-item">Офіційне авто</li>
-									</ul>
-
-									<ul class="card__details">
-										<li class="card__detaild-item">2.0 Гібрид</li>
-										<li class="card__detaild-item">Автомат</li>
-										<li class="card__detaild-item">10,000 км.</li>
-									</ul>
-								</div>
-							</a>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -616,7 +707,7 @@
 			preloader();
 		</script>
 	</div>
-	<script src="js/app.min.js?_v=20240802130842"></script>
+	<script src="js/app.min.js?_v=20240802185301"></script>
 </body>
 
 </html>

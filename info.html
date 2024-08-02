@@ -6,7 +6,7 @@
 	<meta charset="UTF-8">
 	<meta name="format-detection" content="telephone=no">
 	<!-- <style>body{opacity: 0;}</style> -->
-	<link rel="stylesheet" href="css/style.min.css?_v=20240802130842">
+	<link rel="stylesheet" href="css/style.min.css?_v=20240802185301">
 	<link rel="shortcut icon" href="favicon.ico">
 	<!-- <meta name="robots" content="noindex, nofollow"> -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -54,22 +54,40 @@
 		</div>
 		<header class="header">
 			<div class="header__container">
-				<a href="index.html">
-					<img src="img/logo.svg" alt="Логотип" class="logo">
-				</a>
+				<div class="header__menu menu">
+					<a href="index.html">
+						<img src="img/logo.svg" alt="Логотип" class="logo">
+					</a>
 
-				<div class="menu">
-					<ul class="menu__list">
-						<li class="menu__item"><a href="index.html" class="menu__link nav__item--hover">Головна</a></li>
-						<li class="menu__item"><a href="catalog.html" class="menu__link nav__item--hover">Асортимент</a></li>
-						<li class="menu__item"><a href="#" data-goto-speed="1000" data-goto-top="70" data-goto=".delivery" class="menu__link nav__item--hover">Послуги</a></li>
-						<li class="menu__item"><a href="index.html" data-goto-speed="1000" data-goto-top="70" data-goto=".contacts" class="menu__link nav__item--hover">Контакти</a></li>
-					</ul>
+					<nav class="menu__body">
+						<div class="menu__header">
+							<a href="index.html">
+								<img src="img/logo.svg" alt="Логотип" class="logo logo_mobile">
+							</a>
+
+							<div class="menu__burger menu__burger_close icon-menu menu-close">
+								<svg>
+									<use xlink:href="img/icons/icons.svg#close"></use>
+								</svg>
+							</div>
+						</div>
+
+						<ul class="menu__list">
+							<li class="menu__item"><a href="index.html" class="menu__link nav__item--hover">Головна</a></li>
+							<li class="menu__item"><a href="catalog.html" class="menu__link nav__item--hover">Асортимент</a></li>
+							<li class="menu__item"><a href="#" data-goto-speed="1000" data-goto-top="70" data-goto=".delivery" class="menu__link nav__item--hover">Послуги</a></li>
+							<li class="menu__item"><a href="index.html" data-goto-speed="1000" data-goto-top="70" data-goto=".contacts" class="menu__link nav__item--hover">Контакти</a></li>
+						</ul>
+
+						<a href="" class="header__btn header__btn_mobile" data-popup="#popup">Замовити авто</a>
+
+					</nav>
+
+					<a href="" class="header__btn" data-popup="#popup">Замовити авто</a>
+					<div class="menu__burger icon-menu menu-open"><img src="img/menu.svg" alt="Menu burger"></div>
+
 				</div>
 
-				<a href="" class="header__btn" data-popup="#popup">Замовити авто</a>
-
-				<div class="menu__burger"><img src="img/menu.svg" alt="Menu burger"></div>
 			</div>
 		</header>
 		<main class="page__new">
@@ -432,7 +450,7 @@
 			preloader();
 		</script>
 	</div>
-	<script src="js/app.min.js?_v=20240802130842"></script>
+	<script src="js/app.min.js?_v=20240802185301"></script>
 </body>
 
 </html>
