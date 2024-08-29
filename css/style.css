@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Play:wght@400; 700&display=swap');
 * {
   padding: 0;
   margin: 0;
@@ -1197,6 +1197,32 @@ h3 {
   grid-template-columns: repeat(auto-fill,minmax(200px,1fr));
   row-gap: 1.25rem
 }
+.admin__form-auth__wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-right: 20px;
+  padding-left: 20px
+}
+.admin__form-auth__description {
+  line-height: 140%;
+  max-width: 370px;
+  margin-top: 10px
+}
+.admin__form-auth__inputs {
+  display: flex;
+  flex-direction: column
+}
+.admin__form-auth__submit {
+  padding-top: 1.25rem;
+  padding-bottom: 1.25rem;
+  color: #fff;
+  background-color: #0176f5;
+  text-align: center;
+  border-radius: 5px;
+  font-weight: 700
+}
 .swiper {
   overflow: hidden
 }
@@ -1696,6 +1722,24 @@ h3 {
     -moz-column-gap: 2.5rem;
     column-gap: 2.5rem
   }
+  .admin__form-auth {
+    margin-top: 5.9375rem
+  }
+  .admin__form-auth__logo {
+    width: 16.875rem
+  }
+  .admin__form-auth__title {
+    margin-top: 4.375rem
+  }
+  .admin__form-auth__description {
+    font-size: 1.125rem
+  }
+  .admin__form-auth__description {
+    margin-bottom: 3.125rem
+  }
+  .admin__form-auth__inputs {
+    gap: 1.875rem
+  }
 }
 @media (min-width:48em) {
   .admin__header-inner {
@@ -2153,6 +2197,24 @@ h3 {
     -webkit-column-gap: .9375rem;
     -moz-column-gap: .9375rem;
     column-gap: .9375rem
+  }
+  .admin__form-auth {
+    margin-top: 4.0625rem
+  }
+  .admin__form-auth__logo {
+    width: 11.25rem
+  }
+  .admin__form-auth__title {
+    margin-top: 2.8125rem
+  }
+  .admin__form-auth__description {
+    font-size: 1rem
+  }
+  .admin__form-auth__description {
+    margin-bottom: 2.1875rem
+  }
+  .admin__form-auth__inputs {
+    gap: 1.5625rem
   }
 }
 @media (max-width:61.99875em) {
@@ -2720,6 +2782,24 @@ h3 {
     -webkit-column-gap: clamp(.9375rem ,.5137711864rem + 2.1186440678vw ,2.5rem);
     -moz-column-gap: clamp(.9375rem ,.5137711864rem + 2.1186440678vw ,2.5rem);
     column-gap: clamp(.9375rem ,.5137711864rem + 2.1186440678vw ,2.5rem)
+  }
+  .admin__form-auth {
+    margin-top: clamp(4.0625rem ,3.5540254237rem + 2.5423728814vw ,5.9375rem)
+  }
+  .admin__form-auth__logo {
+    width: clamp(11.25rem ,9.7245762712rem + 7.6271186441vw ,16.875rem)
+  }
+  .admin__form-auth__title {
+    margin-top: clamp(2.8125rem ,2.3887711864rem + 2.1186440678vw ,4.375rem)
+  }
+  .admin__form-auth__description {
+    font-size: clamp(1rem ,.9661016949rem + .1694915254vw ,1.125rem)
+  }
+  .admin__form-auth__description {
+    margin-bottom: clamp(2.1875rem ,1.9332627119rem + 1.2711864407vw ,3.125rem)
+  }
+  .admin__form-auth__inputs {
+    gap: clamp(1.5625rem ,1.4777542373rem + .4237288136vw ,1.875rem)
   }
 }
 @media (min-width:48em)and (max-width:93.75em) {
