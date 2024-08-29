@@ -947,6 +947,256 @@ h3 {
   color: red;
   transition: .3s
 }
+.admin__page {
+  display: flex;
+  height: 100%
+}
+.admin__container {
+  max-width: 1130px
+}
+.admin__panel {
+  position: fixed;
+  background-color: #161616;
+  height: 100vh
+}
+.admin__navbar {
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  font-size: 18px;
+  margin-top: 125px;
+  margin-bottom: 175px
+}
+.admin__navbar-item {
+  display: flex;
+  align-items: center;
+  gap: 15px
+}
+.admin__navbar-item svg {
+  width: 1.25rem;
+  height: 1.25rem;
+  color: #fff
+}
+.admin__navbar-link {
+  display: flex;
+  align-items: center;
+  gap: 15px
+}
+.admin__logout {
+  width: 100%;
+  background-color: #1f1f1f;
+  padding-top: 1.25rem;
+  padding-bottom: 1.25rem;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px
+}
+.admin__logout svg {
+  width: 1.25rem;
+  height: 1.25rem;
+  color: #fff
+}
+.admin__content {
+  flex-grow: 1;
+  padding-top: 40px;
+  padding-bottom: 8.125rem;
+  height: -webkit-max-content;
+  height: max-content
+}
+.admin__header {
+  padding-bottom: 2.5rem;
+  border-bottom: 1px solid #d9d9d9;
+  margin-bottom: 2.8125rem
+}
+.admin__header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap
+}
+.admin__header-btn {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  color: #fff;
+  background-color: #0176f5;
+  width: 250px;
+  border-radius: 5px;
+  justify-content: center;
+  padding-top: 1.25rem;
+  padding-bottom: 1.25rem
+}
+.admin__header-btn svg {
+  width: 1.25rem;
+  height: 1.25rem
+}
+.admin__subtitle {
+  margin-top: 10px;
+  max-width: 545px;
+  line-height: 140%
+}
+.admin__form {
+  display: flex;
+  flex-direction: column;
+  gap: 45px
+}
+.admin__form-title {
+  font-size: 24px;
+  margin-bottom: 1.5625rem
+}
+.admin__form-submit {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  width: 250px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border: 1px solid #0176f5;
+  color: #0176f5;
+  font-weight: 700;
+  justify-content: center;
+  border-radius: 5px;
+  transition: .3s
+}
+.admin__form-submit:hover {
+  background-color: #0176f5;
+  color: #fff;
+  transition: .3s
+}
+.admin__form-submit svg {
+  width: 1.25rem;
+  height: 1.25rem
+}
+.admin__input {
+  padding: .9375rem;
+  border-radius: 5px;
+  border: 1px solid #d9d9d9;
+  transition: .3s;
+  font-weight: 600;
+  font-size: 16px
+}
+.admin__input:focus {
+  outline: 0;
+  border-color: #0176f5;
+  transition: .3s
+}
+.admin__input-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: .3s
+}
+.admin__input-wrapper:focus-within .admin__label {
+  color: #0176f5;
+  transition: .3s
+}
+.admin__select {
+  padding: .9375rem;
+  border-radius: 5px;
+  border: 1px solid #d9d9d9;
+  transition: .3s;
+  font-weight: 600;
+  font-size: 16px
+}
+.admin__select:focus {
+  outline: 0;
+  border-color: #0176f5;
+  transition: .3s
+}
+.admin__label {
+  transition: .3s;
+  color: #7d7c7c
+}
+.admin__inputs {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fit,minmax(260px,1fr))
+}
+.admin__textarea {
+  resize: none;
+  height: 8.4375rem;
+  border-radius: 5px;
+  border: 1px solid #d9d9d9;
+  transition: .3s;
+  padding: 1.25rem
+}
+.admin__textarea:focus {
+  outline: 0;
+  border-color: #0176f5;
+  transition: .3s
+}
+.admin__file {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: auto;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer
+}
+.admin__file-wrapper {
+  position: relative
+}
+.admin__file-label {
+  background-color: #0176f5;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  padding-top: 1.25rem;
+  padding-bottom: 1.25rem;
+  padding-right: 2.1875rem;
+  padding-left: 2.1875rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 15px;
+  font-weight: 700;
+  font-size: 16px
+}
+.admin__file-label svg {
+  width: 1.25rem;
+  height: 1.25rem;
+  color: #fff
+}
+.admin__image {
+  -o-object-fit: cover;
+  object-fit: cover;
+  border-radius: 5px;
+  width: 100%;
+  height: auto
+}
+.admin__image-close {
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 2px;
+  background-color: #fff;
+  display: inline-block;
+  line-height: 0;
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  transition: .2s
+}
+.admin__image-close svg {
+  width: .9375rem;
+  height: .9375rem
+}
+.admin__image-close:hover {
+  color: red;
+  transition: .2s
+}
+.admin__image-wrapper {
+  position: relative
+}
+.admin__images {
+  display: grid;
+  grid-template-columns: repeat(auto-fill,minmax(200px,1fr));
+  row-gap: 1.25rem
+}
 .swiper {
   overflow: hidden
 }
@@ -1417,6 +1667,40 @@ h3 {
   .pagging__list {
     gap: 1.25rem
   }
+  .admin__logo {
+    height: 2.5rem
+  }
+  .admin__panel {
+    padding-top: 2.5rem
+  }
+  .admin__panel {
+    padding-bottom: 2.5rem
+  }
+  .admin__panel {
+    padding-right: 2.5rem
+  }
+  .admin__panel {
+    padding-left: 2.5rem
+  }
+  .admin__panel {
+    width: 21.25rem
+  }
+  .admin__content {
+    margin-left: 21.25rem
+  }
+  .admin__subtitle {
+    font-size: 1.125rem
+  }
+  .admin__images {
+    -webkit-column-gap: 2.5rem;
+    -moz-column-gap: 2.5rem;
+    column-gap: 2.5rem
+  }
+}
+@media (min-width:48em) {
+  .admin__header-inner {
+    gap: 2.1875rem
+  }
 }
 @media (max-width:62em) {
   .delivery__image {
@@ -1451,6 +1735,24 @@ h3 {
   }
   .info__description {
     max-width: 25rem
+  }
+  .admin__panel {
+    padding-top: 1.875rem
+  }
+  .admin__panel {
+    padding-bottom: 1.875rem
+  }
+  .admin__panel {
+    padding-right: 1.25rem
+  }
+  .admin__panel {
+    padding-left: 1.25rem
+  }
+  .admin__panel {
+    width: 16.875rem
+  }
+  .admin__content {
+    margin-left: 16.875rem
   }
 }
 @media (max-width:48em) {
@@ -1838,6 +2140,20 @@ h3 {
   .pagging__list {
     gap: 2.1875rem
   }
+  .admin__logo {
+    height: 2.1875rem
+  }
+  .admin__header-inner {
+    gap: 1.5625rem
+  }
+  .admin__subtitle {
+    font-size: 1rem
+  }
+  .admin__images {
+    -webkit-column-gap: .9375rem;
+    -moz-column-gap: .9375rem;
+    column-gap: .9375rem
+  }
 }
 @media (max-width:61.99875em) {
   .menu__body {
@@ -1925,6 +2241,21 @@ h3 {
   }
   .info__description {
     max-width: 100%
+  }
+  .admin__page {
+    flex-direction: column
+  }
+  .admin__panel {
+    position: static;
+    height: auto;
+    width: 100%
+  }
+  .admin__navbar-content {
+    display: none
+  }
+  .admin__content {
+    flex-grow: 0;
+    margin-left: 0
   }
 }
 @media (max-width:52.5em) {
@@ -2014,6 +2345,16 @@ h3 {
   }
   .footer__socials {
     justify-content: space-between
+  }
+  .admin__header-btn {
+    width: 100%
+  }
+  .admin__form-submit {
+    width: 100%
+  }
+  .admin__file-label {
+    width: 100%;
+    justify-content: center
   }
 }
 @media (min-width:20em)and (max-width:93.75em) {
@@ -2369,6 +2710,17 @@ h3 {
   .pagging__list {
     gap: clamp(1.25rem ,2.4417372881rem + -1.2711864407vw ,2.1875rem)
   }
+  .admin__logo {
+    height: clamp(2.1875rem ,2.1027542373rem + .4237288136vw ,2.5rem)
+  }
+  .admin__subtitle {
+    font-size: clamp(1rem ,.9661016949rem + .1694915254vw ,1.125rem)
+  }
+  .admin__images {
+    -webkit-column-gap: clamp(.9375rem ,.5137711864rem + 2.1186440678vw ,2.5rem);
+    -moz-column-gap: clamp(.9375rem ,.5137711864rem + 2.1186440678vw ,2.5rem);
+    column-gap: clamp(.9375rem ,.5137711864rem + 2.1186440678vw ,2.5rem)
+  }
 }
 @media (min-width:48em)and (max-width:93.75em) {
   .menu__list {
@@ -2474,5 +2826,28 @@ h3 {
   }
   .info__description {
     max-width: clamp(25rem ,-28.7007874016rem + 86.6141732283vw ,52.5rem)
+  }
+  .admin__panel {
+    padding-top: clamp(1.875rem ,.6545275591rem + 1.968503937vw ,2.5rem)
+  }
+  .admin__panel {
+    padding-bottom: clamp(1.875rem ,.6545275591rem + 1.968503937vw ,2.5rem)
+  }
+  .admin__panel {
+    padding-right: clamp(1.25rem ,-1.1909448819rem + 3.937007874vw ,2.5rem)
+  }
+  .admin__panel {
+    padding-left: clamp(1.25rem ,-1.1909448819rem + 3.937007874vw ,2.5rem)
+  }
+  .admin__panel {
+    width: clamp(16.875rem ,8.3316929134rem + 13.7795275591vw ,21.25rem)
+  }
+  .admin__content {
+    margin-left: clamp(16.875rem ,8.3316929134rem + 13.7795275591vw ,21.25rem)
+  }
+}
+@media (min-width:20em)and (max-width:48em) {
+  .admin__header-inner {
+    gap: clamp(1.5625rem ,1.1160714286rem + 2.2321428571vw ,2.1875rem)
   }
 }
