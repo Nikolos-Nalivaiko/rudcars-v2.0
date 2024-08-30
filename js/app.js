@@ -4209,6 +4209,26 @@
             }));
         }
     }), 0);
+    function openMenu() {
+        $(".admin__menu").click((function() {
+            var $menuIcon = $(this).find("svg use");
+            var currentIcon = $menuIcon.attr("xlink:href");
+            if (currentIcon.includes("menuAdmin")) $menuIcon.attr("xlink:href", currentIcon.replace("menuAdmin", "close")); else $menuIcon.attr("xlink:href", currentIcon.replace("close", "menuAdmin"));
+            var $element2 = $("#admin__navbar-content");
+            if ($element2.hasClass("show")) {
+                $element2.removeClass("show");
+                setTimeout((function() {
+                    $element2.css("display", "none");
+                }), 300);
+            } else {
+                $element2.css("display", "block");
+                setTimeout((function() {
+                    $element2.addClass("show");
+                }), 10);
+            }
+        }));
+    }
+    openMenu();
     window["FLS"] = true;
     menuInit();
     tabs();

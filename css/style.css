@@ -383,6 +383,32 @@ h3 {
   gap: 15px;
   color: #505050
 }
+.card__btns {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding-right: 1.25rem;
+  padding-left: 1.25rem;
+  padding-bottom: 1.25rem
+}
+.card__btn {
+  width: 100%;
+  display: inline-block;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-radius: 5px;
+  text-align: center;
+  border: 1px solid #ebebeb;
+  transition: .3s
+}
+.card__btn:hover {
+  background: #272121;
+  color: #fff;
+  transition: .3s
+}
+.card__btn_delete:hover {
+  background-color: red
+}
 .link {
   position: relative;
   transition: .3s
@@ -952,26 +978,42 @@ h3 {
   height: 100%
 }
 .admin__container {
-  max-width: 1130px
+  max-width: 70.625rem
+}
+.admin__menu {
+  display: none;
+  color: #fff;
+  padding: .5625rem;
+  border-radius: 5px;
+  border: 1px solid #fff;
+  line-height: 0;
+  cursor: pointer
+}
+.admin__menu svg {
+  width: 1.125rem;
+  height: 1.125rem
 }
 .admin__panel {
   position: fixed;
   background-color: #161616;
   height: 100vh
 }
+.admin__panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between
+}
 .admin__navbar {
   color: #fff;
   display: flex;
   flex-direction: column;
-  gap: 50px;
-  font-size: 18px;
-  margin-top: 125px;
-  margin-bottom: 175px
+  gap: 3.125rem;
+  font-size: 1.125rem
 }
 .admin__navbar-item {
   display: flex;
   align-items: center;
-  gap: 15px
+  gap: .9375rem
 }
 .admin__navbar-item svg {
   width: 1.25rem;
@@ -981,7 +1023,7 @@ h3 {
 .admin__navbar-link {
   display: flex;
   align-items: center;
-  gap: 15px
+  gap: .9375rem
 }
 .admin__logout {
   width: 100%;
@@ -990,11 +1032,11 @@ h3 {
   padding-bottom: 1.25rem;
   border-radius: 5px;
   color: #fff;
-  font-size: 18px;
+  font-size: 1.125rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 15px
+  gap: .9375rem
 }
 .admin__logout svg {
   width: 1.25rem;
@@ -1003,7 +1045,7 @@ h3 {
 }
 .admin__content {
   flex-grow: 1;
-  padding-top: 40px;
+  padding-top: 2.5rem;
   padding-bottom: 8.125rem;
   height: -webkit-max-content;
   height: max-content
@@ -1022,10 +1064,10 @@ h3 {
 .admin__header-btn {
   display: flex;
   align-items: center;
-  gap: 15px;
+  gap: .9375rem;
   color: #fff;
   background-color: #0176f5;
-  width: 250px;
+  width: 15.625rem;
   border-radius: 5px;
   justify-content: center;
   padding-top: 1.25rem;
@@ -1036,26 +1078,26 @@ h3 {
   height: 1.25rem
 }
 .admin__subtitle {
-  margin-top: 10px;
-  max-width: 545px;
+  margin-top: .625rem;
+  max-width: 34.0625rem;
   line-height: 140%
 }
 .admin__form {
   display: flex;
   flex-direction: column;
-  gap: 45px
+  gap: 2.8125rem
 }
 .admin__form-title {
-  font-size: 24px;
+  font-size: 1.5rem;
   margin-bottom: 1.5625rem
 }
 .admin__form-submit {
   display: flex;
   align-items: center;
-  gap: 15px;
-  width: 250px;
-  padding-top: 20px;
-  padding-bottom: 20px;
+  gap: .9375rem;
+  width: 15.625rem;
+  padding-top: 1.25rem;
+  padding-bottom: 1.25rem;
   border: 1px solid #0176f5;
   color: #0176f5;
   font-weight: 700;
@@ -1074,11 +1116,11 @@ h3 {
 }
 .admin__input {
   padding: .9375rem;
-  border-radius: 5px;
+  border-radius: .3125rem;
   border: 1px solid #d9d9d9;
   transition: .3s;
   font-weight: 600;
-  font-size: 16px
+  font-size: 1rem
 }
 .admin__input:focus {
   outline: 0;
@@ -1088,7 +1130,7 @@ h3 {
 .admin__input-wrapper {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: .625rem;
   transition: .3s
 }
 .admin__input-wrapper:focus-within .admin__label {
@@ -1097,11 +1139,11 @@ h3 {
 }
 .admin__select {
   padding: .9375rem;
-  border-radius: 5px;
+  border-radius: .3125rem;
   border: 1px solid #d9d9d9;
   transition: .3s;
   font-weight: 600;
-  font-size: 16px
+  font-size: 1rem
 }
 .admin__select:focus {
   outline: 0;
@@ -1114,13 +1156,13 @@ h3 {
 }
 .admin__inputs {
   display: grid;
-  gap: 20px;
-  grid-template-columns: repeat(auto-fit,minmax(260px,1fr))
+  gap: 1.25rem;
+  grid-template-columns: repeat(auto-fit,minmax(16.25rem,1fr))
 }
 .admin__textarea {
   resize: none;
   height: 8.4375rem;
-  border-radius: 5px;
+  border-radius: .3125rem;
   border: 1px solid #d9d9d9;
   transition: .3s;
   padding: 1.25rem
@@ -1134,7 +1176,6 @@ h3 {
   position: absolute;
   left: 0;
   top: 0;
-  width: auto;
   height: 100%;
   opacity: 0;
   cursor: pointer
@@ -1145,7 +1186,7 @@ h3 {
 .admin__file-label {
   background-color: #0176f5;
   color: #fff;
-  border-radius: 5px;
+  border-radius: .3125rem;
   cursor: pointer;
   padding-top: 1.25rem;
   padding-bottom: 1.25rem;
@@ -1153,9 +1194,9 @@ h3 {
   padding-left: 2.1875rem;
   display: inline-flex;
   align-items: center;
-  gap: 15px;
+  gap: .9375rem;
   font-weight: 700;
-  font-size: 16px
+  font-size: 1rem
 }
 .admin__file-label svg {
   width: 1.25rem;
@@ -1165,20 +1206,20 @@ h3 {
 .admin__image {
   -o-object-fit: cover;
   object-fit: cover;
-  border-radius: 5px;
+  border-radius: .3125rem;
   width: 100%;
   height: auto
 }
 .admin__image-close {
   cursor: pointer;
-  padding: 8px;
+  padding: .5rem;
   border-radius: 2px;
   background-color: #fff;
   display: inline-block;
   line-height: 0;
   position: absolute;
-  right: 5px;
-  top: 5px;
+  right: .3125rem;
+  top: .3125rem;
   transition: .2s
 }
 .admin__image-close svg {
@@ -1202,13 +1243,13 @@ h3 {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding-right: 20px;
-  padding-left: 20px
+  padding-right: 1.25rem;
+  padding-left: 1.25rem
 }
 .admin__form-auth__description {
   line-height: 140%;
-  max-width: 370px;
-  margin-top: 10px
+  max-width: 23.125rem;
+  margin-top: .625rem
 }
 .admin__form-auth__inputs {
   display: flex;
@@ -1220,8 +1261,114 @@ h3 {
   color: #fff;
   background-color: #0176f5;
   text-align: center;
-  border-radius: 5px;
+  border-radius: .3125rem;
   font-weight: 700
+}
+.admin__list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill,minmax(18.75rem,1fr));
+  gap: 2.1875rem
+}
+.admin__messages {
+  display: grid;
+  grid-template-columns: repeat(auto-fill,minmax(18.4375rem,1fr));
+  gap: 1.25rem
+}
+.admin__message {
+  border-radius: .3125rem;
+  border: 1px solid #ebebeb;
+  padding: 1.25rem
+}
+.admin__message-title {
+  font-weight: 700;
+  margin-bottom: .9375rem;
+  color: #898989
+}
+.admin__message-title_new {
+  color: #272121
+}
+.admin__message-contacts {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem
+}
+.admin__message-name {
+  font-weight: 700
+}
+.admin__message-phone {
+  padding-left: 1.25rem;
+  border-left: 1px solid #d9d9d9
+}
+.admin__message-status {
+  margin-top: 1.25rem;
+  margin-bottom: 1.25rem;
+  font-weight: 700;
+  color: #2f9400
+}
+.admin__message-status_new {
+  color: #0176f5
+}
+.admin__message-btns {
+  display: flex;
+  flex-direction: column;
+  gap: .9375rem
+}
+.admin__message-btn {
+  width: 100%;
+  text-align: center;
+  border-radius: .3125rem;
+  border: 1px solid #ebebeb;
+  transition: .3s;
+  padding-top: .9375rem;
+  padding-bottom: .9375rem;
+  font-weight: 700
+}
+.admin__message-btn:hover {
+  transition: .3s;
+  background-color: #272121;
+  color: #fff
+}
+.admin__message-btn_delete:hover {
+  background-color: red
+}
+.admin__message-info-header {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap-reverse
+}
+.admin__message-info-title {
+  font-weight: 700
+}
+.admin__message-info-status {
+  font-weight: 700;
+  color: #2f9400
+}
+.admin__message-info-status_new {
+  color: #0176f5
+}
+.admin__message-info-contacts {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem
+}
+.admin__message-info-name {
+  font-weight: 700
+}
+.admin__message-info-phone {
+  padding-left: 1.25rem;
+  border-left: 1px solid #d9d9d9
+}
+.admin__message-info-description {
+  max-width: 54.0625rem;
+  line-height: 140%
+}
+.admin__message-info-description-title {
+  font-weight: 700;
+  margin-bottom: .625rem
+}
+#admin__navbar-content.show {
+  display: block;
+  opacity: 1
 }
 .swiper {
   overflow: hidden
@@ -1740,10 +1887,48 @@ h3 {
   .admin__form-auth__inputs {
     gap: 1.875rem
   }
+  .admin__message-title {
+    font-size: 1.5rem
+  }
+  .admin__message-name {
+    font-size: 1.25rem
+  }
+  .admin__message-info-title {
+    font-size: 2rem
+  }
+  .admin__message-info-contacts {
+    margin-top: 2.8125rem
+  }
+  .admin__message-info-contacts {
+    margin-bottom: 2.8125rem
+  }
+  .admin__message-info-name {
+    font-size: 1.625rem
+  }
+  .admin__message-info-phone {
+    font-size: 1.125rem
+  }
+  .admin__message-info-description {
+    font-size: 1.125rem
+  }
+  .admin__message-info-description-title {
+    font-size: 1.5rem
+  }
 }
 @media (min-width:48em) {
   .admin__header-inner {
     gap: 2.1875rem
+  }
+  .admin__message-info-header {
+    gap: 2.5rem
+  }
+}
+@media (min-width:62em) {
+  .admin__navbar {
+    margin-top: 7.8125rem
+  }
+  .admin__navbar {
+    margin-bottom: 10.9375rem
   }
 }
 @media (max-width:62em) {
@@ -2187,6 +2372,12 @@ h3 {
   .admin__logo {
     height: 2.1875rem
   }
+  .admin__navbar {
+    margin-top: 4.0625rem
+  }
+  .admin__navbar {
+    margin-bottom: 4.0625rem
+  }
   .admin__header-inner {
     gap: 1.5625rem
   }
@@ -2215,6 +2406,36 @@ h3 {
   }
   .admin__form-auth__inputs {
     gap: 1.5625rem
+  }
+  .admin__message-title {
+    font-size: 1.25rem
+  }
+  .admin__message-name {
+    font-size: 1.125rem
+  }
+  .admin__message-info-header {
+    gap: .625rem
+  }
+  .admin__message-info-title {
+    font-size: 1.5rem
+  }
+  .admin__message-info-contacts {
+    margin-top: 2.1875rem
+  }
+  .admin__message-info-contacts {
+    margin-bottom: 2.1875rem
+  }
+  .admin__message-info-name {
+    font-size: 1.25rem
+  }
+  .admin__message-info-phone {
+    font-size: 1rem
+  }
+  .admin__message-info-description {
+    font-size: 1rem
+  }
+  .admin__message-info-description-title {
+    font-size: 1.125rem
   }
 }
 @media (max-width:61.99875em) {
@@ -2307,17 +2528,22 @@ h3 {
   .admin__page {
     flex-direction: column
   }
+  .admin__menu {
+    display: inline-block
+  }
   .admin__panel {
     position: static;
     height: auto;
     width: 100%
   }
-  .admin__navbar-content {
-    display: none
-  }
   .admin__content {
     flex-grow: 0;
     margin-left: 0
+  }
+  #admin__navbar-content {
+    display: none;
+    transition: opacity .3s ease;
+    opacity: 0
   }
 }
 @media (max-width:52.5em) {
@@ -2801,6 +3027,33 @@ h3 {
   .admin__form-auth__inputs {
     gap: clamp(1.5625rem ,1.4777542373rem + .4237288136vw ,1.875rem)
   }
+  .admin__message-title {
+    font-size: clamp(1.25rem ,1.1822033898rem + .3389830508vw ,1.5rem)
+  }
+  .admin__message-name {
+    font-size: clamp(1.125rem ,1.0911016949rem + .1694915254vw ,1.25rem)
+  }
+  .admin__message-info-title {
+    font-size: clamp(1.5rem ,1.3644067797rem + .6779661017vw ,2rem)
+  }
+  .admin__message-info-contacts {
+    margin-top: clamp(2.1875rem ,2.0180084746rem + .8474576271vw ,2.8125rem)
+  }
+  .admin__message-info-contacts {
+    margin-bottom: clamp(2.1875rem ,2.0180084746rem + .8474576271vw ,2.8125rem)
+  }
+  .admin__message-info-name {
+    font-size: clamp(1.25rem ,1.1483050847rem + .5084745763vw ,1.625rem)
+  }
+  .admin__message-info-phone {
+    font-size: clamp(1rem ,.9661016949rem + .1694915254vw ,1.125rem)
+  }
+  .admin__message-info-description {
+    font-size: clamp(1rem ,.9661016949rem + .1694915254vw ,1.125rem)
+  }
+  .admin__message-info-description-title {
+    font-size: clamp(1.125rem ,1.0233050847rem + .5084745763vw ,1.5rem)
+  }
 }
 @media (min-width:48em)and (max-width:93.75em) {
   .menu__list {
@@ -2926,8 +3179,19 @@ h3 {
     margin-left: clamp(16.875rem ,8.3316929134rem + 13.7795275591vw ,21.25rem)
   }
 }
+@media (min-width:20em)and (max-width:62em) {
+  .admin__navbar {
+    margin-top: clamp(4.0625rem ,2.2767857143rem + 8.9285714286vw ,7.8125rem)
+  }
+  .admin__navbar {
+    margin-bottom: clamp(4.0625rem ,.7886904762rem + 16.369047619vw ,10.9375rem)
+  }
+}
 @media (min-width:20em)and (max-width:48em) {
   .admin__header-inner {
     gap: clamp(1.5625rem ,1.1160714286rem + 2.2321428571vw ,2.1875rem)
+  }
+  .admin__message-info-header {
+    gap: clamp(.625rem ,-.7142857143rem + 6.6964285714vw ,2.5rem)
   }
 }
