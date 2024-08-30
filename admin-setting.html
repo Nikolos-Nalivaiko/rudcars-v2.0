@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>Admin panel</title>
+	<meta charset="UTF-8">
+	<meta name="format-detection" content="telephone=no">
+	<!-- <style>body{opacity: 0;}</style> -->
+	<link rel="stylesheet" href="css/style.min.css?_v=20240830151858">
+	<link rel="shortcut icon" href="favicon.ico">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js?_v=20240826114116"></script>
+	<!-- <meta name="robots" content="noindex, nofollow"> -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+	<main class="admin__page">
+
+		<div class="admin__panel">
+
+			<div class="admin__panel-header">
+				<img src="img/logo_white.svg" alt="" class="admin__logo">
+
+				<div class="admin__menu">
+					<svg>
+						<use xlink:href="img/icons/icons.svg#menuAdmin"></use>
+					</svg>
+				</div>
+			</div>
+
+			<div class="admin__navbar-content" id="admin__navbar-content">
+				<ul class="admin__navbar">
+					<li class="admin__navbar-item"><a href="admin-add.html" class="admin__navbar-link">
+							<svg>
+								<use xlink:href="img/icons/icons.svg#add"></use>
+							</svg>
+							Додати нове авто</a></li>
+					<li class="admin__navbar-item"><a href="admin-list.html" class="admin__navbar-link">
+							<svg>
+								<use xlink:href="img/icons/icons.svg#list"></use>
+							</svg>
+							Список авто</a></li>
+					<li class="admin__navbar-item"><a href="admin-setting.html" class="admin__navbar-link">
+							<svg>
+								<use xlink:href="img/icons/icons.svg#setting"></use>
+							</svg>
+							Налаштування</a></li>
+					<li class="admin__navbar-item"><a href="admin-message.html" class="admin__navbar-link">
+							<svg>
+								<use xlink:href="img/icons/icons.svg#mail"></use>
+							</svg>
+							Повідомлення</a></li>
+				</ul>
+
+				<a href="" class="admin__logout">
+					<svg>
+						<use xlink:href="img/icons/icons.svg#exit"></use>
+					</svg>
+					Вийти
+				</a>
+			</div>
+
+		</div>
+
+		<div class="admin__content">
+			<div class="admin__header">
+				<div class="admin__container admin__header-inner">
+					<div class="admin__header-text">
+						<h3>Налаштування</h3>
+						<p class="admin__subtitle">Заповніть необхідну інформацію про автомобіль, щоб забезпечити ефективний менеджмент вашого автопарку</p>
+					</div>
+				</div>
+			</div>
+
+			<form action="" method="post" class="admin__form admin__container">
+				<div class="admin__form-block">
+					<p class="admin__form-title">Загальна інформація</p>
+					<div class="admin__inputs admin__inputs_big">
+
+						<div class="admin__input-wrapper">
+							<label for="" class="admin__label">Адреса</label>
+							<input type="text" class="admin__input">
+						</div>
+
+						<div class="admin__input-wrapper">
+							<label for="" class="admin__label">Контактний номер</label>
+							<input type="text" class="admin__input">
+						</div>
+
+						<div class="admin__input-wrapper">
+							<label for="" class="admin__label">Графік роботи</label>
+							<div class="admin__input-wrapper_double">
+								<select name="" id="" class="admin__select">
+									<option value="" class="admin__option">Пн.</option>
+									<option value="" class="admin__option">Пт.</option>
+								</select>
+								<span>до</span>
+								<select name="" id="" class="admin__select">
+									<option value="" class="admin__option">Пн.</option>
+									<option value="" class="admin__option">Пт.</option>
+								</select>
+							</div>
+						</div>
+
+						<div class="admin__input-wrapper">
+							<label for="" class="admin__label">Часи роботи</label>
+							<div class="admin__input-wrapper_double">
+								<input type="time" class="admin__input">
+								<span>до</span>
+								<input type="time" class="admin__input">
+							</div>
+						</div>
+
+						<div class="admin__input-wrapper">
+							<label for="" class="admin__label">Посиланя на карту</label>
+							<input type="text" class="admin__input">
+						</div>
+
+						<div class="admin__input-wrapper">
+							<label for="" class="admin__label">Instagram</label>
+							<input type="text" class="admin__input">
+						</div>
+
+						<div class="admin__input-wrapper">
+							<label for="" class="admin__label">Telegram</label>
+							<input type="text" class="admin__input">
+						</div>
+
+						<div class="admin__input-wrapper">
+							<label for="" class="admin__label">Facebook</label>
+							<input type="text" class="admin__input">
+						</div>
+
+					</div>
+				</div>
+
+				<div class="admin__form-block">
+					<button type="submit" class="admin__form-submit">
+						<svg>
+							<use xlink:href="img/icons/icons.svg#done"></use>
+						</svg>
+						Зберегти
+					</button>
+				</div>
+
+			</form>
+
+
+		</div>
+
+	</main>
+	<script src="js/app.min.js?_v=20240830151858"></script>
+</body>
+
+</html>

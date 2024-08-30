@@ -1137,6 +1137,15 @@ h3 {
   color: #0176f5;
   transition: .3s
 }
+.admin__input-wrapper_double {
+  display: flex;
+  align-items: center;
+  gap: 30px
+}
+.admin__input-wrapper_double input,
+.admin__input-wrapper_double select {
+  width: 100%
+}
 .admin__select {
   padding: .9375rem;
   border-radius: .3125rem;
@@ -1158,6 +1167,9 @@ h3 {
   display: grid;
   gap: 1.25rem;
   grid-template-columns: repeat(auto-fit,minmax(16.25rem,1fr))
+}
+.admin__inputs_big {
+  grid-template-columns: repeat(auto-fit,minmax(18.75rem,1fr))
 }
 .admin__textarea {
   resize: none;
