@@ -4228,7 +4228,45 @@
             }
         }));
     }
+    function loadImage() {
+        $("#file").on("change", (function(event) {
+            var input = event.target;
+            var $imageContainer = $(".admin__images");
+            $imageContainer.empty().append('<div class="loading-spinner"></div>');
+            if (input.files && input.files.length > 0) {
+                $imageContainer.empty();
+                Array.from(input.files).forEach((function(file, index) {
+                    var reader = new FileReader;
+                    reader.onload = function(e) {
+                        var imageHtml = `\n                        <div class="admin__image-wrapper">\n                            <div class="admin__image-close" data-index="${index}">\n                                <svg>\n                                    <use xlink:href="img/icons/icons.svg#close"></use>\n                                </svg>\n                            </div>\n                            <img src="${e.target.result}" alt="" class="admin__image">\n                        </div>\n                    `;
+                        $imageContainer.append(imageHtml);
+                    };
+                    reader.readAsDataURL(file);
+                }));
+            }
+        }));
+        $(document).on("click", ".admin__image-close", (function() {
+            var index = $(this).data("index");
+            var $imageWrapper = $(this).closest(".admin__image-wrapper");
+            $imageWrapper.remove();
+            var input = $("#file")[0];
+            var files = Array.from(input.files);
+            files.splice(index, 1);
+            var dataTransfer = new DataTransfer;
+            files.forEach((file => dataTransfer.items.add(file)));
+            input.files = dataTransfer.files;
+        }));
+    }
+    function showPassword() {
+        $(".admin__inner_password-svg").on("click", (function() {
+            var $password = $("#password");
+            var type = $password.attr("type") === "password" ? "text" : "password";
+            $password.attr("type", type);
+        }));
+    }
     openMenu();
+    loadImage();
+    showPassword();
     window["FLS"] = true;
     menuInit();
     tabs();
