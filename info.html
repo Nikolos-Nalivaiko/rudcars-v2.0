@@ -6,7 +6,7 @@
 	<meta charset="UTF-8">
 	<meta name="format-detection" content="telephone=no">
 	<!-- <style>body{opacity: 0;}</style> -->
-	<link rel="stylesheet" href="css/style.min.css?_v=20240902101808">
+	<link rel="stylesheet" href="css/style.min.css?_v=20240910143510">
 	<link rel="shortcut icon" href="favicon.ico">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js?_v=20240826114116"></script>
 	<!-- <meta name="robots" content="noindex, nofollow"> -->
@@ -14,90 +14,139 @@
 </head>
 
 <body>
-	<div class="wrapper">
-		<div id="popup" aria-hidden="true" class="popup">
-			<div class="popup__wrapper">
-				<div class="popup__content">
-					<button data-close type="button" class="popup__close">
-						<svg>
-							<use xlink:href="img/icons/icons.svg#close"></use>
-						</svg>
-					</button>
-					<div class="popup__text">
-						<h3 class="popup__title">Замовити авто зараз</h3>
+	<style>
+		body {
+			overflow: hidden;
+		}
 
-						<form action="" method="post" class="popup__form">
-							<div class="popup__input-inner">
-								<label for="name" class="popup__label">Ваше ім’я</label>
-								<input type="text" id="name" name="name" class="popup__input">
-							</div>
+		#preloader {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100vw;
+			height: 100vh;
+			background-color: #fff;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			flex-direction: column;
+			z-index: 9999;
+			opacity: 1;
+			transition: opacity 1s ease;
+			padding-right: 20px;
+			padding-left: 20px;
+		}
 
-							<div class="popup__input-inner">
-								<label for="phone" class="popup__label">Ваш номер телефону</label>
-								<input type="text" id="phone" name="phone" class="popup__input">
-							</div>
+		/* Логотип */
+		.preloader-logo {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			gap: 25xp;
+			margin-bottom: 75px;
 
-							<div class="popup__input-inner popup__input-inner_big">
-								<label for="description" class="popup__label">Ваше побажання</label>
-								<textarea name="description" class="popup__textarea" id="description"></textarea>
-							</div>
+			img {
+				width: 250px;
 
-							<div class="popup__form-footer">
-								<button type="submit" class="popup__submit">Замовити авто</button>
-								<p class="popup__subtitle">Наші менеджери зв'яжуться з вами найближчим часом</p>
-							</div>
+				@media (max-width: 479px) {
+					width: 200px;
+				}
+			}
+		}
 
-						</form>
+		#content {
+			opacity: 0;
+			transition: opacity 0.8s ease;
+		}
 
-					</div>
-				</div>
-			</div>
+		.loader {
+			height: 5px;
+			width: 200px;
+			--c: no-repeat linear-gradient(#FF0000 0 0);
+			background: var(--c), var(--c), #dbdbdb;
+			background-size: 60% 100%;
+			animation: l16 3s infinite;
+		}
+
+		@keyframes l16 {
+			0% {
+				background-position: -150% 0, -150% 0
+			}
+
+			66% {
+				background-position: 250% 0, -150% 0
+			}
+
+			100% {
+				background-position: 250% 0, 250% 0
+			}
+		}
+	</style>
+
+
+	<div id="preloader">
+		<div class="preloader-logo">
+			<img src="img/logo.svg" alt="Logo">
 		</div>
-		<header class="header">
-			<div class="header__container">
-				<div class="header__menu menu">
+		<div class="loader"></div>
+	</div>
+	<div class="wrapper" id="content">
+		<header class="header header__container">
+
+			<div class="menu">
+				<div class="menu__header">
+
 					<a href="index.html">
 						<img src="img/logo.svg" alt="Логотип" class="logo">
 					</a>
 
-					<nav class="menu__body">
-						<div class="menu__header">
-							<a href="index.html">
-								<img src="img/logo.svg" alt="Логотип" class="logo logo_mobile">
-							</a>
+					<div class="menu__header-inner">
+						<button class="header__btn header__btn_mobile open-popup">Замовити авто</button>
 
-							<div class="menu__burger menu__burger_close icon-menu menu-close">
-								<svg>
-									<use xlink:href="img/icons/icons.svg#close"></use>
-								</svg>
-							</div>
-						</div>
-
-						<ul class="menu__list">
-							<li class="menu__item"><a href="index.html" class="menu__link nav__item--hover">Головна</a></li>
-							<li class="menu__item"><a href="catalog.html" class="menu__link nav__item--hover">Асортимент</a></li>
-							<li class="menu__item"><a href="#" data-goto-speed="1000" data-goto-top="70" data-goto=".delivery" class="menu__link nav__item--hover">Послуги</a></li>
-							<li class="menu__item"><a href="index.html" data-goto-speed="1000" data-goto-top="70" data-goto=".contacts" class="menu__link nav__item--hover">Контакти</a></li>
-						</ul>
-
-						<a href="" class="header__btn header__btn_mobile" data-popup="#popup">Замовити авто</a>
-
-					</nav>
-
-					<a href="" class="header__btn" data-popup="#popup">Замовити авто</a>
-					<div class="menu__burger icon-menu menu-open"><img src="img/menu.svg" alt="Menu burger"></div>
-
+						<button class="menu__open">
+							<svg>
+								<use xlink:href="img/icons/icons.svg#menuAdmin"></use>
+							</svg>
+						</button>
+					</div>
 				</div>
 
+				<nav class="menu__content header__navbar">
+
+					<div class="menu__header">
+						<a href="index.html">
+							<img src="img/logo.svg" alt="Логотип" class="logo_mobile">
+						</a>
+
+						<button class="menu__close">
+							<svg>
+								<use xlink:href="img/icons/icons.svg#close"></use>
+							</svg>
+						</button>
+
+					</div>
+
+					<div class="menu__content-inner">
+						<ul class="menu__list">
+							<li class="menu__item nav__item--hover"><a href="index.html">Головна</a></li>
+							<li class="menu__item nav__item--hover"><a href="catalog.html">Асортимент</a></li>
+							<li class="menu__item nav__item--hover"><a href="/index.html#service" class="scroll-link">Послуги</a></li>
+							<li class="menu__item nav__item--hover"><a href="/index.html#contact" class="scroll-link">Контакти</a></li>
+						</ul>
+
+						<button class="header__btn open-popup">Замовити авто</button>
+					</div>
+				</nav>
 			</div>
+
 		</header>
-		<main class="page__new">
-			<section class="info__container">
+		<main>
+			<section class="info__container page__new">
 				<div class="info__header">
 
 					<div class="info__sliders">
 
-						<div class="info__slider_main swiper">
+						<div class="info__slider_main swiper-container">
 							<div class="info__wrapper_main swiper-wrapper">
 
 								<div class="info__slide_main swiper-slide info__image">
@@ -147,7 +196,7 @@
 							</div>
 						</div>
 
-						<div class="info__slider_thumb swiper">
+						<div class="info__slider_thumb swiper-container">
 							<div class="info__wrapper_thumb swiper-wrapper">
 								<div class="info__slide_thumb swiper-slide">
 									<div class="info__image_thumb info__image">
@@ -239,15 +288,15 @@
 								<li class="info__fact-subitem">Потужність</li>
 							</ul>
 							<ul class="info__fact-list">
-								<li class="info__fact-item"><span>20/100</span>км.</li>
+								<li class="info__fact-item"><span>20/100 </span>км.</li>
 								<li class="info__fact-subitem">Розхід палива (місто)</li>
 							</ul>
 							<ul class="info__fact-list">
-								<li class="info__fact-item"><span>255/50</span></li>
+								<li class="info__fact-item"><span>255/50 </span></li>
 								<li class="info__fact-subitem">Розмір шини</li>
 							</ul>
 							<ul class="info__fact-list">
-								<li class="info__fact-item"><span>19</span>дюймів</li>
+								<li class="info__fact-item"><span>19 </span>дюймів</li>
 								<li class="info__fact-subitem">Розмір дисків</li>
 							</ul>
 						</div>
@@ -263,7 +312,7 @@
 							<li class="info__description-subitem">Під капотом Chevrolet Corvette 2015 року знаходиться потужний 6.2-літровий V8 двигун, здатний розвивати до 455 кінських сил і 460 фунт-футів крутного моменту. Цей двигун забезпечує вражаючу динаміку розгону та високу максимальну швидкість. Corvette оснащений семиступінчастою механічною коробкою передач або восьмиступінчастою автоматичною коробкою передач з можливістю ручного перемикання, що дозволяє водієві максимально контролювати автомобіль у будь-яких умовах.</li>
 						</ul>
 						<ul class="info__description-list">
-							<li class="info__description-item">Комфорт</li>
+							<li class="info__description-item">Безпека</li>
 							<li class="info__description-subitem">Chevrolet Corvette 2015 року оснащений численними системами безпеки для забезпечення максимального захисту водія і пасажирів. Серед них системи антиблокування гальм (ABS), система контролю тяги (TCS), система стабілізації (ESC) та кілька подушок безпеки, включаючи передні, бічні та колінні. Крім того, автомобіль має камеру заднього виду, паркувальні сенсори та систему моніторингу сліпих зон, що робить процес паркування та маневрування більш безпечним і простим.</li>
 						</ul>
 					</div>
@@ -322,136 +371,7 @@
 			</div>
 		</footer>
 	</div>
-	<!-- Документація: https://template.fls.guru/template-docs/modul-preloader.html -->
-	<div id="fls-preloader">
-		<!-- Скріпт прелоадера -->
-		<script>
-			function preloader() {
-				const preloaderImages = document.querySelector('[data-preloader]') ? document.querySelectorAll('[data-preloader] img') : document.querySelectorAll('img');
-				const preloaderContainer = document.querySelector('#fls-preloader');
-				if (preloaderImages.length) {
-					const preloaderStyleTemplate = `
-				<style>
-					* {
-						padding: 0px;
-						margin: 0px;
-						border: 0px;
-						box-sizing: border-box;
-					}
-					/* Головний блок */
-					.fls-preloader{
-						pointer-events: none;
-						z-index: 10;
-						position: fixed;
-						width: 100%;
-						height: 100%;
-						top: 0;
-						left: 0;
-						display: flex;
-						justify-content:center;
-						align-items: center;
-						background-color: #ffff;
-					}
-					/* Блок з елементами */
-					.fls-preloader__body{
-						padding: 0.93rem;
-						max-width: 31.25rem;
-						display: flex;
-						flex-direction: column;
-					}
-					/* Блок з лічильником */
-					.fls-preloader__counter{
-						font-size: 7rem;
-						
-					}
-					/* Прогресбар */
-					.fls-preloader__line{}
-					/* Лінія прогресбару */
-					.fls-preloader__line span{
-						display: inline-block;
-						transition: width 0.2s ease;
-						height: 0.8rem;
-						background-color: #FF0000;
-					}
-					.lock body{
-						overflow: hidden;
-						touch-action: none;
-						overscroll-behavior: none;
-					}
-					.loading body>*:not(.fls-preloader){
-						opacity: 0;
-						visibility: hidden;
-					}
-					.loaded body>*:not(.fls-preloader){
-						transition: opacity 0.5s ease 0s;
-						opacity: 1;
-						visibility: visible;
-					}
-				</style>`;
-
-					document.head.insertAdjacentHTML("beforeend", preloaderStyleTemplate);
-
-					const preloaderTemplate = `
-					<div class="fls-preloader">
-						<div class="fls-preloader__body">
-							<div class="fls-preloader__counter">0%</div>
-							<div class="fls-preloader__line"><span></span></div>
-						</div>
-					</div>`;
-					document.body.insertAdjacentHTML("beforeend", preloaderTemplate);
-
-					const
-						preloader = document.querySelector('.fls-preloader'),
-						showPecentLoad = document.querySelector('.fls-preloader__counter'),
-						showLineLoad = document.querySelector('.fls-preloader__line span'),
-						htmlDocument = document.documentElement;
-
-					let imagesLoadedCount = counter = progress = 0;
-
-					htmlDocument.classList.add('loading');
-					htmlDocument.classList.add('lock');
-
-					preloaderImages.forEach(preloaderImage => {
-						const imgClone = document.createElement('img');
-						if (imgClone) {
-							imgClone.onload = imageLoaded;
-							imgClone.onerror = imageLoaded;
-							preloaderImage.dataset.src ? imgClone.src = preloaderImage.dataset.src : imgClone.src = preloaderImage.src;
-						}
-					});
-
-					function setValueProgress(progress) {
-						showPecentLoad ? showPecentLoad.innerText = `${progress}%` : null;
-						showLineLoad ? showLineLoad.style.width = `${progress}%` : null;
-					}
-					showPecentLoad ? setValueProgress(progress) : null;
-
-					function imageLoaded() {
-						imagesLoadedCount++;
-						progress = Math.round((100 / preloaderImages.length) * imagesLoadedCount);
-						const intervalId = setInterval(() => {
-							counter >= progress ? clearInterval(intervalId) : setValueProgress(++counter);
-							counter >= 100 ? addLoadedClass() : null;
-						}, 10);
-					}
-
-					function addLoadedClass() {
-						htmlDocument.classList.add('loaded');
-						htmlDocument.classList.remove('lock');
-						htmlDocument.classList.remove('loading');
-						setInterval(() => {
-							preloader.remove();
-							preloaderContainer.remove();
-						}, 500);
-					}
-				} else {
-					preloaderContainer.remove();
-				}
-			}
-			preloader();
-		</script>
-	</div>
-	<script src="js/app.min.js?_v=20240902101808"></script>
+	<script src="js/app.min.js?_v=20240910143510"></script>
 </body>
 
 </html>

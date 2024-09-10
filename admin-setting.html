@@ -1,12 +1,11 @@
-<!DOCTYPE html>
 <html lang="en">
 
 <head>
-	<title>Admin panel</title>
+	<title>Home Page</title>
 	<meta charset="UTF-8">
 	<meta name="format-detection" content="telephone=no">
 	<!-- <style>body{opacity: 0;}</style> -->
-	<link rel="stylesheet" href="css/style.min.css?_v=20240902101808">
+	<link rel="stylesheet" href="css/style.min.css?_v=20240910143510">
 	<link rel="shortcut icon" href="favicon.ico">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js?_v=20240826114116"></script>
 	<!-- <meta name="robots" content="noindex, nofollow"> -->
@@ -14,142 +13,376 @@
 </head>
 
 <body>
-	<main class="admin__page">
+	<style>
+		body {
+			overflow: hidden;
+		}
 
-		<div class="admin__panel">
+		#preloader {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100vw;
+			height: 100vh;
+			background-color: #fff;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			flex-direction: column;
+			z-index: 9999;
+			opacity: 1;
+			transition: opacity 1s ease;
+			padding-right: 20px;
+			padding-left: 20px;
+		}
 
-			<div class="admin__panel-header">
-				<img src="img/logo_white.svg" alt="" class="admin__logo">
+		/* Логотип */
+		.preloader-logo {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			gap: 25xp;
+			margin-bottom: 75px;
 
-				<div class="admin__menu">
+			img {
+				width: 250px;
+
+				@media (max-width: 479px) {
+					width: 200px;
+				}
+			}
+		}
+
+		#content {
+			opacity: 0;
+			transition: opacity 0.8s ease;
+		}
+
+		.loader {
+			height: 5px;
+			width: 200px;
+			--c: no-repeat linear-gradient(#FF0000 0 0);
+			background: var(--c), var(--c), #dbdbdb;
+			background-size: 60% 100%;
+			animation: l16 3s infinite;
+		}
+
+		@keyframes l16 {
+			0% {
+				background-position: -150% 0, -150% 0
+			}
+
+			66% {
+				background-position: 250% 0, -150% 0
+			}
+
+			100% {
+				background-position: 250% 0, 250% 0
+			}
+		}
+	</style>
+
+
+	<div id="preloader">
+		<div class="preloader-logo">
+			<img src="img/logo.svg" alt="Logo">
+		</div>
+		<div class="loader"></div>
+	</div>
+	<div class="popup" id="popup">
+		<div class="popup__wrapper">
+			<div class="popup__content">
+				<button data-close type="button" class="popup__close">
 					<svg>
-						<use xlink:href="img/icons/icons.svg#menuAdmin"></use>
+						<use xlink:href="img/icons/icons.svg#close"></use>
 					</svg>
+				</button>
+				<div class="popup__text">
+					<h3 class="popup__title">Замовити авто зараз</h3>
+
+					<form action="" method="post" class="popup__form">
+						<div class="popup__input-inner">
+							<label for="name" class="popup__label">Ваше ім’я</label>
+							<input type="text" id="name" name="name" class="popup__input">
+						</div>
+
+						<div class="popup__input-inner">
+							<label for="phone" class="popup__label">Ваш номер телефону</label>
+							<input type="text" id="phone" name="phone" class="popup__input">
+						</div>
+
+						<div class="popup__input-inner popup__input-inner_big">
+							<label for="description" class="popup__label">Ваше побажання</label>
+							<textarea name="description" class="popup__textarea" id="description"></textarea>
+						</div>
+
+						<div class="popup__form-footer">
+							<button type="submit" class="popup__submit">Замовити авто</button>
+							<p class="popup__subtitle">Наші менеджери зв'яжуться з вами найближчим часом</p>
+						</div>
+
+					</form>
+
 				</div>
 			</div>
-
-			<div class="admin__navbar-content" id="admin__navbar-content">
-				<ul class="admin__navbar">
-					<li class="admin__navbar-item"><a href="admin-add.html" class="admin__navbar-link">
-							<svg>
-								<use xlink:href="img/icons/icons.svg#add"></use>
-							</svg>
-							Додати нове авто</a></li>
-					<li class="admin__navbar-item"><a href="admin-list.html" class="admin__navbar-link">
-							<svg>
-								<use xlink:href="img/icons/icons.svg#list"></use>
-							</svg>
-							Список авто</a></li>
-					<li class="admin__navbar-item"><a href="admin-setting.html" class="admin__navbar-link">
-							<svg>
-								<use xlink:href="img/icons/icons.svg#setting"></use>
-							</svg>
-							Налаштування</a></li>
-					<li class="admin__navbar-item"><a href="admin-message.html" class="admin__navbar-link">
-							<svg>
-								<use xlink:href="img/icons/icons.svg#mail"></use>
-							</svg>
-							Повідомлення</a></li>
-				</ul>
-
-				<a href="" class="admin__logout">
-					<svg>
-						<use xlink:href="img/icons/icons.svg#exit"></use>
-					</svg>
-					Вийти
-				</a>
-			</div>
-
 		</div>
+	</div>
 
-		<div class="admin__content">
-			<div class="admin__header">
-				<div class="admin__container admin__header-inner">
-					<div class="admin__header-text">
+	<div class="popup" id="filter">
+		<div class="popup__wrapper">
+			<div class="popup__content popup__content-filter">
+				<button data-close type="button" class="popup__close">
+					<svg>
+						<use xlink:href="img/icons/icons.svg#close"></use>
+					</svg>
+				</button>
+
+				<p class="popup__filter-title">Пошук авто за фільтром</p>
+
+				<div class="admin__form-inputs">
+
+					<div class="admin__form-input-wrapper">
+						<label for="" class="admin__form-label">Марка авто</label>
+						<input type="text" class="admin__form-input">
+					</div>
+
+					<div class="admin__form-input-wrapper">
+						<label for="" class="admin__form-label">Модель авто</label>
+						<input type="text" class="admin__form-input">
+					</div>
+
+					<div class="admin__form-input-wrapper">
+						<label for="" class="admin__form-label">Рік випуску</label>
+						<select name="" id="" class="admin__form-select">
+							<option value="" class="admin__form-option" hidden selected></option>
+							<option value="" class="admin__form-option">2024</option>
+							<option value="" class="admin__form-option">2023</option>
+						</select>
+					</div>
+
+					<div class="admin__form-input-wrapper">
+						<label for="" class="admin__form-label">Статус авто</label>
+						<select name="" id="" class="admin__form-select">
+							<option value="" class="admin__form-option" hidden selected></option>
+							<option value="" class="admin__form-option">2024</option>
+							<option value="" class="admin__form-option">2023</option>
+						</select>
+					</div>
+
+					<div class="admin__form-input-wrapper">
+						<label for="" class="admin__form-label">VIN-код</label>
+						<input type="text" class="admin__form-input">
+					</div>
+
+					<div class="admin__form-input-wrapper">
+						<label for="" class="admin__form-label">К-сть власників</label>
+						<input type="number" class="admin__form-input">
+					</div>
+
+					<div class="admin__form-input-wrapper">
+						<label for="" class="admin__form-label">Вартість, $</label>
+						<input type="number" class="admin__form-input">
+					</div>
+
+					<div class="admin__form-input-wrapper">
+						<label for="" class="admin__form-label">Вартість зі знижкою, $</label>
+						<input type="number" class="admin__form-input">
+					</div>
+				</div>
+
+				<button type="submit" class="popup__filter-submit">Знайти</button>
+
+			</div>
+		</div>
+	</div>
+
+	<div class="popup" id="message">
+		<div class="popup__wrapper">
+			<div class="popup__content popup__content-message">
+				<button data-close type="button" class="popup__close">
+					<svg>
+						<use xlink:href="img/icons/icons.svg#close"></use>
+					</svg>
+				</button>
+
+				<p class="popup__message-title"></p>
+				<a href="tel:" class="popup__message-phone"></a>
+				<p class="popup__message-description"></p>
+				<p class="popup__message-date"></p>
+
+
+			</div>
+		</div>
+	</div>
+
+	<div class="wrapper" id="content">
+
+		<main>
+			<section class="admin">
+
+				<div class="panel">
+
+					<div class="panel__header">
+						<a href="index.html" class="panel__logo">
+							<img src="img/logo.svg" alt="Logo">
+						</a>
+
+						<div class="panel__open panel__btn">
+							<svg>
+								<use xlink:href="img/icons/icons.svg#menuAdmin"></use>
+							</svg>
+						</div>
+					</div>
+
+					<div class="menu__content panel__menu-content">
+
+						<div class=" panel__header panel__header_mobile">
+							<a href="index.html" class="panel__logo">
+								<img src="img/logo.svg" alt="Logo">
+							</a>
+
+							<div class="panel__btn panel__close">
+								<svg>
+									<use xlink:href="img/icons/icons.svg#close"></use>
+								</svg>
+							</div>
+						</div>
+
+						<ul class="panel__list">
+							<li class="panel__item">
+								<a href="admin-add.html" class="panel__link panel__link_active">
+									<svg>
+										<use xlink:href="img/icons/icons.svg#add"></use>
+									</svg>
+									Додати нове авто
+								</a>
+							</li>
+							<li class="panel__item">
+								<a href="admin-list.html" class="panel__link">
+									<svg>
+										<use xlink:href="img/icons/icons.svg#list"></use>
+									</svg>
+									Список авто
+								</a>
+							</li>
+							<li class="panel__item">
+								<a href="admin-setting.html" class="panel__link">
+									<svg>
+										<use xlink:href="img/icons/icons.svg#setting"></use>
+									</svg>
+									Налаштування
+								</a>
+							</li>
+							<li class="panel__item">
+								<a href="admin-messages.html" class="panel__link">
+									<svg>
+										<use xlink:href="img/icons/icons.svg#mail"></use>
+									</svg>
+									Повідомлення
+								</a>
+							</li>
+						</ul>
+
+						<form action="" class="panel__exit">
+							<button type="submit" class="panel__exit-btn">
+								<div class="panel__exit-icon">
+									<svg>
+										<use xlink:href="img/icons/icons.svg#exit"></use>
+									</svg>
+								</div>
+								Вийти
+							</button>
+						</form>
+
+					</div>
+
+				</div>
+
+				<div class="admin__content admin__container">
+
+					<div class="admin__header">
 						<h3>Налаштування</h3>
-						<p class="admin__subtitle">Заповніть необхідну інформацію про автомобіль, щоб забезпечити ефективний менеджмент вашого автопарку</p>
+						<p class="admin__subtitle">Перегляд і керування автопарком: Список всіх доступних транспортних засобів</p>
 					</div>
-				</div>
-			</div>
 
-			<form action="" method="post" class="admin__form admin__container">
-				<div class="admin__form-block">
-					<p class="admin__form-title">Загальна інформація</p>
-					<div class="admin__inputs admin__inputs_big">
+					<form action="" class="admin__form">
 
-						<div class="admin__input-wrapper">
-							<label for="" class="admin__label">Адреса</label>
-							<input type="text" class="admin__input">
-						</div>
+						<div class="admin__form-block">
+							<p class="admin__form-title">Загальна інформація</p>
+							<div class="admin__form-inputs admin__form-inputs_setting">
 
-						<div class="admin__input-wrapper">
-							<label for="" class="admin__label">Контактний номер</label>
-							<input type="text" class="admin__input">
-						</div>
+								<div class="admin__form-input-wrapper">
+									<label for="" class="admin__form-label">Адреса</label>
+									<input type="text" class="admin__form-input">
+								</div>
 
-						<div class="admin__input-wrapper">
-							<label for="" class="admin__label">Графік роботи</label>
-							<div class="admin__input-wrapper_double">
-								<select name="" id="" class="admin__select">
-									<option value="" class="admin__option">Пн.</option>
-									<option value="" class="admin__option">Пт.</option>
-								</select>
-								<span>до</span>
-								<select name="" id="" class="admin__select">
-									<option value="" class="admin__option">Пн.</option>
-									<option value="" class="admin__option">Пт.</option>
-								</select>
+								<div class="admin__form-input-wrapper">
+									<label for="" class="admin__form-label">Контактний номер</label>
+									<input type="text" class="admin__form-input">
+								</div>
+
+								<div class="admin__form-input-wrapper">
+									<label for="" class="admin__form-label">Графік роботи</label>
+									<div class="admin__form-input-double">
+										<select name="" id="" class="admin__form-select">
+											<option value="" class="admin__form-option" hidden selected></option>
+											<option value="" class="admin__form-option">Пн.</option>
+											<option value="" class="admin__form-option">Пт.</option>
+										</select>
+										<span>до</span>
+										<select name="" id="" class="admin__form-select">
+											<option value="" class="admin__form-option" hidden selected></option>
+											<option value="" class="admin__form-option">Пн.</option>
+											<option value="" class="admin__form-option">Пт.</option>
+										</select>
+									</div>
+								</div>
+
+								<div class="admin__form-input-wrapper">
+									<label for="" class="admin__form-label">Часи роботи</label>
+									<div class="admin__form-input-double">
+										<input type="time" class="admin__form-input">
+										<span>до</span>
+										<input type="time" class="admin__form-input">
+									</div>
+								</div>
+
+								<div class="admin__form-input-wrapper">
+									<label for="" class="admin__form-label">Посиланя на карту</label>
+									<input type="text" class="admin__form-input">
+								</div>
+
+								<div class="admin__form-input-wrapper">
+									<label for="" class="admin__form-label">Instagram</label>
+									<input type="text" class="admin__form-input">
+								</div>
+
+								<div class="admin__form-input-wrapper">
+									<label for="" class="admin__form-label">Telegram</label>
+									<input type="text" class="admin__form-input">
+								</div>
+
+								<div class="admin__form-input-wrapper">
+									<label for="" class="admin__form-label">Facebook</label>
+									<input type="text" class="admin__form-input">
+								</div>
+
+
 							</div>
 						</div>
 
-						<div class="admin__input-wrapper">
-							<label for="" class="admin__label">Часи роботи</label>
-							<div class="admin__input-wrapper_double">
-								<input type="time" class="admin__input">
-								<span>до</span>
-								<input type="time" class="admin__input">
-							</div>
+						<div class="admin__form-file-wrapper">
+							<button type="submit" class="admin__form-submit">Зберігти</button>
 						</div>
 
-						<div class="admin__input-wrapper">
-							<label for="" class="admin__label">Посиланя на карту</label>
-							<input type="text" class="admin__input">
-						</div>
+					</form>
 
-						<div class="admin__input-wrapper">
-							<label for="" class="admin__label">Instagram</label>
-							<input type="text" class="admin__input">
-						</div>
-
-						<div class="admin__input-wrapper">
-							<label for="" class="admin__label">Telegram</label>
-							<input type="text" class="admin__input">
-						</div>
-
-						<div class="admin__input-wrapper">
-							<label for="" class="admin__label">Facebook</label>
-							<input type="text" class="admin__input">
-						</div>
-
-					</div>
 				</div>
+			</section>
+		</main>
 
-				<div class="admin__form-block">
-					<button type="submit" class="admin__form-submit">
-						<svg>
-							<use xlink:href="img/icons/icons.svg#done"></use>
-						</svg>
-						Зберегти
-					</button>
-				</div>
-
-			</form>
-
-
-		</div>
-
-	</main>
-	<script src="js/app.min.js?_v=20240902101808"></script>
+	</div>
+	<script src="js/app.min.js?_v=20240910143510"></script>
 </body>
 
 </html>

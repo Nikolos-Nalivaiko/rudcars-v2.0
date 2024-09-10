@@ -1,551 +1,48 @@
 (() => {
     "use strict";
-    const modules_flsModules = {};
-    function getHash() {
-        if (location.hash) return location.hash.replace("#", "");
-    }
-    function setHash(hash) {
-        hash = hash ? `#${hash}` : window.location.href.split("#")[0];
-        history.pushState("", "", hash);
-    }
-    let _slideUp = (target, duration = 500, showmore = 0) => {
-        if (!target.classList.contains("_slide")) {
-            target.classList.add("_slide");
-            target.style.transitionProperty = "height, margin, padding";
-            target.style.transitionDuration = duration + "ms";
-            target.style.height = `${target.offsetHeight}px`;
-            target.offsetHeight;
-            target.style.overflow = "hidden";
-            target.style.height = showmore ? `${showmore}px` : `0px`;
-            target.style.paddingTop = 0;
-            target.style.paddingBottom = 0;
-            target.style.marginTop = 0;
-            target.style.marginBottom = 0;
-            window.setTimeout((() => {
-                target.hidden = !showmore ? true : false;
-                !showmore ? target.style.removeProperty("height") : null;
-                target.style.removeProperty("padding-top");
-                target.style.removeProperty("padding-bottom");
-                target.style.removeProperty("margin-top");
-                target.style.removeProperty("margin-bottom");
-                !showmore ? target.style.removeProperty("overflow") : null;
-                target.style.removeProperty("transition-duration");
-                target.style.removeProperty("transition-property");
-                target.classList.remove("_slide");
-                document.dispatchEvent(new CustomEvent("slideUpDone", {
-                    detail: {
-                        target
-                    }
-                }));
-            }), duration);
+    class Preloader {
+        constructor(preloaderElement, contentElement) {
+            this.preloader = preloaderElement;
+            this.content = contentElement;
         }
-    };
-    let _slideDown = (target, duration = 500, showmore = 0) => {
-        if (!target.classList.contains("_slide")) {
-            target.classList.add("_slide");
-            target.hidden = target.hidden ? false : null;
-            showmore ? target.style.removeProperty("height") : null;
-            let height = target.offsetHeight;
-            target.style.overflow = "hidden";
-            target.style.height = showmore ? `${showmore}px` : `0px`;
-            target.style.paddingTop = 0;
-            target.style.paddingBottom = 0;
-            target.style.marginTop = 0;
-            target.style.marginBottom = 0;
-            target.offsetHeight;
-            target.style.transitionProperty = "height, margin, padding";
-            target.style.transitionDuration = duration + "ms";
-            target.style.height = height + "px";
-            target.style.removeProperty("padding-top");
-            target.style.removeProperty("padding-bottom");
-            target.style.removeProperty("margin-top");
-            target.style.removeProperty("margin-bottom");
-            window.setTimeout((() => {
-                target.style.removeProperty("height");
-                target.style.removeProperty("overflow");
-                target.style.removeProperty("transition-duration");
-                target.style.removeProperty("transition-property");
-                target.classList.remove("_slide");
-                document.dispatchEvent(new CustomEvent("slideDownDone", {
-                    detail: {
-                        target
-                    }
-                }));
-            }), duration);
-        }
-    };
-    let bodyLockStatus = true;
-    let bodyLockToggle = (delay = 500) => {
-        if (document.documentElement.classList.contains("lock")) bodyUnlock(delay); else bodyLock(delay);
-    };
-    let bodyUnlock = (delay = 500) => {
-        if (bodyLockStatus) {
-            const lockPaddingElements = document.querySelectorAll("[data-lp]");
+        hide() {
+            this.preloader.style.opacity = "0";
             setTimeout((() => {
-                lockPaddingElements.forEach((lockPaddingElement => {
-                    lockPaddingElement.style.paddingRight = "";
-                }));
-                document.body.style.paddingRight = "";
-                document.documentElement.classList.remove("lock");
-            }), delay);
-            bodyLockStatus = false;
-            setTimeout((function() {
-                bodyLockStatus = true;
-            }), delay);
-        }
-    };
-    let bodyLock = (delay = 500) => {
-        if (bodyLockStatus) {
-            const lockPaddingElements = document.querySelectorAll("[data-lp]");
-            const lockPaddingValue = window.innerWidth - document.body.offsetWidth + "px";
-            lockPaddingElements.forEach((lockPaddingElement => {
-                lockPaddingElement.style.paddingRight = lockPaddingValue;
-            }));
-            document.body.style.paddingRight = lockPaddingValue;
-            document.documentElement.classList.add("lock");
-            bodyLockStatus = false;
-            setTimeout((function() {
-                bodyLockStatus = true;
-            }), delay);
-        }
-    };
-    function tabs() {
-        const tabs = document.querySelectorAll("[data-tabs]");
-        let tabsActiveHash = [];
-        if (tabs.length > 0) {
-            const hash = getHash();
-            if (hash && hash.startsWith("tab-")) tabsActiveHash = hash.replace("tab-", "").split("-");
-            tabs.forEach(((tabsBlock, index) => {
-                tabsBlock.classList.add("_tab-init");
-                tabsBlock.setAttribute("data-tabs-index", index);
-                tabsBlock.addEventListener("click", setTabsAction);
-                initTabs(tabsBlock);
-            }));
-            let mdQueriesArray = dataMediaQueries(tabs, "tabs");
-            if (mdQueriesArray && mdQueriesArray.length) mdQueriesArray.forEach((mdQueriesItem => {
-                mdQueriesItem.matchMedia.addEventListener("change", (function() {
-                    setTitlePosition(mdQueriesItem.itemsArray, mdQueriesItem.matchMedia);
-                }));
-                setTitlePosition(mdQueriesItem.itemsArray, mdQueriesItem.matchMedia);
-            }));
-        }
-        function setTitlePosition(tabsMediaArray, matchMedia) {
-            tabsMediaArray.forEach((tabsMediaItem => {
-                tabsMediaItem = tabsMediaItem.item;
-                let tabsTitles = tabsMediaItem.querySelector("[data-tabs-titles]");
-                let tabsTitleItems = tabsMediaItem.querySelectorAll("[data-tabs-title]");
-                let tabsContent = tabsMediaItem.querySelector("[data-tabs-body]");
-                let tabsContentItems = tabsMediaItem.querySelectorAll("[data-tabs-item]");
-                tabsTitleItems = Array.from(tabsTitleItems).filter((item => item.closest("[data-tabs]") === tabsMediaItem));
-                tabsContentItems = Array.from(tabsContentItems).filter((item => item.closest("[data-tabs]") === tabsMediaItem));
-                tabsContentItems.forEach(((tabsContentItem, index) => {
-                    if (matchMedia.matches) {
-                        tabsContent.append(tabsTitleItems[index]);
-                        tabsContent.append(tabsContentItem);
-                        tabsMediaItem.classList.add("_tab-spoller");
-                    } else {
-                        tabsTitles.append(tabsTitleItems[index]);
-                        tabsMediaItem.classList.remove("_tab-spoller");
-                    }
-                }));
-            }));
-        }
-        function initTabs(tabsBlock) {
-            let tabsTitles = tabsBlock.querySelectorAll("[data-tabs-titles]>*");
-            let tabsContent = tabsBlock.querySelectorAll("[data-tabs-body]>*");
-            const tabsBlockIndex = tabsBlock.dataset.tabsIndex;
-            const tabsActiveHashBlock = tabsActiveHash[0] == tabsBlockIndex;
-            if (tabsActiveHashBlock) {
-                const tabsActiveTitle = tabsBlock.querySelector("[data-tabs-titles]>._tab-active");
-                tabsActiveTitle ? tabsActiveTitle.classList.remove("_tab-active") : null;
-            }
-            if (tabsContent.length) tabsContent.forEach(((tabsContentItem, index) => {
-                tabsTitles[index].setAttribute("data-tabs-title", "");
-                tabsContentItem.setAttribute("data-tabs-item", "");
-                if (tabsActiveHashBlock && index == tabsActiveHash[1]) tabsTitles[index].classList.add("_tab-active");
-                tabsContentItem.hidden = !tabsTitles[index].classList.contains("_tab-active");
-            }));
-        }
-        function setTabsStatus(tabsBlock) {
-            let tabsTitles = tabsBlock.querySelectorAll("[data-tabs-title]");
-            let tabsContent = tabsBlock.querySelectorAll("[data-tabs-item]");
-            const tabsBlockIndex = tabsBlock.dataset.tabsIndex;
-            function isTabsAnamate(tabsBlock) {
-                if (tabsBlock.hasAttribute("data-tabs-animate")) return tabsBlock.dataset.tabsAnimate > 0 ? Number(tabsBlock.dataset.tabsAnimate) : 500;
-            }
-            const tabsBlockAnimate = isTabsAnamate(tabsBlock);
-            if (tabsContent.length > 0) {
-                const isHash = tabsBlock.hasAttribute("data-tabs-hash");
-                tabsContent = Array.from(tabsContent).filter((item => item.closest("[data-tabs]") === tabsBlock));
-                tabsTitles = Array.from(tabsTitles).filter((item => item.closest("[data-tabs]") === tabsBlock));
-                tabsContent.forEach(((tabsContentItem, index) => {
-                    if (tabsTitles[index].classList.contains("_tab-active")) {
-                        if (tabsBlockAnimate) _slideDown(tabsContentItem, tabsBlockAnimate); else tabsContentItem.hidden = false;
-                        if (isHash && !tabsContentItem.closest(".popup")) setHash(`tab-${tabsBlockIndex}-${index}`);
-                    } else if (tabsBlockAnimate) _slideUp(tabsContentItem, tabsBlockAnimate); else tabsContentItem.hidden = true;
-                }));
-            }
-        }
-        function setTabsAction(e) {
-            const el = e.target;
-            if (el.closest("[data-tabs-title]")) {
-                const tabTitle = el.closest("[data-tabs-title]");
-                const tabsBlock = tabTitle.closest("[data-tabs]");
-                if (!tabTitle.classList.contains("_tab-active") && !tabsBlock.querySelector("._slide")) {
-                    let tabActiveTitle = tabsBlock.querySelectorAll("[data-tabs-title]._tab-active");
-                    tabActiveTitle.length ? tabActiveTitle = Array.from(tabActiveTitle).filter((item => item.closest("[data-tabs]") === tabsBlock)) : null;
-                    tabActiveTitle.length ? tabActiveTitle[0].classList.remove("_tab-active") : null;
-                    tabTitle.classList.add("_tab-active");
-                    setTabsStatus(tabsBlock);
-                }
-                e.preventDefault();
-            }
+                this.preloader.style.display = "none";
+                this.content.style.display = "block";
+                setTimeout((() => {
+                    this.content.style.opacity = "1";
+                    document.body.style.overflow = "auto";
+                }), 50);
+            }), 1e3);
         }
     }
-    function menuInit() {
-        if (document.querySelector(".icon-menu")) document.addEventListener("click", (function(e) {
-            if (bodyLockStatus && e.target.closest(".icon-menu")) {
-                bodyLockToggle();
-                document.documentElement.classList.toggle("menu-open");
-            }
-        }));
-    }
-    function menuClose() {
-        bodyUnlock();
-        document.documentElement.classList.remove("menu-open");
-    }
-    function functions_FLS(message) {
-        setTimeout((() => {
-            if (window.FLS) console.log(message);
-        }), 0);
-    }
-    function uniqArray(array) {
-        return array.filter((function(item, index, self) {
-            return self.indexOf(item) === index;
-        }));
-    }
-    function dataMediaQueries(array, dataSetValue) {
-        const media = Array.from(array).filter((function(item, index, self) {
-            if (item.dataset[dataSetValue]) return item.dataset[dataSetValue].split(",")[0];
-        }));
-        if (media.length) {
-            const breakpointsArray = [];
-            media.forEach((item => {
-                const params = item.dataset[dataSetValue];
-                const breakpoint = {};
-                const paramsArray = params.split(",");
-                breakpoint.value = paramsArray[0];
-                breakpoint.type = paramsArray[1] ? paramsArray[1].trim() : "max";
-                breakpoint.item = item;
-                breakpointsArray.push(breakpoint);
-            }));
-            let mdQueries = breakpointsArray.map((function(item) {
-                return "(" + item.type + "-width: " + item.value + "px)," + item.value + "," + item.type;
-            }));
-            mdQueries = uniqArray(mdQueries);
-            const mdQueriesArray = [];
-            if (mdQueries.length) {
-                mdQueries.forEach((breakpoint => {
-                    const paramsArray = breakpoint.split(",");
-                    const mediaBreakpoint = paramsArray[1];
-                    const mediaType = paramsArray[2];
-                    const matchMedia = window.matchMedia(paramsArray[0]);
-                    const itemsArray = breakpointsArray.filter((function(item) {
-                        if (item.value === mediaBreakpoint && item.type === mediaType) return true;
-                    }));
-                    mdQueriesArray.push({
-                        itemsArray,
-                        matchMedia
-                    });
-                }));
-                return mdQueriesArray;
-            }
-        }
-    }
-    class Popup {
-        constructor(options) {
-            let config = {
-                logging: true,
-                init: true,
-                attributeOpenButton: "data-popup",
-                attributeCloseButton: "data-close",
-                fixElementSelector: "[data-lp]",
-                youtubeAttribute: "data-popup-youtube",
-                youtubePlaceAttribute: "data-popup-youtube-place",
-                setAutoplayYoutube: true,
-                classes: {
-                    popup: "popup",
-                    popupContent: "popup__content",
-                    popupActive: "popup_show",
-                    bodyActive: "popup-show"
-                },
-                focusCatch: true,
-                closeEsc: true,
-                bodyLock: false,
-                hashSettings: {
-                    location: true,
-                    goHash: true
-                },
-                on: {
-                    beforeOpen: function() {},
-                    afterOpen: function() {},
-                    beforeClose: function() {},
-                    afterClose: function() {}
-                }
-            };
-            this.youTubeCode;
+    class MobileMenu {
+        constructor(menuSelector, openButtonSelector, closeButtonSelector) {
+            this.menu = document.querySelector(menuSelector);
+            this.openButton = document.querySelector(openButtonSelector);
+            this.closeButton = document.querySelector(closeButtonSelector);
             this.isOpen = false;
-            this.targetOpen = {
-                selector: true,
-                element: false
-            };
-            this.previousOpen = {
-                selector: false,
-                element: false
-            };
-            this.lastClosed = {
-                selector: false,
-                element: false
-            };
-            this._dataValue = false;
-            this.hash = false;
-            this._reopen = false;
-            this._selectorOpen = false;
-            this.lastFocusEl = false;
-            this._focusEl = [ "a[href]", 'input:not([disabled]):not([type="hidden"]):not([aria-hidden])', "button:not([disabled]):not([aria-hidden])", "select:not([disabled]):not([aria-hidden])", "textarea:not([disabled]):not([aria-hidden])", "area[href]", "iframe", "object", "embed", "[contenteditable]", '[tabindex]:not([tabindex^="-"])' ];
-            this.options = {
-                ...config,
-                ...options,
-                classes: {
-                    ...config.classes,
-                    ...options?.classes
-                },
-                hashSettings: {
-                    ...config.hashSettings,
-                    ...options?.hashSettings
-                },
-                on: {
-                    ...config.on,
-                    ...options?.on
-                }
-            };
-            this.bodyLock = false;
-            this.options.init ? this.initPopups() : null;
-        }
-        initPopups() {
-            this.popupLogging(`Прокинувся`);
-            this.eventsPopup();
-        }
-        eventsPopup() {
-            document.addEventListener("click", function(e) {
-                const buttonOpen = e.target.closest(`[${this.options.attributeOpenButton}]`);
-                if (buttonOpen) {
-                    e.preventDefault();
-                    this._dataValue = buttonOpen.getAttribute(this.options.attributeOpenButton) ? buttonOpen.getAttribute(this.options.attributeOpenButton) : "error";
-                    this.youTubeCode = buttonOpen.getAttribute(this.options.youtubeAttribute) ? buttonOpen.getAttribute(this.options.youtubeAttribute) : null;
-                    if (this._dataValue !== "error") {
-                        if (!this.isOpen) this.lastFocusEl = buttonOpen;
-                        this.targetOpen.selector = `${this._dataValue}`;
-                        this._selectorOpen = true;
-                        this.open();
-                        return;
-                    } else this.popupLogging(`Йой, не заповнено атрибут у ${buttonOpen.classList}`);
-                    return;
-                }
-                const buttonClose = e.target.closest(`[${this.options.attributeCloseButton}]`);
-                if (buttonClose || !e.target.closest(`.${this.options.classes.popupContent}`) && this.isOpen) {
-                    e.preventDefault();
-                    this.close();
-                    return;
-                }
-            }.bind(this));
-            document.addEventListener("keydown", function(e) {
-                if (this.options.closeEsc && e.which == 27 && e.code === "Escape" && this.isOpen) {
-                    e.preventDefault();
-                    this.close();
-                    return;
-                }
-                if (this.options.focusCatch && e.which == 9 && this.isOpen) {
-                    this._focusCatch(e);
-                    return;
-                }
-            }.bind(this));
-            if (this.options.hashSettings.goHash) {
-                window.addEventListener("hashchange", function() {
-                    if (window.location.hash) this._openToHash(); else this.close(this.targetOpen.selector);
-                }.bind(this));
-                window.addEventListener("load", function() {
-                    if (window.location.hash) this._openToHash();
-                }.bind(this));
+            if (this.menu && this.openButton && this.closeButton) {
+                this.openButton.addEventListener("click", (() => this.openMenu()));
+                this.closeButton.addEventListener("click", (() => this.closeMenu()));
+                document.addEventListener("click", (e => this.handleOutsideClick(e)));
             }
         }
-        open(selectorValue) {
-            if (bodyLockStatus) {
-                this.bodyLock = true;
-                if (selectorValue && typeof selectorValue === "string" && selectorValue.trim() !== "") {
-                    this.targetOpen.selector = selectorValue;
-                    this._selectorOpen = true;
-                }
-                if (this.isOpen) {
-                    this._reopen = true;
-                    this.close();
-                }
-                if (!this._selectorOpen) this.targetOpen.selector = this.lastClosed.selector;
-                if (!this._reopen) this.previousActiveElement = document.activeElement;
-                this.targetOpen.element = document.querySelector(this.targetOpen.selector);
-                if (this.targetOpen.element) {
-                    if (this.youTubeCode) {
-                        const codeVideo = this.youTubeCode;
-                        const urlVideo = `https://www.youtube.com/embed/${codeVideo}?rel=0&showinfo=0&autoplay=1`;
-                        const iframe = document.createElement("iframe");
-                        iframe.setAttribute("allowfullscreen", "");
-                        const autoplay = this.options.setAutoplayYoutube ? "autoplay;" : "";
-                        iframe.setAttribute("allow", `${autoplay}; encrypted-media`);
-                        iframe.setAttribute("src", urlVideo);
-                        if (!this.targetOpen.element.querySelector(`[${this.options.youtubePlaceAttribute}]`)) {
-                            this.targetOpen.element.querySelector(".popup__text").setAttribute(`${this.options.youtubePlaceAttribute}`, "");
-                        }
-                        this.targetOpen.element.querySelector(`[${this.options.youtubePlaceAttribute}]`).appendChild(iframe);
-                    }
-                    if (this.options.hashSettings.location) {
-                        this._getHash();
-                        this._setHash();
-                    }
-                    this.options.on.beforeOpen(this);
-                    document.dispatchEvent(new CustomEvent("beforePopupOpen", {
-                        detail: {
-                            popup: this
-                        }
-                    }));
-                    this.targetOpen.element.classList.add(this.options.classes.popupActive);
-                    document.documentElement.classList.add(this.options.classes.bodyActive);
-                    if (!this._reopen) !this.bodyLock ? bodyLock() : null; else this._reopen = false;
-                    this.targetOpen.element.setAttribute("aria-hidden", "false");
-                    this.previousOpen.selector = this.targetOpen.selector;
-                    this.previousOpen.element = this.targetOpen.element;
-                    this._selectorOpen = false;
-                    this.isOpen = true;
-                    setTimeout((() => {
-                        this._focusTrap();
-                    }), 50);
-                    this.options.on.afterOpen(this);
-                    document.dispatchEvent(new CustomEvent("afterPopupOpen", {
-                        detail: {
-                            popup: this
-                        }
-                    }));
-                    this.popupLogging(`Відкрив попап`);
-                } else this.popupLogging(`Йой, такого попапу немає. Перевірте коректність введення. `);
-            }
+        openMenu() {
+            this.isOpen = true;
+            this.menu.classList.add("menu__content_open");
+            document.body.classList.add("menu-open");
         }
-        close(selectorValue) {
-            if (selectorValue && typeof selectorValue === "string" && selectorValue.trim() !== "") this.previousOpen.selector = selectorValue;
-            if (!this.isOpen || !bodyLockStatus) return;
-            this.options.on.beforeClose(this);
-            document.dispatchEvent(new CustomEvent("beforePopupClose", {
-                detail: {
-                    popup: this
-                }
-            }));
-            if (this.youTubeCode) if (this.targetOpen.element.querySelector(`[${this.options.youtubePlaceAttribute}]`)) this.targetOpen.element.querySelector(`[${this.options.youtubePlaceAttribute}]`).innerHTML = "";
-            this.previousOpen.element.classList.remove(this.options.classes.popupActive);
-            this.previousOpen.element.setAttribute("aria-hidden", "true");
-            if (!this._reopen) {
-                document.documentElement.classList.remove(this.options.classes.bodyActive);
-                !this.bodyLock ? bodyUnlock() : null;
-                this.isOpen = false;
-            }
-            this._removeHash();
-            if (this._selectorOpen) {
-                this.lastClosed.selector = this.previousOpen.selector;
-                this.lastClosed.element = this.previousOpen.element;
-            }
-            this.options.on.afterClose(this);
-            document.dispatchEvent(new CustomEvent("afterPopupClose", {
-                detail: {
-                    popup: this
-                }
-            }));
-            setTimeout((() => {
-                this._focusTrap();
-            }), 50);
-            this.popupLogging(`Закрив попап`);
+        closeMenu() {
+            this.isOpen = false;
+            this.menu.classList.remove("menu__content_open");
+            document.body.classList.remove("menu-open");
         }
-        _getHash() {
-            if (this.options.hashSettings.location) this.hash = this.targetOpen.selector.includes("#") ? this.targetOpen.selector : this.targetOpen.selector.replace(".", "#");
-        }
-        _openToHash() {
-            let classInHash = document.querySelector(`.${window.location.hash.replace("#", "")}`) ? `.${window.location.hash.replace("#", "")}` : document.querySelector(`${window.location.hash}`) ? `${window.location.hash}` : null;
-            const buttons = document.querySelector(`[${this.options.attributeOpenButton} = "${classInHash}"]`) ? document.querySelector(`[${this.options.attributeOpenButton} = "${classInHash}"]`) : document.querySelector(`[${this.options.attributeOpenButton} = "${classInHash.replace(".", "#")}"]`);
-            this.youTubeCode = buttons.getAttribute(this.options.youtubeAttribute) ? buttons.getAttribute(this.options.youtubeAttribute) : null;
-            if (buttons && classInHash) this.open(classInHash);
-        }
-        _setHash() {
-            history.pushState("", "", this.hash);
-        }
-        _removeHash() {
-            history.pushState("", "", window.location.href.split("#")[0]);
-        }
-        _focusCatch(e) {
-            const focusable = this.targetOpen.element.querySelectorAll(this._focusEl);
-            const focusArray = Array.prototype.slice.call(focusable);
-            const focusedIndex = focusArray.indexOf(document.activeElement);
-            if (e.shiftKey && focusedIndex === 0) {
-                focusArray[focusArray.length - 1].focus();
-                e.preventDefault();
-            }
-            if (!e.shiftKey && focusedIndex === focusArray.length - 1) {
-                focusArray[0].focus();
-                e.preventDefault();
-            }
-        }
-        _focusTrap() {
-            const focusable = this.previousOpen.element.querySelectorAll(this._focusEl);
-            if (!this.isOpen && this.lastFocusEl) this.lastFocusEl.focus(); else focusable[0].focus();
-        }
-        popupLogging(message) {
-            this.options.logging ? functions_FLS(`[Попапос]: ${message}`) : null;
+        handleOutsideClick(event) {
+            if (this.isOpen && !this.menu.contains(event.target) && !this.openButton.contains(event.target)) this.closeMenu();
         }
     }
-    modules_flsModules.popup = new Popup({});
-    let gotoblock_gotoBlock = (targetBlock, noHeader = false, speed = 500, offsetTop = 0) => {
-        const targetBlockElement = document.querySelector(targetBlock);
-        if (targetBlockElement) {
-            let headerItem = "";
-            let headerItemHeight = 0;
-            if (noHeader) {
-                headerItem = "header.header";
-                const headerElement = document.querySelector(headerItem);
-                if (!headerElement.classList.contains("_header-scroll")) {
-                    headerElement.style.cssText = `transition-duration: 0s;`;
-                    headerElement.classList.add("_header-scroll");
-                    headerItemHeight = headerElement.offsetHeight;
-                    headerElement.classList.remove("_header-scroll");
-                    setTimeout((() => {
-                        headerElement.style.cssText = ``;
-                    }), 0);
-                } else headerItemHeight = headerElement.offsetHeight;
-            }
-            let options = {
-                speedAsDuration: true,
-                speed,
-                header: headerItem,
-                offset: offsetTop,
-                easing: "easeOutQuad"
-            };
-            document.documentElement.classList.contains("menu-open") ? menuClose() : null;
-            if (typeof SmoothScroll !== "undefined") (new SmoothScroll).animateScroll(targetBlockElement, "", options); else {
-                let targetBlockElementPosition = targetBlockElement.getBoundingClientRect().top + scrollY;
-                targetBlockElementPosition = headerItemHeight ? targetBlockElementPosition - headerItemHeight : targetBlockElementPosition;
-                targetBlockElementPosition = offsetTop ? targetBlockElementPosition - offsetTop : targetBlockElementPosition;
-                window.scrollTo({
-                    top: targetBlockElementPosition,
-                    behavior: "smooth"
-                });
-            }
-            functions_FLS(`[gotoBlock]: Юхуу...їдемо до ${targetBlock}`);
-        } else functions_FLS(`[gotoBlock]: Йой... Такого блоку немає на сторінці: ${targetBlock}`);
-    };
     function isObject(obj) {
         return obj !== null && typeof obj === "object" && "constructor" in obj && obj.constructor === Object;
     }
@@ -858,7 +355,7 @@
         }
         return parents;
     }
-    function utils_elementOuterSize(el, size, includeMargins) {
+    function elementOuterSize(el, size, includeMargins) {
         const window = ssr_window_esm_getWindow();
         if (includeMargins) return el[size === "width" ? "offsetWidth" : "offsetHeight"] + parseFloat(window.getComputedStyle(el, null).getPropertyValue(size === "width" ? "margin-right" : "margin-top")) + parseFloat(window.getComputedStyle(el, null).getPropertyValue(size === "width" ? "margin-left" : "margin-bottom"));
         return el.offsetWidth;
@@ -1207,7 +704,7 @@
                 const currentWebKitTransform = slide.style.webkitTransform;
                 if (currentTransform) slide.style.transform = "none";
                 if (currentWebKitTransform) slide.style.webkitTransform = "none";
-                if (params.roundLengths) slideSize = swiper.isHorizontal() ? utils_elementOuterSize(slide, "width", true) : utils_elementOuterSize(slide, "height", true); else {
+                if (params.roundLengths) slideSize = swiper.isHorizontal() ? elementOuterSize(slide, "width", true) : elementOuterSize(slide, "height", true); else {
                     const width = getDirectionPropertyValue(slideStyles, "width");
                     const paddingLeft = getDirectionPropertyValue(slideStyles, "padding-left");
                     const paddingRight = getDirectionPropertyValue(slideStyles, "padding-right");
@@ -1291,7 +788,7 @@
                 allSlidesSize += slideSizeValue + (spaceBetween || 0);
             }));
             allSlidesSize -= spaceBetween;
-            const maxSnap = allSlidesSize - swiperSize;
+            const maxSnap = allSlidesSize > swiperSize ? allSlidesSize - swiperSize : 0;
             snapGrid = snapGrid.map((snap => {
                 if (snap <= 0) return -offsetBefore;
                 if (snap > maxSnap) return maxSnap + offsetAfter;
@@ -1831,7 +1328,9 @@
         swiper.updateProgress(translate);
         let direction;
         if (slideIndex > activeIndex) direction = "next"; else if (slideIndex < activeIndex) direction = "prev"; else direction = "reset";
-        if (rtl && -translate === swiper.translate || !rtl && translate === swiper.translate) {
+        const isVirtual = swiper.virtual && swiper.params.virtual.enabled;
+        const isInitialVirtual = isVirtual && initial;
+        if (!isInitialVirtual && (rtl && -translate === swiper.translate || !rtl && translate === swiper.translate)) {
             swiper.updateActiveIndex(slideIndex);
             if (params.autoHeight) swiper.updateAutoHeight();
             swiper.updateSlidesClasses();
@@ -1846,7 +1345,6 @@
             const isH = swiper.isHorizontal();
             const t = rtl ? translate : -translate;
             if (speed === 0) {
-                const isVirtual = swiper.virtual && swiper.params.virtual.enabled;
                 if (isVirtual) {
                     swiper.wrapperEl.style.scrollSnapType = "none";
                     swiper._immediateVirtual = true;
@@ -2531,7 +2029,7 @@
         let resistanceRatio = params.resistanceRatio;
         if (params.touchReleaseOnEdges) resistanceRatio = 0;
         if (diff > 0) {
-            if (isLoop && allowLoopFix && !loopFixed && data.allowThresholdMove && data.currentTranslate > (params.centeredSlides ? swiper.minTranslate() - swiper.slidesSizesGrid[swiper.activeIndex + 1] : swiper.minTranslate())) swiper.loopFix({
+            if (isLoop && allowLoopFix && !loopFixed && data.allowThresholdMove && data.currentTranslate > (params.centeredSlides ? swiper.minTranslate() - swiper.slidesSizesGrid[swiper.activeIndex + 1] - (params.slidesPerView !== "auto" && swiper.slides.length - params.slidesPerView >= 2 ? swiper.slidesSizesGrid[swiper.activeIndex + 1] + swiper.params.spaceBetween : 0) - swiper.params.spaceBetween : swiper.minTranslate())) swiper.loopFix({
                 direction: "prev",
                 setTranslate: true,
                 activeSlideIndex: 0
@@ -2541,7 +2039,7 @@
                 if (params.resistance) data.currentTranslate = swiper.minTranslate() - 1 + (-swiper.minTranslate() + data.startTranslate + diff) ** resistanceRatio;
             }
         } else if (diff < 0) {
-            if (isLoop && allowLoopFix && !loopFixed && data.allowThresholdMove && data.currentTranslate < (params.centeredSlides ? swiper.maxTranslate() + swiper.slidesSizesGrid[swiper.slidesSizesGrid.length - 1] : swiper.maxTranslate())) swiper.loopFix({
+            if (isLoop && allowLoopFix && !loopFixed && data.allowThresholdMove && data.currentTranslate < (params.centeredSlides ? swiper.maxTranslate() + swiper.slidesSizesGrid[swiper.slidesSizesGrid.length - 1] + swiper.params.spaceBetween + (params.slidesPerView !== "auto" && swiper.slides.length - params.slidesPerView >= 2 ? swiper.slidesSizesGrid[swiper.slidesSizesGrid.length - 1] + swiper.params.spaceBetween : 0) : swiper.maxTranslate())) swiper.loopFix({
                 direction: "next",
                 setTranslate: true,
                 activeSlideIndex: swiper.slides.length - (params.slidesPerView === "auto" ? swiper.slidesPerViewDynamic() : Math.ceil(parseFloat(params.slidesPerView, 10)))
@@ -2940,7 +2438,7 @@
         el.classList.add(...classNames);
         swiper.emitContainerClasses();
     }
-    function swiper_core_removeClasses() {
+    function removeClasses() {
         const swiper = this;
         const {el, classNames} = swiper;
         if (!el || typeof el === "string") return;
@@ -2949,7 +2447,7 @@
     }
     var classes = {
         addClasses,
-        removeClasses: swiper_core_removeClasses
+        removeClasses
     };
     function checkOverflow() {
         const swiper = this;
@@ -3098,7 +2596,7 @@
         classes
     };
     const extendedDefaults = {};
-    class swiper_core_Swiper {
+    class Swiper {
         constructor() {
             let el;
             let params;
@@ -3114,7 +2612,7 @@
                     const newParams = utils_extend({}, params, {
                         el: containerEl
                     });
-                    swipers.push(new swiper_core_Swiper(newParams));
+                    swipers.push(new Swiper(newParams));
                 }));
                 return swipers;
             }
@@ -3486,25 +2984,25 @@
             return defaults;
         }
         static installModule(mod) {
-            if (!swiper_core_Swiper.prototype.__modules__) swiper_core_Swiper.prototype.__modules__ = [];
-            const modules = swiper_core_Swiper.prototype.__modules__;
+            if (!Swiper.prototype.__modules__) Swiper.prototype.__modules__ = [];
+            const modules = Swiper.prototype.__modules__;
             if (typeof mod === "function" && modules.indexOf(mod) < 0) modules.push(mod);
         }
         static use(module) {
             if (Array.isArray(module)) {
-                module.forEach((m => swiper_core_Swiper.installModule(m)));
-                return swiper_core_Swiper;
+                module.forEach((m => Swiper.installModule(m)));
+                return Swiper;
             }
-            swiper_core_Swiper.installModule(module);
-            return swiper_core_Swiper;
+            Swiper.installModule(module);
+            return Swiper;
         }
     }
     Object.keys(prototypes).forEach((prototypeGroup => {
         Object.keys(prototypes[prototypeGroup]).forEach((protoMethod => {
-            swiper_core_Swiper.prototype[protoMethod] = prototypes[prototypeGroup][protoMethod];
+            Swiper.prototype[protoMethod] = prototypes[prototypeGroup][protoMethod];
         }));
     }));
-    swiper_core_Swiper.use([ Resize, Observer ]);
+    Swiper.use([ Resize, Observer ]);
     function create_element_if_not_defined_createElementIfNotDefined(swiper, originalParams, params, checkProps) {
         if (swiper.params.createElements) Object.keys(checkProps).forEach((key => {
             if (!params[key] && params.auto === true) {
@@ -3668,6 +3166,339 @@
         Object.assign(swiper.navigation, {
             enable,
             disable,
+            update,
+            init,
+            destroy
+        });
+    }
+    function classes_to_selector_classesToSelector(classes) {
+        if (classes === void 0) classes = "";
+        return `.${classes.trim().replace(/([\.:!+\/])/g, "\\$1").replace(/ /g, ".")}`;
+    }
+    function Pagination(_ref) {
+        let {swiper, extendParams, on, emit} = _ref;
+        const pfx = "swiper-pagination";
+        extendParams({
+            pagination: {
+                el: null,
+                bulletElement: "span",
+                clickable: false,
+                hideOnClick: false,
+                renderBullet: null,
+                renderProgressbar: null,
+                renderFraction: null,
+                renderCustom: null,
+                progressbarOpposite: false,
+                type: "bullets",
+                dynamicBullets: false,
+                dynamicMainBullets: 1,
+                formatFractionCurrent: number => number,
+                formatFractionTotal: number => number,
+                bulletClass: `${pfx}-bullet`,
+                bulletActiveClass: `${pfx}-bullet-active`,
+                modifierClass: `${pfx}-`,
+                currentClass: `${pfx}-current`,
+                totalClass: `${pfx}-total`,
+                hiddenClass: `${pfx}-hidden`,
+                progressbarFillClass: `${pfx}-progressbar-fill`,
+                progressbarOppositeClass: `${pfx}-progressbar-opposite`,
+                clickableClass: `${pfx}-clickable`,
+                lockClass: `${pfx}-lock`,
+                horizontalClass: `${pfx}-horizontal`,
+                verticalClass: `${pfx}-vertical`,
+                paginationDisabledClass: `${pfx}-disabled`
+            }
+        });
+        swiper.pagination = {
+            el: null,
+            bullets: []
+        };
+        let bulletSize;
+        let dynamicBulletIndex = 0;
+        function isPaginationDisabled() {
+            return !swiper.params.pagination.el || !swiper.pagination.el || Array.isArray(swiper.pagination.el) && swiper.pagination.el.length === 0;
+        }
+        function setSideBullets(bulletEl, position) {
+            const {bulletActiveClass} = swiper.params.pagination;
+            if (!bulletEl) return;
+            bulletEl = bulletEl[`${position === "prev" ? "previous" : "next"}ElementSibling`];
+            if (bulletEl) {
+                bulletEl.classList.add(`${bulletActiveClass}-${position}`);
+                bulletEl = bulletEl[`${position === "prev" ? "previous" : "next"}ElementSibling`];
+                if (bulletEl) bulletEl.classList.add(`${bulletActiveClass}-${position}-${position}`);
+            }
+        }
+        function getMoveDirection(prevIndex, nextIndex, length) {
+            prevIndex %= length;
+            nextIndex %= length;
+            if (nextIndex === prevIndex + 1) return "next"; else if (nextIndex === prevIndex - 1) return "previous";
+            return;
+        }
+        function onBulletClick(e) {
+            const bulletEl = e.target.closest(classes_to_selector_classesToSelector(swiper.params.pagination.bulletClass));
+            if (!bulletEl) return;
+            e.preventDefault();
+            const index = utils_elementIndex(bulletEl) * swiper.params.slidesPerGroup;
+            if (swiper.params.loop) {
+                if (swiper.realIndex === index) return;
+                const moveDirection = getMoveDirection(swiper.realIndex, index, swiper.slides.length);
+                if (moveDirection === "next") swiper.slideNext(); else if (moveDirection === "previous") swiper.slidePrev(); else swiper.slideToLoop(index);
+            } else swiper.slideTo(index);
+        }
+        function update() {
+            const rtl = swiper.rtl;
+            const params = swiper.params.pagination;
+            if (isPaginationDisabled()) return;
+            let el = swiper.pagination.el;
+            el = utils_makeElementsArray(el);
+            let current;
+            let previousIndex;
+            const slidesLength = swiper.virtual && swiper.params.virtual.enabled ? swiper.virtual.slides.length : swiper.slides.length;
+            const total = swiper.params.loop ? Math.ceil(slidesLength / swiper.params.slidesPerGroup) : swiper.snapGrid.length;
+            if (swiper.params.loop) {
+                previousIndex = swiper.previousRealIndex || 0;
+                current = swiper.params.slidesPerGroup > 1 ? Math.floor(swiper.realIndex / swiper.params.slidesPerGroup) : swiper.realIndex;
+            } else if (typeof swiper.snapIndex !== "undefined") {
+                current = swiper.snapIndex;
+                previousIndex = swiper.previousSnapIndex;
+            } else {
+                previousIndex = swiper.previousIndex || 0;
+                current = swiper.activeIndex || 0;
+            }
+            if (params.type === "bullets" && swiper.pagination.bullets && swiper.pagination.bullets.length > 0) {
+                const bullets = swiper.pagination.bullets;
+                let firstIndex;
+                let lastIndex;
+                let midIndex;
+                if (params.dynamicBullets) {
+                    bulletSize = elementOuterSize(bullets[0], swiper.isHorizontal() ? "width" : "height", true);
+                    el.forEach((subEl => {
+                        subEl.style[swiper.isHorizontal() ? "width" : "height"] = `${bulletSize * (params.dynamicMainBullets + 4)}px`;
+                    }));
+                    if (params.dynamicMainBullets > 1 && previousIndex !== void 0) {
+                        dynamicBulletIndex += current - (previousIndex || 0);
+                        if (dynamicBulletIndex > params.dynamicMainBullets - 1) dynamicBulletIndex = params.dynamicMainBullets - 1; else if (dynamicBulletIndex < 0) dynamicBulletIndex = 0;
+                    }
+                    firstIndex = Math.max(current - dynamicBulletIndex, 0);
+                    lastIndex = firstIndex + (Math.min(bullets.length, params.dynamicMainBullets) - 1);
+                    midIndex = (lastIndex + firstIndex) / 2;
+                }
+                bullets.forEach((bulletEl => {
+                    const classesToRemove = [ ...[ "", "-next", "-next-next", "-prev", "-prev-prev", "-main" ].map((suffix => `${params.bulletActiveClass}${suffix}`)) ].map((s => typeof s === "string" && s.includes(" ") ? s.split(" ") : s)).flat();
+                    bulletEl.classList.remove(...classesToRemove);
+                }));
+                if (el.length > 1) bullets.forEach((bullet => {
+                    const bulletIndex = utils_elementIndex(bullet);
+                    if (bulletIndex === current) bullet.classList.add(...params.bulletActiveClass.split(" ")); else if (swiper.isElement) bullet.setAttribute("part", "bullet");
+                    if (params.dynamicBullets) {
+                        if (bulletIndex >= firstIndex && bulletIndex <= lastIndex) bullet.classList.add(...`${params.bulletActiveClass}-main`.split(" "));
+                        if (bulletIndex === firstIndex) setSideBullets(bullet, "prev");
+                        if (bulletIndex === lastIndex) setSideBullets(bullet, "next");
+                    }
+                })); else {
+                    const bullet = bullets[current];
+                    if (bullet) bullet.classList.add(...params.bulletActiveClass.split(" "));
+                    if (swiper.isElement) bullets.forEach(((bulletEl, bulletIndex) => {
+                        bulletEl.setAttribute("part", bulletIndex === current ? "bullet-active" : "bullet");
+                    }));
+                    if (params.dynamicBullets) {
+                        const firstDisplayedBullet = bullets[firstIndex];
+                        const lastDisplayedBullet = bullets[lastIndex];
+                        for (let i = firstIndex; i <= lastIndex; i += 1) if (bullets[i]) bullets[i].classList.add(...`${params.bulletActiveClass}-main`.split(" "));
+                        setSideBullets(firstDisplayedBullet, "prev");
+                        setSideBullets(lastDisplayedBullet, "next");
+                    }
+                }
+                if (params.dynamicBullets) {
+                    const dynamicBulletsLength = Math.min(bullets.length, params.dynamicMainBullets + 4);
+                    const bulletsOffset = (bulletSize * dynamicBulletsLength - bulletSize) / 2 - midIndex * bulletSize;
+                    const offsetProp = rtl ? "right" : "left";
+                    bullets.forEach((bullet => {
+                        bullet.style[swiper.isHorizontal() ? offsetProp : "top"] = `${bulletsOffset}px`;
+                    }));
+                }
+            }
+            el.forEach(((subEl, subElIndex) => {
+                if (params.type === "fraction") {
+                    subEl.querySelectorAll(classes_to_selector_classesToSelector(params.currentClass)).forEach((fractionEl => {
+                        fractionEl.textContent = params.formatFractionCurrent(current + 1);
+                    }));
+                    subEl.querySelectorAll(classes_to_selector_classesToSelector(params.totalClass)).forEach((totalEl => {
+                        totalEl.textContent = params.formatFractionTotal(total);
+                    }));
+                }
+                if (params.type === "progressbar") {
+                    let progressbarDirection;
+                    if (params.progressbarOpposite) progressbarDirection = swiper.isHorizontal() ? "vertical" : "horizontal"; else progressbarDirection = swiper.isHorizontal() ? "horizontal" : "vertical";
+                    const scale = (current + 1) / total;
+                    let scaleX = 1;
+                    let scaleY = 1;
+                    if (progressbarDirection === "horizontal") scaleX = scale; else scaleY = scale;
+                    subEl.querySelectorAll(classes_to_selector_classesToSelector(params.progressbarFillClass)).forEach((progressEl => {
+                        progressEl.style.transform = `translate3d(0,0,0) scaleX(${scaleX}) scaleY(${scaleY})`;
+                        progressEl.style.transitionDuration = `${swiper.params.speed}ms`;
+                    }));
+                }
+                if (params.type === "custom" && params.renderCustom) {
+                    subEl.innerHTML = params.renderCustom(swiper, current + 1, total);
+                    if (subElIndex === 0) emit("paginationRender", subEl);
+                } else {
+                    if (subElIndex === 0) emit("paginationRender", subEl);
+                    emit("paginationUpdate", subEl);
+                }
+                if (swiper.params.watchOverflow && swiper.enabled) subEl.classList[swiper.isLocked ? "add" : "remove"](params.lockClass);
+            }));
+        }
+        function render() {
+            const params = swiper.params.pagination;
+            if (isPaginationDisabled()) return;
+            const slidesLength = swiper.virtual && swiper.params.virtual.enabled ? swiper.virtual.slides.length : swiper.grid && swiper.params.grid.rows > 1 ? swiper.slides.length / Math.ceil(swiper.params.grid.rows) : swiper.slides.length;
+            let el = swiper.pagination.el;
+            el = utils_makeElementsArray(el);
+            let paginationHTML = "";
+            if (params.type === "bullets") {
+                let numberOfBullets = swiper.params.loop ? Math.ceil(slidesLength / swiper.params.slidesPerGroup) : swiper.snapGrid.length;
+                if (swiper.params.freeMode && swiper.params.freeMode.enabled && numberOfBullets > slidesLength) numberOfBullets = slidesLength;
+                for (let i = 0; i < numberOfBullets; i += 1) if (params.renderBullet) paginationHTML += params.renderBullet.call(swiper, i, params.bulletClass); else paginationHTML += `<${params.bulletElement} ${swiper.isElement ? 'part="bullet"' : ""} class="${params.bulletClass}"></${params.bulletElement}>`;
+            }
+            if (params.type === "fraction") if (params.renderFraction) paginationHTML = params.renderFraction.call(swiper, params.currentClass, params.totalClass); else paginationHTML = `<span class="${params.currentClass}"></span>` + " / " + `<span class="${params.totalClass}"></span>`;
+            if (params.type === "progressbar") if (params.renderProgressbar) paginationHTML = params.renderProgressbar.call(swiper, params.progressbarFillClass); else paginationHTML = `<span class="${params.progressbarFillClass}"></span>`;
+            swiper.pagination.bullets = [];
+            el.forEach((subEl => {
+                if (params.type !== "custom") subEl.innerHTML = paginationHTML || "";
+                if (params.type === "bullets") swiper.pagination.bullets.push(...subEl.querySelectorAll(classes_to_selector_classesToSelector(params.bulletClass)));
+            }));
+            if (params.type !== "custom") emit("paginationRender", el[0]);
+        }
+        function init() {
+            swiper.params.pagination = create_element_if_not_defined_createElementIfNotDefined(swiper, swiper.originalParams.pagination, swiper.params.pagination, {
+                el: "swiper-pagination"
+            });
+            const params = swiper.params.pagination;
+            if (!params.el) return;
+            let el;
+            if (typeof params.el === "string" && swiper.isElement) el = swiper.el.querySelector(params.el);
+            if (!el && typeof params.el === "string") el = [ ...document.querySelectorAll(params.el) ];
+            if (!el) el = params.el;
+            if (!el || el.length === 0) return;
+            if (swiper.params.uniqueNavElements && typeof params.el === "string" && Array.isArray(el) && el.length > 1) {
+                el = [ ...swiper.el.querySelectorAll(params.el) ];
+                if (el.length > 1) el = el.filter((subEl => {
+                    if (utils_elementParents(subEl, ".swiper")[0] !== swiper.el) return false;
+                    return true;
+                }))[0];
+            }
+            if (Array.isArray(el) && el.length === 1) el = el[0];
+            Object.assign(swiper.pagination, {
+                el
+            });
+            el = utils_makeElementsArray(el);
+            el.forEach((subEl => {
+                if (params.type === "bullets" && params.clickable) subEl.classList.add(...(params.clickableClass || "").split(" "));
+                subEl.classList.add(params.modifierClass + params.type);
+                subEl.classList.add(swiper.isHorizontal() ? params.horizontalClass : params.verticalClass);
+                if (params.type === "bullets" && params.dynamicBullets) {
+                    subEl.classList.add(`${params.modifierClass}${params.type}-dynamic`);
+                    dynamicBulletIndex = 0;
+                    if (params.dynamicMainBullets < 1) params.dynamicMainBullets = 1;
+                }
+                if (params.type === "progressbar" && params.progressbarOpposite) subEl.classList.add(params.progressbarOppositeClass);
+                if (params.clickable) subEl.addEventListener("click", onBulletClick);
+                if (!swiper.enabled) subEl.classList.add(params.lockClass);
+            }));
+        }
+        function destroy() {
+            const params = swiper.params.pagination;
+            if (isPaginationDisabled()) return;
+            let el = swiper.pagination.el;
+            if (el) {
+                el = utils_makeElementsArray(el);
+                el.forEach((subEl => {
+                    subEl.classList.remove(params.hiddenClass);
+                    subEl.classList.remove(params.modifierClass + params.type);
+                    subEl.classList.remove(swiper.isHorizontal() ? params.horizontalClass : params.verticalClass);
+                    if (params.clickable) {
+                        subEl.classList.remove(...(params.clickableClass || "").split(" "));
+                        subEl.removeEventListener("click", onBulletClick);
+                    }
+                }));
+            }
+            if (swiper.pagination.bullets) swiper.pagination.bullets.forEach((subEl => subEl.classList.remove(...params.bulletActiveClass.split(" "))));
+        }
+        on("changeDirection", (() => {
+            if (!swiper.pagination || !swiper.pagination.el) return;
+            const params = swiper.params.pagination;
+            let {el} = swiper.pagination;
+            el = utils_makeElementsArray(el);
+            el.forEach((subEl => {
+                subEl.classList.remove(params.horizontalClass, params.verticalClass);
+                subEl.classList.add(swiper.isHorizontal() ? params.horizontalClass : params.verticalClass);
+            }));
+        }));
+        on("init", (() => {
+            if (swiper.params.pagination.enabled === false) disable(); else {
+                init();
+                render();
+                update();
+            }
+        }));
+        on("activeIndexChange", (() => {
+            if (typeof swiper.snapIndex === "undefined") update();
+        }));
+        on("snapIndexChange", (() => {
+            update();
+        }));
+        on("snapGridLengthChange", (() => {
+            render();
+            update();
+        }));
+        on("destroy", (() => {
+            destroy();
+        }));
+        on("enable disable", (() => {
+            let {el} = swiper.pagination;
+            if (el) {
+                el = utils_makeElementsArray(el);
+                el.forEach((subEl => subEl.classList[swiper.enabled ? "remove" : "add"](swiper.params.pagination.lockClass)));
+            }
+        }));
+        on("lock unlock", (() => {
+            update();
+        }));
+        on("click", ((_s, e) => {
+            const targetEl = e.target;
+            const el = utils_makeElementsArray(swiper.pagination.el);
+            if (swiper.params.pagination.el && swiper.params.pagination.hideOnClick && el && el.length > 0 && !targetEl.classList.contains(swiper.params.pagination.bulletClass)) {
+                if (swiper.navigation && (swiper.navigation.nextEl && targetEl === swiper.navigation.nextEl || swiper.navigation.prevEl && targetEl === swiper.navigation.prevEl)) return;
+                const isHidden = el[0].classList.contains(swiper.params.pagination.hiddenClass);
+                if (isHidden === true) emit("paginationShow"); else emit("paginationHide");
+                el.forEach((subEl => subEl.classList.toggle(swiper.params.pagination.hiddenClass)));
+            }
+        }));
+        const enable = () => {
+            swiper.el.classList.remove(swiper.params.pagination.paginationDisabledClass);
+            let {el} = swiper.pagination;
+            if (el) {
+                el = utils_makeElementsArray(el);
+                el.forEach((subEl => subEl.classList.remove(swiper.params.pagination.paginationDisabledClass)));
+            }
+            init();
+            render();
+            update();
+        };
+        const disable = () => {
+            swiper.el.classList.add(swiper.params.pagination.paginationDisabledClass);
+            let {el} = swiper.pagination;
+            if (el) {
+                el = utils_makeElementsArray(el);
+                el.forEach((subEl => subEl.classList.add(swiper.params.pagination.paginationDisabledClass)));
+            }
+            destroy();
+        };
+        Object.assign(swiper.pagination, {
+            enable,
+            disable,
+            render,
             update,
             init,
             destroy
@@ -4069,206 +3900,345 @@
             update
         });
     }
-    function initSliders() {
-        if (document.querySelector(".hero__slider")) new swiper_core_Swiper(".hero__slider", {
-            modules: [ Navigation, Autoplay ],
-            observer: true,
-            observeParents: true,
-            slidesPerView: 1,
-            direction: "vertical",
-            spaceBetween: 25,
-            autoHeight: false,
-            speed: 1100,
-            loop: true,
-            effect: "fade",
-            autoplay: {
-                delay: 2e3,
-                disableOnInteraction: false
-            },
-            on: {}
-        });
-        if (document.querySelector(".offers__slider")) new swiper_core_Swiper(".offers__slider", {
-            modules: [ Navigation, Autoplay ],
-            observer: true,
-            observeParents: true,
-            slidesPerView: 1,
-            direction: "horizontal",
-            spaceBetween: 30,
-            autoHeight: false,
-            speed: 1100,
-            breakpoints: {
-                650: {
-                    slidesPerView: 2
+    class SwiperComponent {
+        constructor(selector, options = {}) {
+            this.selector = selector;
+            this.options = options;
+            this.swiperInstance = null;
+            this.init();
+        }
+        init() {
+            const defaultOptions = {
+                loop: true,
+                pagination: {
+                    el: ".swiper-pagination",
+                    clickable: true
                 },
-                992: {
-                    slidesPerView: 3
-                },
-                1400: {
-                    slidesPerView: 4
-                }
-            }
-        });
-        if (document.querySelector(".info__slider_thumb")) var thumbSlider = new swiper_core_Swiper(".info__slider_thumb", {
-            modules: [ Navigation, Autoplay, Thumb ],
-            observer: true,
-            observeParents: true,
-            slidesPerView: 2,
-            direction: "horizontal",
-            spaceBetween: 25,
-            autoHeight: false,
-            speed: 1100,
-            breakpoints: {
-                480: {
-                    slidesPerView: 3,
-                    spaceBetween: 15
-                },
-                650: {
-                    slidesPerView: 4,
-                    spaceBetween: 20
-                },
-                992: {
-                    slidesPerView: 3
-                },
-                1200: {
-                    slidesPerView: 4
-                }
-            }
-        });
-        if (document.querySelector(".info__slider_main")) new swiper_core_Swiper(".info__slider_main", {
-            modules: [ Navigation, Autoplay, Thumb ],
-            observer: true,
-            observeParents: true,
-            slidesPerView: 1,
-            direction: "horizontal",
-            spaceBetween: 30,
-            autoHeight: false,
-            speed: 1100,
-            thumbs: {
-                swiper: thumbSlider
-            },
-            navigation: {
-                prevEl: ".swiper-button-prev",
-                nextEl: ".swiper-button-next"
-            }
-        });
-    }
-    window.addEventListener("load", (function(e) {
-        initSliders();
-    }));
-    let addWindowScrollEvent = false;
-    function pageNavigation() {
-        document.addEventListener("click", pageNavigationAction);
-        document.addEventListener("watcherCallback", pageNavigationAction);
-        function pageNavigationAction(e) {
-            if (e.type === "click") {
-                const targetElement = e.target;
-                if (targetElement.closest("[data-goto]")) {
-                    const gotoLink = targetElement.closest("[data-goto]");
-                    const gotoLinkSelector = gotoLink.dataset.goto ? gotoLink.dataset.goto : "";
-                    const noHeader = gotoLink.hasAttribute("data-goto-header") ? true : false;
-                    const gotoSpeed = gotoLink.dataset.gotoSpeed ? gotoLink.dataset.gotoSpeed : 500;
-                    const offsetTop = gotoLink.dataset.gotoTop ? parseInt(gotoLink.dataset.gotoTop) : 0;
-                    if (modules_flsModules.fullpage) {
-                        const fullpageSection = document.querySelector(`${gotoLinkSelector}`).closest("[data-fp-section]");
-                        const fullpageSectionId = fullpageSection ? +fullpageSection.dataset.fpId : null;
-                        if (fullpageSectionId !== null) {
-                            modules_flsModules.fullpage.switchingSection(fullpageSectionId);
-                            document.documentElement.classList.contains("menu-open") ? menuClose() : null;
-                        }
-                    } else gotoblock_gotoBlock(gotoLinkSelector, noHeader, gotoSpeed, offsetTop);
-                    e.preventDefault();
-                }
-            } else if (e.type === "watcherCallback" && e.detail) {
-                const entry = e.detail.entry;
-                const targetElement = entry.target;
-                if (targetElement.dataset.watch === "navigator") {
-                    document.querySelector(`[data-goto]._navigator-active`);
-                    let navigatorCurrentItem;
-                    if (targetElement.id && document.querySelector(`[data-goto="#${targetElement.id}"]`)) navigatorCurrentItem = document.querySelector(`[data-goto="#${targetElement.id}"]`); else if (targetElement.classList.length) for (let index = 0; index < targetElement.classList.length; index++) {
-                        const element = targetElement.classList[index];
-                        if (document.querySelector(`[data-goto=".${element}"]`)) {
-                            navigatorCurrentItem = document.querySelector(`[data-goto=".${element}"]`);
-                            break;
-                        }
-                    }
-                    if (entry.isIntersecting) navigatorCurrentItem ? navigatorCurrentItem.classList.add("_navigator-active") : null; else navigatorCurrentItem ? navigatorCurrentItem.classList.remove("_navigator-active") : null;
-                }
+                autoplay: this.options.autoplay || false,
+                modules: [ Navigation, Autoplay, Pagination, Thumb ]
+            };
+            const mergedOptions = {
+                ...defaultOptions,
+                ...this.options
+            };
+            this.swiperInstance = new Swiper(this.selector, mergedOptions);
+        }
+        updateOptions(newOptions) {
+            if (this.swiperInstance) {
+                this.swiperInstance.params = {
+                    ...this.swiperInstance.params,
+                    ...newOptions
+                };
+                this.swiperInstance.update();
             }
         }
-        if (getHash()) {
-            let goToHash;
-            if (document.querySelector(`#${getHash()}`)) goToHash = `#${getHash()}`; else if (document.querySelector(`.${getHash()}`)) goToHash = `.${getHash()}`;
-            goToHash ? gotoblock_gotoBlock(goToHash, true, 500, 20) : null;
+        destroy() {
+            if (this.swiperInstance) {
+                this.swiperInstance.destroy();
+                this.swiperInstance = null;
+            }
+        }
+        startAutoplay() {
+            if (this.swiperInstance && this.swiperInstance.autoplay) this.swiperInstance.autoplay.start();
+        }
+        stopAutoplay() {
+            if (this.swiperInstance && this.swiperInstance.autoplay) this.swiperInstance.autoplay.stop();
         }
     }
-    setTimeout((() => {
-        if (addWindowScrollEvent) {
-            let windowScroll = new Event("windowScroll");
-            window.addEventListener("scroll", (function(e) {
-                document.dispatchEvent(windowScroll);
+    class Tabs {
+        constructor(tabContainer) {
+            this.tabContainer = document.querySelector(tabContainer);
+            if (this.tabContainer) {
+                this.tabs = this.tabContainer.querySelectorAll(".tab");
+                this.tabContents = document.querySelectorAll(".tab-content");
+                if (this.tabs.length > 0 && this.tabContents.length > 0) this.init();
+            }
+        }
+        init() {
+            this.tabs.forEach((tab => {
+                tab.addEventListener("click", (event => this.switchTab(event)));
+            }));
+            this.activateTab(this.tabs[0]);
+        }
+        switchTab(event) {
+            const targetTab = event.target;
+            this.activateTab(targetTab);
+        }
+        activateTab(tab) {
+            const targetContent = document.querySelector(tab.getAttribute("data-target"));
+            if (targetContent) {
+                this.tabs.forEach((t => t.classList.remove("active")));
+                this.tabContents.forEach((c => c.classList.remove("active")));
+                tab.classList.add("active");
+                targetContent.classList.add("active");
+            }
+        }
+    }
+    class ScrollToAnchor {
+        constructor(linksSelector, options = {}) {
+            this.links = document.querySelectorAll(linksSelector);
+            this.options = options;
+            this.init();
+            this.handleHash();
+        }
+        init() {
+            this.links.forEach((link => {
+                link.addEventListener("click", (event => this.scrollTo(event)));
             }));
         }
-    }), 0);
-    function openMenu() {
-        $(".admin__menu").click((function() {
-            var $menuIcon = $(this).find("svg use");
-            var currentIcon = $menuIcon.attr("xlink:href");
-            if (currentIcon.includes("menuAdmin")) $menuIcon.attr("xlink:href", currentIcon.replace("menuAdmin", "close")); else $menuIcon.attr("xlink:href", currentIcon.replace("close", "menuAdmin"));
-            var $element2 = $("#admin__navbar-content");
-            if ($element2.hasClass("show")) {
-                $element2.removeClass("show");
-                setTimeout((function() {
-                    $element2.css("display", "none");
-                }), 300);
-            } else {
-                $element2.css("display", "block");
-                setTimeout((function() {
-                    $element2.addClass("show");
-                }), 10);
+        scrollTo(event) {
+            event.preventDefault();
+            const href = event.currentTarget.getAttribute("href");
+            const targetId = href.includes("#") ? href.split("#")[1] : null;
+            if (targetId) if (window.location.pathname === new URL(href, window.location.origin).pathname) {
+                const targetElement = document.getElementById(targetId);
+                if (targetElement) window.scrollTo({
+                    top: targetElement.offsetTop,
+                    behavior: this.options.behavior || "smooth"
+                });
+            } else window.location.href = href;
+        }
+        handleHash() {
+            const hash = window.location.hash;
+            if (hash) {
+                const targetElement = document.querySelector(hash);
+                if (targetElement) window.scrollTo({
+                    top: targetElement.offsetTop,
+                    behavior: "smooth"
+                });
             }
-        }));
+        }
     }
-    function loadImage() {
-        $("#file").on("change", (function(event) {
-            var input = event.target;
-            var $imageContainer = $(".admin__images");
-            $imageContainer.empty().append('<div class="loading-spinner"></div>');
-            if (input.files && input.files.length > 0) {
-                $imageContainer.empty();
-                Array.from(input.files).forEach((function(file, index) {
-                    var reader = new FileReader;
-                    reader.onload = function(e) {
-                        var imageHtml = `\n                        <div class="admin__image-wrapper">\n                            <div class="admin__image-close" data-index="${index}">\n                                <svg>\n                                    <use xlink:href="img/icons/icons.svg#close"></use>\n                                </svg>\n                            </div>\n                            <img src="${e.target.result}" alt="" class="admin__image">\n                        </div>\n                    `;
-                        $imageContainer.append(imageHtml);
-                    };
-                    reader.readAsDataURL(file);
-                }));
+    class Modal {
+        constructor(modalSelector) {
+            this.modal = document.querySelector(modalSelector);
+            if (this.modal) {
+                this.closeButton = this.modal.querySelector("[data-close]");
+                this.overlay = this.modal.querySelector(".popup__wrapper");
+                this.initEvents();
             }
-        }));
-        $(document).on("click", ".admin__image-close", (function() {
-            var index = $(this).data("index");
-            var $imageWrapper = $(this).closest(".admin__image-wrapper");
-            $imageWrapper.remove();
-            var input = $("#file")[0];
-            var files = Array.from(input.files);
-            files.splice(index, 1);
-            var dataTransfer = new DataTransfer;
-            files.forEach((file => dataTransfer.items.add(file)));
-            input.files = dataTransfer.files;
-        }));
+        }
+        initEvents() {
+            if (this.closeButton) this.closeButton.addEventListener("click", (() => this.closeModal()));
+            document.addEventListener("keydown", (event => {
+                if (event.key === "Escape") this.closeModal();
+            }));
+            if (this.overlay) this.overlay.addEventListener("click", (event => {
+                if (event.target === this.overlay) this.closeModal();
+            }));
+        }
+        openModal() {
+            if (this.modal) {
+                document.body.classList.add("popup-show");
+                this.modal.classList.add("popup_show");
+            }
+        }
+        closeModal() {
+            if (this.modal) {
+                document.body.classList.remove("popup-show");
+                this.modal.classList.remove("popup_show");
+            }
+        }
     }
-    function showPassword() {
-        $(".admin__inner_password-svg").on("click", (function() {
-            var $password = $("#password");
-            var type = $password.attr("type") === "password" ? "text" : "password";
-            $password.attr("type", type);
-        }));
+    class ImagePreviewer {
+        constructor(inputSelector, previewContainerSelector) {
+            this.fileInput = document.querySelector(inputSelector);
+            this.previewContainer = document.querySelector(previewContainerSelector);
+            this.files = [];
+            if (!this.fileInput || !this.previewContainer) return;
+            this.init();
+        }
+        init() {
+            this.fileInput.addEventListener("change", (event => this.handleFiles(event)));
+            this.previewContainer.addEventListener("click", (event => this.handleRemove(event)));
+        }
+        handleFiles(event) {
+            const newFiles = Array.from(event.target.files);
+            this.files = this.files.concat(newFiles);
+            this.updateFileInput();
+            this.updatePreview();
+        }
+        updateFileInput() {
+            const dt = new DataTransfer;
+            this.files.forEach((file => {
+                dt.items.add(file);
+            }));
+            this.fileInput.files = dt.files;
+        }
+        updatePreview() {
+            this.previewContainer.innerHTML = "";
+            this.files.forEach((file => {
+                const reader = new FileReader;
+                reader.onload = e => this.addImage(e.target.result);
+                reader.readAsDataURL(file);
+            }));
+        }
+        addImage(src) {
+            const img = document.createElement("img");
+            img.src = src;
+            img.classList.add("preview-image");
+            const removeIcon = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+            const useElement = document.createElementNS("http://www.w3.org/2000/svg", "use");
+            useElement.setAttributeNS("http://www.w3.org/1999/xlink", "xlink:href", "img/icons/icons.svg#close");
+            removeIcon.appendChild(useElement);
+            removeIcon.classList.add("remove-image");
+            const previewItem = document.createElement("div");
+            previewItem.classList.add("preview-item");
+            previewItem.appendChild(img);
+            previewItem.appendChild(removeIcon);
+            this.previewContainer.appendChild(previewItem);
+        }
+        handleRemove(event) {
+            if (event.target.closest("svg.remove-image")) {
+                const previewItem = event.target.closest(".preview-item");
+                const index = Array.from(this.previewContainer.children).indexOf(previewItem);
+                this.files.splice(index, 1);
+                this.updateFileInput();
+                previewItem.remove();
+            }
+        }
     }
-    openMenu();
-    loadImage();
-    showPassword();
-    window["FLS"] = true;
-    menuInit();
-    tabs();
-    pageNavigation();
+    class TogglePassword {
+        constructor(inputElement, toggleButton) {
+            this.inputElement = inputElement;
+            this.toggleButton = toggleButton;
+            this.isPasswordVisible = false;
+            this.init();
+        }
+        init() {
+            this.toggleButton.addEventListener("click", (() => this.togglePasswordVisibility()));
+        }
+        togglePasswordVisibility() {
+            this.isPasswordVisible = !this.isPasswordVisible;
+            this.inputElement.type = this.isPasswordVisible ? "text" : "password";
+        }
+    }
+    const preloaderElement = document.getElementById("preloader");
+    const contentElement = document.getElementById("content");
+    const preloader = new Preloader(preloaderElement, contentElement);
+    window.addEventListener("load", (() => {
+        preloader.hide();
+    }));
+    new MobileMenu(".menu__content", ".menu__open", ".menu__close");
+    new MobileMenu(".menu__content", ".panel__open", ".panel__close");
+    new SwiperComponent(".hero__slider", {
+        slidesPerView: 1,
+        spaceBetween: 30,
+        autoHeight: false,
+        direction: "vertical",
+        speed: 1100,
+        autoplay: {
+            delay: 2e3,
+            disableOnInteraction: false
+        }
+    });
+    new SwiperComponent(".offers__slider", {
+        slidesPerView: 1,
+        spaceBetween: 30,
+        observer: true,
+        observeParents: true,
+        loop: false,
+        autoHeight: false,
+        speed: 1100,
+        breakpoints: {
+            650: {
+                slidesPerView: 2
+            },
+            992: {
+                slidesPerView: 3
+            },
+            1400: {
+                slidesPerView: 4
+            }
+        }
+    });
+    new Tabs(".tabs-container");
+    const infoThumbsSwiper = new SwiperComponent(".info__slider_thumb", {
+        observer: true,
+        observeParents: true,
+        slidesPerView: 2,
+        direction: "horizontal",
+        spaceBetween: 25,
+        autoHeight: false,
+        speed: 1100,
+        loop: false,
+        breakpoints: {
+            480: {
+                slidesPerView: 3,
+                spaceBetween: 15
+            },
+            650: {
+                slidesPerView: 4,
+                spaceBetween: 20
+            },
+            992: {
+                slidesPerView: 3
+            },
+            1200: {
+                slidesPerView: 4
+            }
+        }
+    });
+    new SwiperComponent(".info__slider_main", {
+        observer: true,
+        observeParents: true,
+        slidesPerView: 1,
+        direction: "horizontal",
+        spaceBetween: 30,
+        autoHeight: false,
+        speed: 1100,
+        loop: false,
+        thumbs: {
+            swiper: infoThumbsSwiper.swiperInstance
+        },
+        navigation: {
+            prevEl: ".swiper-button-prev",
+            nextEl: ".swiper-button-next"
+        }
+    });
+    new ScrollToAnchor(".scroll-link", {
+        behavior: "smooth"
+    });
+    const myPopup = new Modal("#popup");
+    const openPopupButtons = document.querySelectorAll(".open-popup");
+    openPopupButtons.forEach((button => {
+        button.addEventListener("click", (() => {
+            myPopup.openModal();
+        }));
+    }));
+    const filters = new Modal("#filter");
+    const openFiltersButtons = document.querySelectorAll(".open-popup-filter");
+    openFiltersButtons.forEach((button => {
+        button.addEventListener("click", (() => {
+            filters.openModal();
+        }));
+    }));
+    const modalMessage = new Modal("#message");
+    const messages = document.querySelectorAll(".admin__message-block");
+    messages.forEach((message => {
+        const title = message.querySelector(".admin__message-title").textContent;
+        const phone = message.querySelector(".admin__message-phone").textContent;
+        const date = message.querySelector(".admin__message-date").textContent;
+        const description = message.querySelector(".admin__message-description").textContent;
+        const openButton = message.querySelector(".admin__message-btn_open");
+        openButton.addEventListener("click", (() => {
+            const modalTitle = document.querySelector(".popup__message-title");
+            const modalPhone = document.querySelector(".popup__message-phone");
+            const modalDate = document.querySelector(".popup__message-date");
+            const modalDescription = document.querySelector(".popup__message-description");
+            modalTitle.textContent = title;
+            modalPhone.textContent = phone;
+            modalPhone.setAttribute("href", `tel:${phone}`);
+            modalDate.textContent = date;
+            modalDescription.textContent = description;
+            modalMessage.openModal();
+        }));
+    }));
+    new ImagePreviewer("#fileInput", "#previewContainer");
+    const toggleButtons = document.querySelectorAll(".toggle-password");
+    toggleButtons.forEach((toggleButton => {
+        const targetId = toggleButton.getAttribute("data-target");
+        const inputElement = document.getElementById(targetId);
+        new TogglePassword(inputElement, toggleButton);
+    }));
 })();

@@ -6,7 +6,7 @@
 	<meta charset="UTF-8">
 	<meta name="format-detection" content="telephone=no">
 	<!-- <style>body{opacity: 0;}</style> -->
-	<link rel="stylesheet" href="css/style.min.css?_v=20240902101808">
+	<link rel="stylesheet" href="css/style.min.css?_v=20240910143510">
 	<link rel="shortcut icon" href="favicon.ico">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js?_v=20240826114116"></script>
 	<!-- <meta name="robots" content="noindex, nofollow"> -->
@@ -14,142 +14,323 @@
 </head>
 
 <body>
-	<div class="wrapper">
-		<header class="header">
-			<div class="header__container">
-				<div class="header__menu menu">
+
+	<style>
+		body {
+			overflow: hidden;
+		}
+
+		#preloader {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100vw;
+			height: 100vh;
+			background-color: #fff;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			flex-direction: column;
+			z-index: 9999;
+			opacity: 1;
+			transition: opacity 1s ease;
+			padding-right: 20px;
+			padding-left: 20px;
+		}
+
+		/* Логотип */
+		.preloader-logo {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			gap: 25xp;
+			margin-bottom: 75px;
+
+			img {
+				width: 250px;
+
+				@media (max-width: 479px) {
+					width: 200px;
+				}
+			}
+		}
+
+		#content {
+			opacity: 0;
+			transition: opacity 0.8s ease;
+		}
+
+		.loader {
+			height: 5px;
+			width: 200px;
+			--c: no-repeat linear-gradient(#FF0000 0 0);
+			background: var(--c), var(--c), #dbdbdb;
+			background-size: 60% 100%;
+			animation: l16 3s infinite;
+		}
+
+		@keyframes l16 {
+			0% {
+				background-position: -150% 0, -150% 0
+			}
+
+			66% {
+				background-position: 250% 0, -150% 0
+			}
+
+			100% {
+				background-position: 250% 0, 250% 0
+			}
+		}
+	</style>
+
+
+	<div id="preloader">
+		<div class="preloader-logo">
+			<img src="img/logo.svg" alt="Logo">
+		</div>
+		<div class="loader"></div>
+	</div>
+
+	<div class="wrapper" id="content">
+		<header class="header header__container">
+
+			<div class="menu">
+				<div class="menu__header">
+
 					<a href="index.html">
 						<img src="img/logo.svg" alt="Логотип" class="logo">
 					</a>
 
-					<nav class="menu__body">
-						<div class="menu__header">
-							<a href="index.html">
-								<img src="img/logo.svg" alt="Логотип" class="logo logo_mobile">
-							</a>
+					<div class="menu__header-inner">
+						<button class="header__btn header__btn_mobile open-popup">Замовити авто</button>
 
-							<div class="menu__burger menu__burger_close icon-menu menu-close">
-								<svg>
-									<use xlink:href="img/icons/icons.svg#close"></use>
-								</svg>
-							</div>
-						</div>
+						<button class="menu__open">
+							<svg>
+								<use xlink:href="img/icons/icons.svg#menuAdmin"></use>
+							</svg>
+						</button>
+					</div>
+				</div>
 
+				<nav class="menu__content header__navbar">
+
+					<div class="menu__header">
+						<a href="index.html">
+							<img src="img/logo.svg" alt="Логотип" class="logo_mobile">
+						</a>
+
+						<button class="menu__close">
+							<svg>
+								<use xlink:href="img/icons/icons.svg#close"></use>
+							</svg>
+						</button>
+
+					</div>
+
+					<div class="menu__content-inner">
 						<ul class="menu__list">
-							<li class="menu__item"><a href="index.html" class="menu__link nav__item--hover">Головна</a></li>
-							<li class="menu__item"><a href="catalog.html" class="menu__link nav__item--hover">Асортимент</a></li>
-							<li class="menu__item"><a href="#" data-goto-speed="1000" data-goto-top="70" data-goto=".delivery" class="menu__link nav__item--hover">Послуги</a></li>
-							<li class="menu__item"><a href="index.html" data-goto-speed="1000" data-goto-top="70" data-goto=".contacts" class="menu__link nav__item--hover">Контакти</a></li>
+							<li class="menu__item nav__item--hover"><a href="index.html">Головна</a></li>
+							<li class="menu__item nav__item--hover"><a href="catalog.html">Асортимент</a></li>
+							<li class="menu__item nav__item--hover"><a href="/index.html#service" class="scroll-link">Послуги</a></li>
+							<li class="menu__item nav__item--hover"><a href="/index.html#contact" class="scroll-link">Контакти</a></li>
 						</ul>
 
-						<a href="" class="header__btn header__btn_mobile" data-popup="#popup">Замовити авто</a>
-
-					</nav>
-
-					<a href="" class="header__btn" data-popup="#popup">Замовити авто</a>
-					<div class="menu__burger icon-menu menu-open"><img src="img/menu.svg" alt="Menu burger"></div>
-
-				</div>
-
+						<button class="header__btn open-popup">Замовити авто</button>
+					</div>
+				</nav>
 			</div>
+
 		</header>
-		<div id="popup" aria-hidden="true" class="popup">
-			<div class="popup__wrapper">
-				<div class="popup__content">
-					<button data-close type="button" class="popup__close">
-						<svg>
-							<use xlink:href="img/icons/icons.svg#close"></use>
-						</svg>
-					</button>
-					<div class="popup__text">
-						<h3 class="popup__title">Замовити авто зараз</h3>
+		<main class="page">
 
-						<form action="" method="post" class="popup__form">
-							<div class="popup__input-inner">
-								<label for="name" class="popup__label">Ваше ім’я</label>
-								<input type="text" id="name" name="name" class="popup__input">
+			<div class="popup" id="popup">
+				<div class="popup__wrapper">
+					<div class="popup__content">
+						<button data-close type="button" class="popup__close">
+							<svg>
+								<use xlink:href="img/icons/icons.svg#close"></use>
+							</svg>
+						</button>
+						<div class="popup__text">
+							<h3 class="popup__title">Замовити авто зараз</h3>
+
+							<form action="" method="post" class="popup__form">
+								<div class="popup__input-inner">
+									<label for="name" class="popup__label">Ваше ім’я</label>
+									<input type="text" id="name" name="name" class="popup__input">
+								</div>
+
+								<div class="popup__input-inner">
+									<label for="phone" class="popup__label">Ваш номер телефону</label>
+									<input type="text" id="phone" name="phone" class="popup__input">
+								</div>
+
+								<div class="popup__input-inner popup__input-inner_big">
+									<label for="description" class="popup__label">Ваше побажання</label>
+									<textarea name="description" class="popup__textarea" id="description"></textarea>
+								</div>
+
+								<div class="popup__form-footer">
+									<button type="submit" class="popup__submit">Замовити авто</button>
+									<p class="popup__subtitle">Наші менеджери зв'яжуться з вами найближчим часом</p>
+								</div>
+
+							</form>
+
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="popup" id="filter">
+				<div class="popup__wrapper">
+					<div class="popup__content popup__content-filter">
+						<button data-close type="button" class="popup__close">
+							<svg>
+								<use xlink:href="img/icons/icons.svg#close"></use>
+							</svg>
+						</button>
+
+						<p class="popup__filter-title">Пошук авто за фільтром</p>
+
+						<div class="admin__form-inputs">
+
+							<div class="admin__form-input-wrapper">
+								<label for="" class="admin__form-label">Марка авто</label>
+								<input type="text" class="admin__form-input">
 							</div>
 
-							<div class="popup__input-inner">
-								<label for="phone" class="popup__label">Ваш номер телефону</label>
-								<input type="text" id="phone" name="phone" class="popup__input">
+							<div class="admin__form-input-wrapper">
+								<label for="" class="admin__form-label">Модель авто</label>
+								<input type="text" class="admin__form-input">
 							</div>
 
-							<div class="popup__input-inner popup__input-inner_big">
-								<label for="description" class="popup__label">Ваше побажання</label>
-								<textarea name="description" class="popup__textarea" id="description"></textarea>
+							<div class="admin__form-input-wrapper">
+								<label for="" class="admin__form-label">Рік випуску</label>
+								<select name="" id="" class="admin__form-select">
+									<option value="" class="admin__form-option" hidden selected></option>
+									<option value="" class="admin__form-option">2024</option>
+									<option value="" class="admin__form-option">2023</option>
+								</select>
 							</div>
 
-							<div class="popup__form-footer">
-								<button type="submit" class="popup__submit">Замовити авто</button>
-								<p class="popup__subtitle">Наші менеджери зв'яжуться з вами найближчим часом</p>
+							<div class="admin__form-input-wrapper">
+								<label for="" class="admin__form-label">Статус авто</label>
+								<select name="" id="" class="admin__form-select">
+									<option value="" class="admin__form-option" hidden selected></option>
+									<option value="" class="admin__form-option">2024</option>
+									<option value="" class="admin__form-option">2023</option>
+								</select>
 							</div>
 
-						</form>
+							<div class="admin__form-input-wrapper">
+								<label for="" class="admin__form-label">VIN-код</label>
+								<input type="text" class="admin__form-input">
+							</div>
+
+							<div class="admin__form-input-wrapper">
+								<label for="" class="admin__form-label">К-сть власників</label>
+								<input type="number" class="admin__form-input">
+							</div>
+
+							<div class="admin__form-input-wrapper">
+								<label for="" class="admin__form-label">Вартість, $</label>
+								<input type="number" class="admin__form-input">
+							</div>
+
+							<div class="admin__form-input-wrapper">
+								<label for="" class="admin__form-label">Вартість зі знижкою, $</label>
+								<input type="number" class="admin__form-input">
+							</div>
+						</div>
+
+						<button type="submit" class="popup__filter-submit">Знайти</button>
 
 					</div>
 				</div>
 			</div>
-		</div>
-		<main class="page">
+
+			<div class="popup" id="message">
+				<div class="popup__wrapper">
+					<div class="popup__content popup__content-message">
+						<button data-close type="button" class="popup__close">
+							<svg>
+								<use xlink:href="img/icons/icons.svg#close"></use>
+							</svg>
+						</button>
+
+						<p class="popup__message-title"></p>
+						<a href="tel:" class="popup__message-phone"></a>
+						<p class="popup__message-description"></p>
+						<p class="popup__message-date"></p>
+
+
+					</div>
+				</div>
+			</div>
+
+
 			<section class="hero">
 
-				<div class="hero__block hero__container">
-					<div class="hero__text">
-						<h1 class="hero__title">Пориньте в магію керування</h1>
-						<p class="hero__subtitle">Завдяки нашому вибору авто Ви почуєте люкс та відчуєте бездоганний комфорт на кожній дорозі! Оберіть Ваш ідеальний автомобіль тут і розкрийте справжню радість подорожей</p>
-					</div>
-					<a href="catalog.html" class="hero__btn">Асортимент авто</a>
+				<div class="hero__container">
+					<div class="hero__block">
+						<div class="hero__text">
+							<h1 class="hero__title">Пориньте в магію керування</h1>
+							<p class="hero__subtitle">Завдяки нашому вибору авто Ви почуєте люкс та відчуєте бездоганний комфорт на кожній дорозі! Оберіть Ваш ідеальний автомобіль тут і розкрийте справжню радість подорожей</p>
+						</div>
+						<a href="catalog.html" class="hero__btn">Асортимент авто</a>
 
-					<div class="hero__slider swiper">
-						<div class="hero__wrapper swiper-wrapper">
-							<div class="hero__slide swiper-slide">
-								<div class="advantages__block">
-									<div class="advantages__icon">
-										<svg>
-											<use xlink:href="img/icons/icons.svg#car"></use>
-										</svg>
+						<div class="hero__slider swiper-container">
+							<div class="hero__wrapper swiper-wrapper">
+								<div class="hero__slide swiper-slide">
+									<div class="advantages__block">
+										<div class="advantages__icon">
+											<svg>
+												<use xlink:href="img/icons/icons.svg#car"></use>
+											</svg>
+										</div>
+										<p class="advantages__subtitle">Про нас</p>
+										<p class="advantages__title">Широкий асортимент авто</p>
 									</div>
-									<p class="advantages__subtitle">Про нас</p>
-									<p class="advantages__title">Широкий асортимент авто</p>
 								</div>
-							</div>
-							<div class="hero__slide swiper-slide">
-								<div class="advantages__block">
-									<div class="advantages__icon">
-										<svg>
-											<use xlink:href="img/icons/icons.svg#checkOut"></use>
-										</svg>
+								<div class="hero__slide swiper-slide">
+									<div class="advantages__block">
+										<div class="advantages__icon">
+											<svg>
+												<use xlink:href="img/icons/icons.svg#checkOut"></use>
+											</svg>
+										</div>
+										<p class="advantages__subtitle">Про нас</p>
+										<p class="advantages__title">Підберемо хороше авто </p>
 									</div>
-									<p class="advantages__subtitle">Про нас</p>
-									<p class="advantages__title">Підберемо хороше авто </p>
 								</div>
-							</div>
-							<div class="hero__slide swiper-slide">
-								<div class="advantages__block">
-									<div class="advantages__icon">
-										<svg>
-											<use xlink:href="img/icons/icons.svg#delivery"></use>
-										</svg>
+								<div class="hero__slide swiper-slide">
+									<div class="advantages__block">
+										<div class="advantages__icon">
+											<svg>
+												<use xlink:href="img/icons/icons.svg#delivery"></use>
+											</svg>
+										</div>
+										<p class="advantages__subtitle">Про нас</p>
+										<p class="advantages__title">Пригонемо під ключ</p>
 									</div>
-									<p class="advantages__subtitle">Про нас</p>
-									<p class="advantages__title">Пригонемо під ключ</p>
 								</div>
-							</div>
-							<div class="hero__slide swiper-slide">
-								<div class="advantages__block">
-									<div class="advantages__icon">
-										<svg>
-											<use xlink:href="img/icons/icons.svg#money"></use>
-										</svg>
+								<div class="hero__slide swiper-slide">
+									<div class="advantages__block">
+										<div class="advantages__icon">
+											<svg>
+												<use xlink:href="img/icons/icons.svg#money"></use>
+											</svg>
+										</div>
+										<p class="advantages__subtitle">Про нас</p>
+										<p class="advantages__title">Оцінемо вартість вашого авто</p>
 									</div>
-									<p class="advantages__subtitle">Про нас</p>
-									<p class="advantages__title">Оцінемо вартість вашого авто</p>
 								</div>
 							</div>
 						</div>
-					</div>
 
+					</div>
 				</div>
 
 				<div class="hero__image">
@@ -162,228 +343,197 @@
 
 				<h2 class="offers__title">Акційні пропозиції</h2>
 
-				<div data-tabs class="offers-tabs">
-					<div class="offers__nav">
-						<nav data-tabs-titles class="offers__list">
-							<button type="button" class="offers__item nav__item--hover _tab-active">Офіційні авто</button>
-							<button type="button" class="offers__item nav__item--hover">Авто із США</button>
-							<button type="button" class="offers__item nav__item--hover">Авто із Европи</button>
-						</nav>
-
-						<a href="catalog.html" class="link link_unvisible">
-							Переглянути всі
-							<svg>
-								<use xlink:href="img/icons/icons.svg#arrowTop"></use>
-							</svg>
-						</a>
+				<div class="offers__nav">
+					<div class="offers__list tabs-container">
+						<div class="tab offers__item nav__item--hover" data-target="#tab1">Офіційні авто</div>
+						<div class="tab offers__item nav__item--hover" data-target="#tab2">Авто із США</div>
+						<div class="tab offers__item nav__item--hover" data-target="#tab3">Авто із Европи</div>
 					</div>
 
-					<div data-tabs-body class="offers-tabs__content">
-						<div class="offers-tabs__body">
-							<div class="offers__slider swiper">
-								<div class="offers__wrapper swiper-wrapper">
-									<div class="offers__slide swiper-slide">
-										<a href="info.html" class="card">
-											<div class="card__image">
-												<img src="img/mercedes.webp" alt="Image">
-											</div>
+					<a href="catalog.html" class="link link_unvisible">
+						Переглянути всі
+						<svg>
+							<use xlink:href="img/icons/icons.svg#arrowTop"></use>
+						</svg>
+					</a>
+				</div>
 
-											<div class="card__inner">
-												<p class="card__title">Mercedes-Benz E-Class</p>
-
-												<ul class="card__prices">
-													<li class="card__price">76,500$</li>
-													<li class="card__price-old">77,777$</li>
-												</ul>
-
-												<ul class="card__insights">
-													<li class="card__insights-item">2018</li>
-													<li class="card__insights-item">Офіційне авто</li>
-												</ul>
-
-												<ul class="card__details">
-													<li class="card__detaild-item">4.0 Бензин</li>
-													<li class="card__detaild-item">Автомат</li>
-													<li class="card__detaild-item">61,000 км.</li>
-												</ul>
-											</div>
-										</a>
+				<div id="tab1" class="tab-content">
+					<div class="offers__slider swiper-container">
+						<div class="swiper-wrapper offers__wrapper" id="tab-cars">
+							<div class="swiper-slide offers__slide">
+								<a href="info.html" class="card">
+									<div class="card__image">
+										<img src="img/corvette.webp" alt="Image">
 									</div>
-									<div class="offers__slide swiper-slide">
-										<a href="" class="card">
-											<div class="card__image">
-												<img src="img/corvette.webp" alt="Image">
-											</div>
 
-											<div class="card__inner">
-												<p class="card__title">Chevrolet Corvette</p>
+									<div class="card__inner">
+										<p class="card__title">Chevrolet Corvette3</p>
 
-												<ul class="card__prices">
-													<li class="card__price">69,999$</li>
-													<li class="card__price-old">71,000$</li>
-												</ul>
+										<ul class="card__prices">
+											<li class="card__price">69,999$</li>
+											<li class="card__price-old">71,000$</li>
+										</ul>
 
-												<ul class="card__insights">
-													<li class="card__insights-item">2015</li>
-													<li class="card__insights-item">Офіційне авто</li>
-												</ul>
+										<ul class="card__insights">
+											<li class="card__insights-item">2015</li>
+											<li class="card__insights-item">Офіційне авто</li>
+										</ul>
 
-												<ul class="card__details">
-													<li class="card__detaild-item">6.2 Бензин</li>
-													<li class="card__detaild-item">Автомат</li>
-													<li class="card__detaild-item">23,000 км.</li>
-												</ul>
-											</div>
-										</a>
+										<ul class="card__details">
+											<li class="card__detaild-item">6.2 Бензин</li>
+											<li class="card__detaild-item">Автомат</li>
+											<li class="card__detaild-item">23,000 км.</li>
+										</ul>
 									</div>
-									<div class="offers__slide swiper-slide">
-										<a href="" class="card">
-											<div class="card__image">
-												<img src="img/rangeRover.webp" alt="Image">
-											</div>
-
-											<div class="card__inner">
-												<p class="card__title">Range Rover Sport</p>
-
-												<ul class="card__prices">
-													<li class="card__price">68,900$</li>
-													<li class="card__price-old">69,000$</li>
-												</ul>
-
-												<ul class="card__insights">
-													<li class="card__insights-item">2021</li>
-													<li class="card__insights-item">Офіційне авто</li>
-												</ul>
-
-												<ul class="card__details">
-													<li class="card__detaild-item">4.0 Гібрид</li>
-													<li class="card__detaild-item">Автомат</li>
-													<li class="card__detaild-item">48,000 км.</li>
-												</ul>
-											</div>
-										</a>
+								</a>
+							</div>
+							<div class="swiper-slide offers__slide">
+								<a href="" class="card">
+									<div class="card__image">
+										<img src="img/audi.webp" alt="Image">
 									</div>
-									<div class="offers__slide swiper-slide">
-										<a href="" class="card">
-											<div class="card__image">
-												<img src="img/bmw.webp" alt="Image">
-											</div>
 
-											<div class="card__inner">
-												<p class="card__title">BMW 8 Series</p>
+									<div class="card__inner">
+										<p class="card__title">Chevrolet Corvette3</p>
 
-												<ul class="card__prices">
-													<li class="card__price">81,900$</li>
-													<li class="card__price-old">85,555$</li>
-												</ul>
+										<ul class="card__prices">
+											<li class="card__price">69,999$</li>
+											<li class="card__price-old">71,000$</li>
+										</ul>
 
-												<ul class="card__insights">
-													<li class="card__insights-item">2020</li>
-													<li class="card__insights-item">Офіційне авто</li>
-												</ul>
+										<ul class="card__insights">
+											<li class="card__insights-item">2015</li>
+											<li class="card__insights-item">Офіційне авто</li>
+										</ul>
 
-												<ul class="card__details">
-													<li class="card__detaild-item">3.0 Дизель</li>
-													<li class="card__detaild-item">Автомат</li>
-													<li class="card__detaild-item">68,888 км.</li>
-												</ul>
-											</div>
-										</a>
+										<ul class="card__details">
+											<li class="card__detaild-item">6.2 Бензин</li>
+											<li class="card__detaild-item">Автомат</li>
+											<li class="card__detaild-item">23,000 км.</li>
+										</ul>
 									</div>
-								</div>
+								</a>
 							</div>
 						</div>
-						<div class="offers-tabs__body">
-							<div class="offers__slider swiper">
-								<div class="offers__wrapper swiper-wrapper">
-									<div class="offers__slide swiper-slide">
-										<a href="info.html" class="card">
-											<div class="card__image">
-												<img src="img/mercedes.webp" alt="Image">
-											</div>
-
-											<div class="card__inner">
-												<p class="card__title">Mercedes-Benz E-Class</p>
-
-												<ul class="card__prices">
-													<li class="card__price">76,500$</li>
-													<li class="card__price-old">77,777$</li>
-												</ul>
-
-												<ul class="card__insights">
-													<li class="card__insights-item">2018</li>
-													<li class="card__insights-item">Офіційне авто</li>
-												</ul>
-
-												<ul class="card__details">
-													<li class="card__detaild-item">4.0 Бензин</li>
-													<li class="card__detaild-item">Автомат</li>
-													<li class="card__detaild-item">61,000 км.</li>
-												</ul>
-											</div>
-										</a>
+					</div>
+				</div>
+				<div id="tab2" class="tab-content">
+					<div class="offers__slider swiper-container">
+						<div class="swiper-wrapper offers__wrapper" id="tab-cars">
+							<div class="swiper-slide offers__slide">
+								<a href="" class="card">
+									<div class="card__image">
+										<img src="img/corvette.webp" alt="Image">
 									</div>
-									<div class="offers__slide swiper-slide">
-										<a href="" class="card">
-											<div class="card__image">
-												<img src="img/corvette.webp" alt="Image">
-											</div>
 
-											<div class="card__inner">
-												<p class="card__title">Chevrolet Corvette</p>
+									<div class="card__inner">
+										<p class="card__title">Chevrolet Corvette3</p>
 
-												<ul class="card__prices">
-													<li class="card__price">69,999$</li>
-													<li class="card__price-old">71,000$</li>
-												</ul>
+										<ul class="card__prices">
+											<li class="card__price">69,999$</li>
+											<li class="card__price-old">71,000$</li>
+										</ul>
 
-												<ul class="card__insights">
-													<li class="card__insights-item">2015</li>
-													<li class="card__insights-item">Офіційне авто</li>
-												</ul>
+										<ul class="card__insights">
+											<li class="card__insights-item">2015</li>
+											<li class="card__insights-item">Офіційне авто</li>
+										</ul>
 
-												<ul class="card__details">
-													<li class="card__detaild-item">6.2 Бензин</li>
-													<li class="card__detaild-item">Автомат</li>
-													<li class="card__detaild-item">23,000 км.</li>
-												</ul>
-											</div>
-										</a>
+										<ul class="card__details">
+											<li class="card__detaild-item">6.2 Бензин</li>
+											<li class="card__detaild-item">Автомат</li>
+											<li class="card__detaild-item">23,000 км.</li>
+										</ul>
 									</div>
-								</div>
+								</a>
+							</div>
+							<div class="swiper-slide offers__slide">
+								<a href="" class="card">
+									<div class="card__image">
+										<img src="img/audi.webp" alt="Image">
+									</div>
+
+									<div class="card__inner">
+										<p class="card__title">Chevrolet Corvette3</p>
+
+										<ul class="card__prices">
+											<li class="card__price">69,999$</li>
+											<li class="card__price-old">71,000$</li>
+										</ul>
+
+										<ul class="card__insights">
+											<li class="card__insights-item">2015</li>
+											<li class="card__insights-item">Офіційне авто</li>
+										</ul>
+
+										<ul class="card__details">
+											<li class="card__detaild-item">6.2 Бензин</li>
+											<li class="card__detaild-item">Автомат</li>
+											<li class="card__detaild-item">23,000 км.</li>
+										</ul>
+									</div>
+								</a>
 							</div>
 						</div>
-						<div class="offers-tabs__body">
-							<div class="offers__slider swiper">
-								<div class="offers__wrapper swiper-wrapper">
-									<div class="offers__slide swiper-slide">
-										<a href="info.html" class="card">
-											<div class="card__image">
-												<img src="img/mercedes.webp" alt="Image">
-											</div>
-
-											<div class="card__inner">
-												<p class="card__title">Mercedes-Benz E-Class</p>
-
-												<ul class="card__prices">
-													<li class="card__price">76,500$</li>
-													<li class="card__price-old">77,777$</li>
-												</ul>
-
-												<ul class="card__insights">
-													<li class="card__insights-item">2018</li>
-													<li class="card__insights-item">Офіційне авто</li>
-												</ul>
-
-												<ul class="card__details">
-													<li class="card__detaild-item">4.0 Бензин</li>
-													<li class="card__detaild-item">Автомат</li>
-													<li class="card__detaild-item">61,000 км.</li>
-												</ul>
-											</div>
-										</a>
+					</div>
+				</div>
+				<div id="tab3" class="tab-content">
+					<div class="offers__slider swiper-container">
+						<div class="swiper-wrapper offers__wrapper" id="tab-cars">
+							<div class="swiper-slide offers__slide">
+								<a href="" class="card">
+									<div class="card__image">
+										<img src="img/corvette.webp" alt="Image">
 									</div>
-								</div>
+
+									<div class="card__inner">
+										<p class="card__title">Chevrolet Corvette3</p>
+
+										<ul class="card__prices">
+											<li class="card__price">69,999$</li>
+											<li class="card__price-old">71,000$</li>
+										</ul>
+
+										<ul class="card__insights">
+											<li class="card__insights-item">2015</li>
+											<li class="card__insights-item">Офіційне авто</li>
+										</ul>
+
+										<ul class="card__details">
+											<li class="card__detaild-item">6.2 Бензин</li>
+											<li class="card__detaild-item">Автомат</li>
+											<li class="card__detaild-item">23,000 км.</li>
+										</ul>
+									</div>
+								</a>
+							</div>
+							<div class="swiper-slide offers__slide">
+								<a href="" class="card">
+									<div class="card__image">
+										<img src="img/audi.webp" alt="Image">
+									</div>
+
+									<div class="card__inner">
+										<p class="card__title">Chevrolet Corvette3</p>
+
+										<ul class="card__prices">
+											<li class="card__price">69,999$</li>
+											<li class="card__price-old">71,000$</li>
+										</ul>
+
+										<ul class="card__insights">
+											<li class="card__insights-item">2015</li>
+											<li class="card__insights-item">Офіційне авто</li>
+										</ul>
+
+										<ul class="card__details">
+											<li class="card__detaild-item">6.2 Бензин</li>
+											<li class="card__detaild-item">Автомат</li>
+											<li class="card__detaild-item">23,000 км.</li>
+										</ul>
+									</div>
+								</a>
 							</div>
 						</div>
 					</div>
@@ -396,7 +546,7 @@
 				<div class="steps__inner">
 					<div class="steps__text">
 						<h2 class="steps__title">Кроки придбання авто у нашому салоні</h2>
-						<a href="" data-popup="#popup" class="steps__btn">Замовити авто</a>
+						<button class="steps__btn open-popup">Замовити авто</button>
 					</div>
 
 					<a href="catalog.html" class="link">
@@ -429,14 +579,14 @@
 
 			</section>
 
-			<section class="delivery delivery__container section">
+			<section id="service" class="delivery delivery__container section">
 				<img src="img/delivery.webp" alt="Image" class="delivery__image">
 				<div class="delivery__inner">
 					<div class="delivery__text">
 						<h2 class="delivery__title">Пригін авто з США або Европи</h2>
 						<p class="delivery__subtitle">Ваш шанс відчути справжню якість та стиль закордонних автомобілів. Ми допоможемо вам знайти ідеальне авто, що відповідатиме всім вашим вимогам, з найкращими характеристиками та бездоганною історією</p>
 					</div>
-					<a href="" data-popup="#popup" class="delivery__btn">Замовити авто</a>
+					<button class="delivery__btn open-popup">Замовити авто</button>
 
 					<div class="delivery__advantages">
 						<div class="advantages__block">
@@ -481,7 +631,7 @@
 				</div>
 			</section>
 
-			<section class="contacts contacts__container section">
+			<section id="contact" class="contacts contacts__container section">
 				<div class="contacts__header">
 					<h2>Контакти</h2>
 					<div class="contacts__socials">
@@ -579,136 +729,7 @@
 			</div>
 		</footer>
 	</div>
-	<!-- Документація: https://template.fls.guru/template-docs/modul-preloader.html -->
-	<div id="fls-preloader">
-		<!-- Скріпт прелоадера -->
-		<script>
-			function preloader() {
-				const preloaderImages = document.querySelector('[data-preloader]') ? document.querySelectorAll('[data-preloader] img') : document.querySelectorAll('img');
-				const preloaderContainer = document.querySelector('#fls-preloader');
-				if (preloaderImages.length) {
-					const preloaderStyleTemplate = `
-				<style>
-					* {
-						padding: 0px;
-						margin: 0px;
-						border: 0px;
-						box-sizing: border-box;
-					}
-					/* Головний блок */
-					.fls-preloader{
-						pointer-events: none;
-						z-index: 10;
-						position: fixed;
-						width: 100%;
-						height: 100%;
-						top: 0;
-						left: 0;
-						display: flex;
-						justify-content:center;
-						align-items: center;
-						background-color: #ffff;
-					}
-					/* Блок з елементами */
-					.fls-preloader__body{
-						padding: 0.93rem;
-						max-width: 31.25rem;
-						display: flex;
-						flex-direction: column;
-					}
-					/* Блок з лічильником */
-					.fls-preloader__counter{
-						font-size: 7rem;
-						
-					}
-					/* Прогресбар */
-					.fls-preloader__line{}
-					/* Лінія прогресбару */
-					.fls-preloader__line span{
-						display: inline-block;
-						transition: width 0.2s ease;
-						height: 0.8rem;
-						background-color: #FF0000;
-					}
-					.lock body{
-						overflow: hidden;
-						touch-action: none;
-						overscroll-behavior: none;
-					}
-					.loading body>*:not(.fls-preloader){
-						opacity: 0;
-						visibility: hidden;
-					}
-					.loaded body>*:not(.fls-preloader){
-						transition: opacity 0.5s ease 0s;
-						opacity: 1;
-						visibility: visible;
-					}
-				</style>`;
-
-					document.head.insertAdjacentHTML("beforeend", preloaderStyleTemplate);
-
-					const preloaderTemplate = `
-					<div class="fls-preloader">
-						<div class="fls-preloader__body">
-							<div class="fls-preloader__counter">0%</div>
-							<div class="fls-preloader__line"><span></span></div>
-						</div>
-					</div>`;
-					document.body.insertAdjacentHTML("beforeend", preloaderTemplate);
-
-					const
-						preloader = document.querySelector('.fls-preloader'),
-						showPecentLoad = document.querySelector('.fls-preloader__counter'),
-						showLineLoad = document.querySelector('.fls-preloader__line span'),
-						htmlDocument = document.documentElement;
-
-					let imagesLoadedCount = counter = progress = 0;
-
-					htmlDocument.classList.add('loading');
-					htmlDocument.classList.add('lock');
-
-					preloaderImages.forEach(preloaderImage => {
-						const imgClone = document.createElement('img');
-						if (imgClone) {
-							imgClone.onload = imageLoaded;
-							imgClone.onerror = imageLoaded;
-							preloaderImage.dataset.src ? imgClone.src = preloaderImage.dataset.src : imgClone.src = preloaderImage.src;
-						}
-					});
-
-					function setValueProgress(progress) {
-						showPecentLoad ? showPecentLoad.innerText = `${progress}%` : null;
-						showLineLoad ? showLineLoad.style.width = `${progress}%` : null;
-					}
-					showPecentLoad ? setValueProgress(progress) : null;
-
-					function imageLoaded() {
-						imagesLoadedCount++;
-						progress = Math.round((100 / preloaderImages.length) * imagesLoadedCount);
-						const intervalId = setInterval(() => {
-							counter >= progress ? clearInterval(intervalId) : setValueProgress(++counter);
-							counter >= 100 ? addLoadedClass() : null;
-						}, 10);
-					}
-
-					function addLoadedClass() {
-						htmlDocument.classList.add('loaded');
-						htmlDocument.classList.remove('lock');
-						htmlDocument.classList.remove('loading');
-						setInterval(() => {
-							preloader.remove();
-							preloaderContainer.remove();
-						}, 500);
-					}
-				} else {
-					preloaderContainer.remove();
-				}
-			}
-			preloader();
-		</script>
-	</div>
-	<script src="js/app.min.js?_v=20240902101808"></script>
+	<script src="js/app.min.js?_v=20240910143510"></script>
 </body>
 
 </html>

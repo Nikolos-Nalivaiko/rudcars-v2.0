@@ -2,11 +2,11 @@
 <html lang="en">
 
 <head>
-	<title>Admin panel</title>
+	<title>Home Page</title>
 	<meta charset="UTF-8">
 	<meta name="format-detection" content="telephone=no">
 	<!-- <style>body{opacity: 0;}</style> -->
-	<link rel="stylesheet" href="css/style.min.css?_v=20240902101808">
+	<link rel="stylesheet" href="css/style.min.css?_v=20240910143510">
 	<link rel="shortcut icon" href="favicon.ico">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js?_v=20240826114116"></script>
 	<!-- <meta name="robots" content="noindex, nofollow"> -->
@@ -14,251 +14,337 @@
 </head>
 
 <body>
-	<main class="admin__page">
+	<style>
+		body {
+			overflow: hidden;
+		}
 
-		<div class="admin__panel">
+		#preloader {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100vw;
+			height: 100vh;
+			background-color: #fff;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			flex-direction: column;
+			z-index: 9999;
+			opacity: 1;
+			transition: opacity 1s ease;
+			padding-right: 20px;
+			padding-left: 20px;
+		}
 
-			<div class="admin__panel-header">
-				<img src="img/logo_white.svg" alt="" class="admin__logo">
+		/* Логотип */
+		.preloader-logo {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			gap: 25xp;
+			margin-bottom: 75px;
 
-				<div class="admin__menu">
-					<svg>
-						<use xlink:href="img/icons/icons.svg#menuAdmin"></use>
-					</svg>
-				</div>
-			</div>
+			img {
+				width: 250px;
 
-			<div class="admin__navbar-content" id="admin__navbar-content">
-				<ul class="admin__navbar">
-					<li class="admin__navbar-item"><a href="admin-add.html" class="admin__navbar-link">
-							<svg>
-								<use xlink:href="img/icons/icons.svg#add"></use>
-							</svg>
-							Додати нове авто</a></li>
-					<li class="admin__navbar-item"><a href="admin-list.html" class="admin__navbar-link">
-							<svg>
-								<use xlink:href="img/icons/icons.svg#list"></use>
-							</svg>
-							Список авто</a></li>
-					<li class="admin__navbar-item"><a href="admin-setting.html" class="admin__navbar-link">
-							<svg>
-								<use xlink:href="img/icons/icons.svg#setting"></use>
-							</svg>
-							Налаштування</a></li>
-					<li class="admin__navbar-item"><a href="admin-message.html" class="admin__navbar-link">
-							<svg>
-								<use xlink:href="img/icons/icons.svg#mail"></use>
-							</svg>
-							Повідомлення</a></li>
-				</ul>
+				@media (max-width: 479px) {
+					width: 200px;
+				}
+			}
+		}
 
-				<a href="" class="admin__logout">
-					<svg>
-						<use xlink:href="img/icons/icons.svg#exit"></use>
-					</svg>
-					Вийти
-				</a>
-			</div>
+		#content {
+			opacity: 0;
+			transition: opacity 0.8s ease;
+		}
 
+		.loader {
+			height: 5px;
+			width: 200px;
+			--c: no-repeat linear-gradient(#FF0000 0 0);
+			background: var(--c), var(--c), #dbdbdb;
+			background-size: 60% 100%;
+			animation: l16 3s infinite;
+		}
+
+		@keyframes l16 {
+			0% {
+				background-position: -150% 0, -150% 0
+			}
+
+			66% {
+				background-position: 250% 0, -150% 0
+			}
+
+			100% {
+				background-position: 250% 0, 250% 0
+			}
+		}
+	</style>
+
+
+	<div id="preloader">
+		<div class="preloader-logo">
+			<img src="img/logo.svg" alt="Logo">
 		</div>
+		<div class="loader"></div>
+	</div>
+	<div class="wrapper" id="content">
 
-		<div class="admin__content">
-			<div class="admin__header">
-				<div class="admin__container admin__header-inner">
-					<div class="admin__header-text">
-						<h3>Додати нове авто</h3>
-						<p class="admin__subtitle">Заповніть необхідну інформацію про автомобіль, щоб забезпечити ефективний менеджмент вашого автопарку</p>
-					</div>
-					<a href="admin-list.html" class="admin__header-btn">
-						<svg>
-							<use xlink:href="img/icons/icons.svg#list"></use>
-						</svg>
-						Список авто
-					</a>
-				</div>
-			</div>
+		<main>
+			<section class="admin">
 
-			<form action="" method="post" class="admin__form admin__container">
-				<div class="admin__form-block">
-					<p class="admin__form-title">Загальна інформація</p>
-					<div class="admin__inputs">
+				<div class="panel">
 
-						<div class="admin__input-wrapper">
-							<label for="" class="admin__label">Марка авто</label>
-							<select name="" id="" class="admin__select">
-								<option value="" class="admin__option">Value 1</option>
-								<option value="" class="admin__option">Value 2</option>
-							</select>
-						</div>
+					<div class="panel__header">
+						<a href="index.html" class="panel__logo">
+							<img src="img/logo.svg" alt="Logo">
+						</a>
 
-						<div class="admin__input-wrapper">
-							<label for="" class="admin__label">Модель авто</label>
-							<select name="" id="" class="admin__select">
-								<option value="" class="admin__option">Value 1</option>
-								<option value="" class="admin__option">Value 2</option>
-							</select>
-						</div>
-
-						<div class="admin__input-wrapper">
-							<label for="" class="admin__label">Рік випуску</label>
-							<select name="" id="" class="admin__select">
-								<option value="" class="admin__option">Value 1</option>
-								<option value="" class="admin__option">Value 2</option>
-							</select>
-						</div>
-
-						<div class="admin__input-wrapper">
-							<label for="" class="admin__label">Статус авто</label>
-							<select name="" id="" class="admin__select">
-								<option value="" class="admin__option">Value 1</option>
-								<option value="" class="admin__option">Value 2</option>
-							</select>
-						</div>
-
-						<div class="admin__input-wrapper">
-							<label for="" class="admin__label">VIN-код</label>
-							<input type="text" class="admin__input">
-						</div>
-
-						<div class="admin__input-wrapper">
-							<label for="" class="admin__label">К-сть власників</label>
-							<input type="text" class="admin__input">
-						</div>
-
-						<div class="admin__input-wrapper">
-							<label for="" class="admin__label">Вартість, $</label>
-							<input type="text" class="admin__input">
-						</div>
-
-						<div class="admin__input-wrapper">
-							<label for="" class="admin__label">Вартість зі знижкою, $</label>
-							<input type="text" class="admin__input">
-						</div>
-
-					</div>
-				</div>
-
-				<div class="admin__form-block">
-					<p class="admin__form-title">Технічна інформація</p>
-					<div class="admin__inputs">
-
-						<div class="admin__input-wrapper">
-							<label for="" class="admin__label">Тип двигуна</label>
-							<select name="" id="" class="admin__select">
-								<option value="" class="admin__option">Value 1</option>
-								<option value="" class="admin__option">Value 2</option>
-							</select>
-						</div>
-
-						<div class="admin__input-wrapper">
-							<label for="" class="admin__label">Привід</label>
-							<select name="" id="" class="admin__select">
-								<option value="" class="admin__option">Value 1</option>
-								<option value="" class="admin__option">Value 2</option>
-							</select>
-						</div>
-
-						<div class="admin__input-wrapper">
-							<label for="" class="admin__label">Обєм двигуна, л.</label>
-							<input type="text" class="admin__input">
-						</div>
-
-						<div class="admin__input-wrapper">
-							<label for="" class="admin__label">Потужність, к.с</label>
-							<input type="text" class="admin__input">
-						</div>
-
-						<div class="admin__input-wrapper">
-							<label for="" class="admin__label">Розхід (місто)</label>
-							<input type="text" class="admin__input">
-						</div>
-
-						<div class="admin__input-wrapper">
-							<label for="" class="admin__label">Розмір дисків</label>
-							<input type="text" class="admin__input">
-						</div>
-
-						<div class="admin__input-wrapper">
-							<label for="" class="admin__label">Розмір шин</label>
-							<input type="text" class="admin__input">
-						</div>
-
-						<div class="admin__input-wrapper">
-							<label for="" class="admin__label">Пробіг, км.</label>
-							<input type="text" class="admin__input">
-						</div>
-
-					</div>
-				</div>
-
-				<div class="admin__form-block">
-					<p class="admin__form-title">Загальний опис авто</p>
-					<div class="admin__input-wrapper">
-						<textarea name="" class="admin__textarea" id=""></textarea>
-					</div>
-				</div>
-
-				<div class="admin__form-block">
-					<p class="admin__form-title">Про комфорт</p>
-					<div class="admin__input-wrapper">
-						<textarea name="" class="admin__textarea" id=""></textarea>
-					</div>
-				</div>
-
-				<div class="admin__form-block">
-					<p class="admin__form-title">Про мотор</p>
-					<div class="admin__input-wrapper">
-						<textarea name="" class="admin__textarea" id=""></textarea>
-					</div>
-				</div>
-
-				<div class="admin__form-block">
-					<p class="admin__form-title">Про безпеку</p>
-					<div class="admin__input-wrapper">
-						<textarea name="" class="admin__textarea" id=""></textarea>
-					</div>
-				</div>
-
-				<div class="admin__form-block">
-					<div class="admin__file-wrapper">
-						<input type="file" id="file" class="admin__file" multiple>
-
-						<label for="file" class="admin__file-label">
+						<div class="panel__open panel__btn">
 							<svg>
-								<use xlink:href="img/icons/icons.svg#addImage"></use>
+								<use xlink:href="img/icons/icons.svg#menuAdmin"></use>
 							</svg>
-							Додати зображення
-						</label>
-
+						</div>
 					</div>
-				</div>
 
-				<div class="admin__form-block">
-					<div class="admin__images">
-						<div class="admin__image-wrapper">
-							<div class="admin__image-close">
+					<div class="menu__content panel__menu-content">
+
+						<div class=" panel__header panel__header_mobile">
+							<a href="index.html" class="panel__logo">
+								<img src="img/logo.svg" alt="Logo">
+							</a>
+
+							<div class="panel__btn panel__close">
 								<svg>
 									<use xlink:href="img/icons/icons.svg#close"></use>
 								</svg>
 							</div>
-							<img src="img/audi.webp" alt="" class="admin__image">
 						</div>
+
+						<ul class="panel__list">
+							<li class="panel__item">
+								<a href="admin-add.html" class="panel__link panel__link_active">
+									<svg>
+										<use xlink:href="img/icons/icons.svg#add"></use>
+									</svg>
+									Додати нове авто
+								</a>
+							</li>
+							<li class="panel__item">
+								<a href="admin-list.html" class="panel__link">
+									<svg>
+										<use xlink:href="img/icons/icons.svg#list"></use>
+									</svg>
+									Список авто
+								</a>
+							</li>
+							<li class="panel__item">
+								<a href="admin-setting.html" class="panel__link">
+									<svg>
+										<use xlink:href="img/icons/icons.svg#setting"></use>
+									</svg>
+									Налаштування
+								</a>
+							</li>
+							<li class="panel__item">
+								<a href="admin-messages.html" class="panel__link">
+									<svg>
+										<use xlink:href="img/icons/icons.svg#mail"></use>
+									</svg>
+									Повідомлення
+								</a>
+							</li>
+						</ul>
+
+						<form action="" class="panel__exit">
+							<button type="submit" class="panel__exit-btn">
+								<div class="panel__exit-icon">
+									<svg>
+										<use xlink:href="img/icons/icons.svg#exit"></use>
+									</svg>
+								</div>
+								Вийти
+							</button>
+						</form>
+
 					</div>
+
 				</div>
 
-				<div class="admin__form-block">
-					<button type="submit" class="admin__form-submit">
-						Додати авто
-					</button>
+				<div class="admin__content admin__container">
+
+					<div class="admin__header">
+						<h3>Додати нове авто</h3>
+						<p class="admin__subtitle">Заповніть необхідну інформацію про автомобіль, щоб забезпечити ефективний менеджмент вашого автопарку</p>
+					</div>
+
+					<form action="" class="admin__form">
+
+						<div class="admin__form-block">
+							<p class="admin__form-title">Загальна інформація</p>
+							<div class="admin__form-inputs">
+
+								<div class="admin__form-input-wrapper">
+									<label for="" class="admin__form-label">Марка авто</label>
+									<input type="text" class="admin__form-input">
+								</div>
+
+								<div class="admin__form-input-wrapper">
+									<label for="" class="admin__form-label">Модель авто</label>
+									<input type="text" class="admin__form-input">
+								</div>
+
+								<div class="admin__form-input-wrapper">
+									<label for="" class="admin__form-label">Рік випуску</label>
+									<select name="" id="" class="admin__form-select">
+										<option value="" class="admin__form-option" hidden selected></option>
+										<option value="" class="admin__form-option">2024</option>
+										<option value="" class="admin__form-option">2023</option>
+									</select>
+								</div>
+
+								<div class="admin__form-input-wrapper">
+									<label for="" class="admin__form-label">Статус авто</label>
+									<select name="" id="" class="admin__form-select">
+										<option value="" class="admin__form-option" hidden selected></option>
+										<option value="" class="admin__form-option">2024</option>
+										<option value="" class="admin__form-option">2023</option>
+									</select>
+								</div>
+
+								<div class="admin__form-input-wrapper">
+									<label for="" class="admin__form-label">VIN-код</label>
+									<input type="text" class="admin__form-input">
+								</div>
+
+								<div class="admin__form-input-wrapper">
+									<label for="" class="admin__form-label">К-сть власників</label>
+									<input type="number" class="admin__form-input">
+								</div>
+
+								<div class="admin__form-input-wrapper">
+									<label for="" class="admin__form-label">Вартість, $</label>
+									<input type="number" class="admin__form-input">
+								</div>
+
+								<div class="admin__form-input-wrapper">
+									<label for="" class="admin__form-label">Вартість зі знижкою, $</label>
+									<input type="number" class="admin__form-input">
+								</div>
+
+							</div>
+						</div>
+
+						<div class="admin__form-block">
+							<p class="admin__form-title">Технічна інформація</p>
+
+							<div class="admin__form-inputs">
+
+								<div class="admin__form-input-wrapper">
+									<label for="" class="admin__form-label">Тип двигуна</label>
+									<select name="" id="" class="admin__form-select">
+										<option value="" class="admin__form-option" hidden selected></option>
+										<option value="" class="admin__form-option">2024</option>
+										<option value="" class="admin__form-option">2023</option>
+									</select>
+								</div>
+
+								<div class="admin__form-input-wrapper">
+									<label for="" class="admin__form-label">Привід</label>
+									<select name="" id="" class="admin__form-select">
+										<option value="" class="admin__form-option" hidden selected></option>
+										<option value="" class="admin__form-option">2024</option>
+										<option value="" class="admin__form-option">2023</option>
+									</select>
+								</div>
+
+								<div class="admin__form-input-wrapper">
+									<label for="" class="admin__form-label">Обєм двигуна, л./квт.</label>
+									<input type="number" step="any" class="admin__form-input">
+								</div>
+
+								<div class="admin__form-input-wrapper">
+									<label for="" class="admin__form-label">Потужність, к.с</label>
+									<input type="number" class="admin__form-input">
+								</div>
+
+								<div class="admin__form-input-wrapper">
+									<label for="" class="admin__form-label">Розхід (місто) / Запас ходу</label>
+									<input type="number" step="any" class="admin__form-input">
+								</div>
+
+								<div class="admin__form-input-wrapper">
+									<label for="" class="admin__form-label">Розмір дисків</label>
+									<input type="number" class="admin__form-input">
+								</div>
+
+								<div class="admin__form-input-wrapper">
+									<label for="" class="admin__form-label">Розмір шин</label>
+									<input type="text" class="admin__form-input">
+								</div>
+
+								<div class="admin__form-input-wrapper">
+									<label for="" class="admin__form-label">Пробіг, км.</label>
+									<input type="number" class="admin__form-input">
+								</div>
+
+							</div>
+
+						</div>
+
+						<div class="admin__form-block">
+							<p class="admin__form-title">Загальний опис авто</p>
+							<textarea name="" id="" class="admin__form-textarea">
+                                </textarea>
+						</div>
+
+						<div class="admin__form-block">
+							<p class="admin__form-title">Про безпеку</p>
+							<textarea name="" id="" class="admin__form-textarea">
+                                </textarea>
+						</div>
+
+						<div class="admin__form-block">
+							<p class="admin__form-title">Про мотор</p>
+							<textarea name="" id="" class="admin__form-textarea">
+                                </textarea>
+						</div>
+
+						<div class="admin__form-block">
+							<p class="admin__form-title">Про безпеку</p>
+							<textarea name="" id="" class="admin__form-textarea">
+                                </textarea>
+						</div>
+
+						<div class="admin__form-file-wrapper">
+							<input type="file" name="files[]" id="fileInput" class="admin__form-file" multiple accept="image.webp,image.webp, image.webp,image/webp">
+							<label for="fileInput" class="admin__form-file-label">
+								<svg>
+									<use xlink:href="img/icons/icons.svg#addImage"></use>
+								</svg>
+								Додати зображення
+							</label>
+						</div>
+
+						<div class="admin__form-file-wrapper">
+							<div class="admin__files-container" id="previewContainer">
+							</div>
+						</div>
+
+						<div class="admin__form-file-wrapper">
+							<button type="submit" class="admin__form-submit">Додати авто</button>
+						</div>
+
+					</form>
+
 				</div>
+			</section>
+		</main>
 
-			</form>
-
-
-		</div>
-
-	</main>
-	<script src="js/app.min.js?_v=20240902101808"></script>
+	</div>
+	<script src="js/app.min.js?_v=20240910143510"></script>
 </body>
 
 </html>
