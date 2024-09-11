@@ -3955,14 +3955,16 @@
             }
         }
         init() {
-            this.tabs.forEach((tab => {
-                tab.addEventListener("click", (event => this.switchTab(event)));
+            const savedTabIndex = localStorage.getItem("activeTabIndex");
+            if (savedTabIndex) this.activateTab(this.tabs[savedTabIndex]); else this.activateTab(this.tabs[0]);
+            this.tabs.forEach(((tab, index) => {
+                tab.addEventListener("click", (event => this.switchTab(event, index)));
             }));
-            this.activateTab(this.tabs[0]);
         }
-        switchTab(event) {
+        switchTab(event, index) {
             const targetTab = event.target;
             this.activateTab(targetTab);
+            localStorage.setItem("activeTabIndex", index);
         }
         activateTab(tab) {
             const targetContent = document.querySelector(tab.getAttribute("data-target"));
