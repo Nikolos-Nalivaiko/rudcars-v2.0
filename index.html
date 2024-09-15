@@ -6,7 +6,7 @@
 	<meta charset="UTF-8">
 	<meta name="format-detection" content="telephone=no">
 	<!-- <style>body{opacity: 0;}</style> -->
-	<link rel="stylesheet" href="css/style.min.css?_v=20240911112109">
+	<link rel="stylesheet" href="css/style.min.css?_v=20240916001527">
 	<link rel="shortcut icon" href="favicon.ico">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js?_v=20240826114116"></script>
 	<!-- <meta name="robots" content="noindex, nofollow"> -->
@@ -163,7 +163,7 @@
 
 								<div class="popup__input-inner">
 									<label for="phone" class="popup__label">Ваш номер телефону</label>
-									<input type="text" id="phone" name="phone" class="popup__input">
+									<input type="text" id="phone" name="phone" class="popup__input phone-mask">
 								</div>
 
 								<div class="popup__input-inner popup__input-inner_big">
@@ -271,7 +271,7 @@
 			</div>
 
 
-			<section class="hero">
+			<section class="hero load-in">
 
 				<div class="hero__container">
 					<div class="hero__block">
@@ -339,7 +339,7 @@
 
 			</section>
 
-			<section class="offers offers__container">
+			<section id="offers" class="offers offers__container load-in">
 
 				<h2 class="offers__title">Акційні пропозиції</h2>
 
@@ -391,11 +391,11 @@
 							<div class="swiper-slide offers__slide">
 								<a href="" class="card">
 									<div class="card__image">
-										<img src="img/audi.webp" alt="Image">
+										<img src="img/VWPhaeton.webp" alt="Image">
 									</div>
 
 									<div class="card__inner">
-										<p class="card__title">Chevrolet Corvette3</p>
+										<p class="card__title">Volkswagen Phaeton</p>
 
 										<ul class="card__prices">
 											<li class="card__price">69,999$</li>
@@ -403,7 +403,61 @@
 										</ul>
 
 										<ul class="card__insights">
-											<li class="card__insights-item">2015</li>
+											<li class="card__insights-item">2011</li>
+											<li class="card__insights-item">Офіційне авто</li>
+										</ul>
+
+										<ul class="card__details">
+											<li class="card__detaild-item">6.2 Бензин</li>
+											<li class="card__detaild-item">Автомат</li>
+											<li class="card__detaild-item">23,000 км.</li>
+										</ul>
+									</div>
+								</a>
+							</div>
+							<div class="swiper-slide offers__slide">
+								<a href="" class="card">
+									<div class="card__image">
+										<img src="img/Skoda.webp" alt="Image">
+									</div>
+
+									<div class="card__inner">
+										<p class="card__title">Skoda Octavia</p>
+
+										<ul class="card__prices">
+											<li class="card__price">69,999$</li>
+											<li class="card__price-old">71,000$</li>
+										</ul>
+
+										<ul class="card__insights">
+											<li class="card__insights-item">2011</li>
+											<li class="card__insights-item">Офіційне авто</li>
+										</ul>
+
+										<ul class="card__details">
+											<li class="card__detaild-item">6.2 Бензин</li>
+											<li class="card__detaild-item">Автомат</li>
+											<li class="card__detaild-item">23,000 км.</li>
+										</ul>
+									</div>
+								</a>
+							</div>
+							<div class="swiper-slide offers__slide">
+								<a href="" class="card">
+									<div class="card__image">
+										<img src="img/Volvo.webp" alt="Image">
+									</div>
+
+									<div class="card__inner">
+										<p class="card__title">Volvo V60</p>
+
+										<ul class="card__prices">
+											<li class="card__price">69,999$</li>
+											<li class="card__price-old">71,000$</li>
+										</ul>
+
+										<ul class="card__insights">
+											<li class="card__insights-item">2011</li>
 											<li class="card__insights-item">Офіційне авто</li>
 										</ul>
 
@@ -422,7 +476,7 @@
 					<div class="offers__slider swiper-container">
 						<div class="swiper-wrapper offers__wrapper" id="tab-cars">
 							<div class="swiper-slide offers__slide">
-								<a href="" class="card">
+								<a href="info.html" class="card">
 									<div class="card__image">
 										<img src="img/corvette.webp" alt="Image">
 									</div>
@@ -451,11 +505,11 @@
 							<div class="swiper-slide offers__slide">
 								<a href="" class="card">
 									<div class="card__image">
-										<img src="img/audi.webp" alt="Image">
+										<img src="img/VWPhaeton.webp" alt="Image">
 									</div>
 
 									<div class="card__inner">
-										<p class="card__title">Chevrolet Corvette3</p>
+										<p class="card__title">Volkswagen Phaeton</p>
 
 										<ul class="card__prices">
 											<li class="card__price">69,999$</li>
@@ -463,7 +517,61 @@
 										</ul>
 
 										<ul class="card__insights">
-											<li class="card__insights-item">2015</li>
+											<li class="card__insights-item">2011</li>
+											<li class="card__insights-item">Офіційне авто</li>
+										</ul>
+
+										<ul class="card__details">
+											<li class="card__detaild-item">6.2 Бензин</li>
+											<li class="card__detaild-item">Автомат</li>
+											<li class="card__detaild-item">23,000 км.</li>
+										</ul>
+									</div>
+								</a>
+							</div>
+							<div class="swiper-slide offers__slide">
+								<a href="" class="card">
+									<div class="card__image">
+										<img src="img/Skoda.webp" alt="Image">
+									</div>
+
+									<div class="card__inner">
+										<p class="card__title">Skoda Octavia</p>
+
+										<ul class="card__prices">
+											<li class="card__price">69,999$</li>
+											<li class="card__price-old">71,000$</li>
+										</ul>
+
+										<ul class="card__insights">
+											<li class="card__insights-item">2011</li>
+											<li class="card__insights-item">Офіційне авто</li>
+										</ul>
+
+										<ul class="card__details">
+											<li class="card__detaild-item">6.2 Бензин</li>
+											<li class="card__detaild-item">Автомат</li>
+											<li class="card__detaild-item">23,000 км.</li>
+										</ul>
+									</div>
+								</a>
+							</div>
+							<div class="swiper-slide offers__slide">
+								<a href="" class="card">
+									<div class="card__image">
+										<img src="img/Volvo.webp" alt="Image">
+									</div>
+
+									<div class="card__inner">
+										<p class="card__title">Volvo V60</p>
+
+										<ul class="card__prices">
+											<li class="card__price">69,999$</li>
+											<li class="card__price-old">71,000$</li>
+										</ul>
+
+										<ul class="card__insights">
+											<li class="card__insights-item">2011</li>
 											<li class="card__insights-item">Офіційне авто</li>
 										</ul>
 
@@ -482,7 +590,7 @@
 					<div class="offers__slider swiper-container">
 						<div class="swiper-wrapper offers__wrapper" id="tab-cars">
 							<div class="swiper-slide offers__slide">
-								<a href="" class="card">
+								<a href="info.html" class="card">
 									<div class="card__image">
 										<img src="img/corvette.webp" alt="Image">
 									</div>
@@ -511,11 +619,11 @@
 							<div class="swiper-slide offers__slide">
 								<a href="" class="card">
 									<div class="card__image">
-										<img src="img/audi.webp" alt="Image">
+										<img src="img/VWPhaeton.webp" alt="Image">
 									</div>
 
 									<div class="card__inner">
-										<p class="card__title">Chevrolet Corvette3</p>
+										<p class="card__title">Volkswagen Phaeton</p>
 
 										<ul class="card__prices">
 											<li class="card__price">69,999$</li>
@@ -523,7 +631,61 @@
 										</ul>
 
 										<ul class="card__insights">
-											<li class="card__insights-item">2015</li>
+											<li class="card__insights-item">2011</li>
+											<li class="card__insights-item">Офіційне авто</li>
+										</ul>
+
+										<ul class="card__details">
+											<li class="card__detaild-item">6.2 Бензин</li>
+											<li class="card__detaild-item">Автомат</li>
+											<li class="card__detaild-item">23,000 км.</li>
+										</ul>
+									</div>
+								</a>
+							</div>
+							<div class="swiper-slide offers__slide">
+								<a href="" class="card">
+									<div class="card__image">
+										<img src="img/Skoda.webp" alt="Image">
+									</div>
+
+									<div class="card__inner">
+										<p class="card__title">Skoda Octavia</p>
+
+										<ul class="card__prices">
+											<li class="card__price">69,999$</li>
+											<li class="card__price-old">71,000$</li>
+										</ul>
+
+										<ul class="card__insights">
+											<li class="card__insights-item">2011</li>
+											<li class="card__insights-item">Офіційне авто</li>
+										</ul>
+
+										<ul class="card__details">
+											<li class="card__detaild-item">6.2 Бензин</li>
+											<li class="card__detaild-item">Автомат</li>
+											<li class="card__detaild-item">23,000 км.</li>
+										</ul>
+									</div>
+								</a>
+							</div>
+							<div class="swiper-slide offers__slide">
+								<a href="" class="card">
+									<div class="card__image">
+										<img src="img/Volvo.webp" alt="Image">
+									</div>
+
+									<div class="card__inner">
+										<p class="card__title">Volvo V60</p>
+
+										<ul class="card__prices">
+											<li class="card__price">69,999$</li>
+											<li class="card__price-old">71,000$</li>
+										</ul>
+
+										<ul class="card__insights">
+											<li class="card__insights-item">2011</li>
 											<li class="card__insights-item">Офіційне авто</li>
 										</ul>
 
@@ -541,7 +703,7 @@
 
 			</section>
 
-			<section class="steps__container section">
+			<section class="steps__container section load-in">
 
 				<div class="steps__inner">
 					<div class="steps__text">
@@ -579,7 +741,7 @@
 
 			</section>
 
-			<section id="service" class="delivery delivery__container section">
+			<section id="service" class="delivery delivery__container section load-in">
 				<img src="img/delivery.webp" alt="Image" class="delivery__image">
 				<div class="delivery__inner">
 					<div class="delivery__text">
@@ -612,7 +774,7 @@
 				</div>
 			</section>
 
-			<section class="tradeIn tradeIn__container section">
+			<section class="tradeIn tradeIn__container section load-in">
 				<img src="img/tradeIn.webp" alt="Image" class="tradeIn__image">
 				<div class="tradeIn__inner">
 					<div class="tradeIn__text">
@@ -631,7 +793,7 @@
 				</div>
 			</section>
 
-			<section id="contact" class="contacts contacts__container section">
+			<section id="contact" class="contacts contacts__container section load-in">
 				<div class="contacts__header">
 					<h2>Контакти</h2>
 					<div class="contacts__socials">
@@ -677,7 +839,7 @@
 			</section>
 
 		</main>
-		<footer class="footer">
+		<footer class="footer load-in">
 			<div class="footer__container">
 				<div class="footer__wrapper">
 					<div class="footer__inner">
@@ -706,30 +868,29 @@
 					<div class="footer__nav">
 						<ul class="footer__list">
 							<li class="footer__item-title"><a href="index.html">Головна</a></li>
-							<li class="footer__item-subtitle"><a href="index.html">Акційні пропозиції</a></li>
-							<li class="footer__item-subtitle"><a href="index.html">Послуги</a></li>
-							<li class="footer__item-subtitle"><a href="index.html">Контакти</a></li>
-							<li class="footer__item-subtitle"><a href="index.html">Про нас</a></li>
+							<li class="footer__item-subtitle"><a href="/index.html#offers">Акційні пропозиції</a></li>
+							<li class="footer__item-subtitle"><a href="/index.html#service" class="scroll-link">Послуги</a></li>
+							<li class="footer__item-subtitle"><a href="/index.html#contact" class="scroll-link">Контакти</a></li>
 						</ul>
 
 						<ul class="footer__list">
 							<li class="footer__item-title">Послуги</li>
-							<li class="footer__item-subtitle"><a href="index.html">Пригін авто з США</a></li>
-							<li class="footer__item-subtitle"><a href="index.html">Пригін авто з Европи</a></li>
-							<li class="footer__item-subtitle"><a href="index.html">Пригін авто під ключ</a></li>
+							<li class="footer__item-subtitle"><a href="/index.html#service" class="scroll-link">Пригін авто з США</a></li>
+							<li class="footer__item-subtitle"><a href="/index.html#service" class="scroll-link">Пригін авто з Европи</a></li>
+							<li class="footer__item-subtitle"><a href="/index.html#service" class="scroll-link">Пригін авто під ключ</a></li>
 						</ul>
 
-						<ul class="footer__list">
-							<li class="footer__item-title">Ресурси</li>
-							<li class="footer__item-subtitle"><a href="">Політика конфедеційності</a></li>
-							<li class="footer__item-subtitle"><a href="">Умови користування</a></li>
-						</ul>
+						<!-- <ul class="footer__list">
+					<li class="footer__item-title">Ресурси</li>
+					<li class="footer__item-subtitle"><a href="">Політика конфедеційності</a></li>
+					<li class="footer__item-subtitle"><a href="">Умови користування</a></li>
+				</ul> -->
 					</div>
 				</div>
 			</div>
 		</footer>
 	</div>
-	<script src="js/app.min.js?_v=20240911112109"></script>
+	<script src="js/app.min.js?_v=20240916001527"></script>
 </body>
 
 </html>

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Play:wght@400; 700&display=swap');
 * {
   padding: 0;
   margin: 0;
@@ -591,6 +591,45 @@ body::after {
 .remove-image:hover {
   color: red;
   transition: .3s
+}
+.fade-in-hidden {
+  opacity: 0;
+  -webkit-transform: translateY(20px);
+  transform: translateY(20px);
+  transition: opacity .6s ease-out,-webkit-transform .6s ease-out;
+  transition: opacity .6s ease-out,transform .6s ease-out;
+  transition: opacity .6s ease-out,transform .6s ease-out,-webkit-transform .6s ease-out
+}
+.fade-in-visible {
+  opacity: 1;
+  -webkit-transform: translateY(0);
+  transform: translateY(0)
+}
+.custom-file-input-wrapper {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  max-width: 300px
+}
+.custom-file-input {
+  display: none
+}
+.custom-file-input-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #f9f9f9;
+  cursor: pointer
+}
+.browse-button {
+  background-color: #007bff;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 14px
 }
 .header {
   margin-top: 40px
@@ -1951,6 +1990,9 @@ body::after {
   .footer {
     margin-top: 9.375rem
   }
+  .footer {
+    padding-bottom: 3.75rem
+  }
   .footer__wrapper {
     padding: 4.6875rem
   }
@@ -2559,6 +2601,9 @@ body::after {
   }
   .footer {
     margin-top: 7.5rem
+  }
+  .footer {
+    padding-bottom: 2.8125rem
   }
   .footer__wrapper {
     padding: 1.875rem
@@ -3229,6 +3274,9 @@ body::after {
   }
   .footer {
     margin-top: clamp(7.5rem ,6.9915254237rem + 2.5423728814vw ,9.375rem)
+  }
+  .footer {
+    padding-bottom: clamp(2.8125rem ,2.5582627119rem + 1.2711864407vw ,3.75rem)
   }
   .footer__wrapper {
     padding: clamp(1.875rem ,1.1122881356rem + 3.813559322vw ,4.6875rem)

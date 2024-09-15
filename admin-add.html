@@ -6,7 +6,7 @@
 	<meta charset="UTF-8">
 	<meta name="format-detection" content="telephone=no">
 	<!-- <style>body{opacity: 0;}</style> -->
-	<link rel="stylesheet" href="css/style.min.css?_v=20240910143510">
+	<link rel="stylesheet" href="css/style.min.css?_v=20240916001527">
 	<link rel="shortcut icon" href="favicon.ico">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js?_v=20240826114116"></script>
 	<!-- <meta name="robots" content="noindex, nofollow"> -->
@@ -180,6 +180,8 @@
 						<p class="admin__subtitle">Заповніть необхідну інформацію про автомобіль, щоб забезпечити ефективний менеджмент вашого автопарку</p>
 					</div>
 
+					<meta name="csrf-token" content="{{ csrf_token() }}">
+
 					<form action="" class="admin__form">
 
 						<div class="admin__form-block">
@@ -344,7 +346,7 @@
 		</main>
 
 	</div>
-	<script src="js/app.min.js?_v=20240910143510"></script>
+	<script src="js/app.min.js?_v=20240916001527"></script>
 </body>
 
 </html>
