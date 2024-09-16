@@ -5779,6 +5779,7 @@
             this.fileInput = document.querySelector(inputSelector);
             this.previewContainer = document.querySelector(previewContainerSelector);
             this.files = [];
+            this.existingFiles = [];
             if (!this.fileInput || !this.previewContainer) return;
             this.init();
         }
@@ -5802,16 +5803,24 @@
         updateFileInput() {
             const dt = new DataTransfer;
             this.files.forEach((file => {
-                dt.items.add(file);
+                if (file instanceof File) dt.items.add(file);
             }));
             this.fileInput.files = dt.files;
         }
         async updatePreview() {
-            this.previewContainer.innerHTML = "";
-            for (const file of this.files) await this.loadFile(file);
+            for (const file of this.existingFiles) this.loadExistingFile(file);
+            for (const file of this.files) if (file instanceof File) await this.loadFile(file); else console.error("The provided item is not a valid file:", file);
+        }
+        loadExistingFile(fileData) {
+            const previewItem = this.createLoadingPreview();
+            this.addImage(fileData.url, previewItem, fileData.id);
         }
         loadFile(file) {
             return new Promise(((resolve, reject) => {
+                if (!(file instanceof Blob)) {
+                    reject(new Error("The provided item is not a file."));
+                    return;
+                }
                 const previewItem = this.createLoadingPreview();
                 const reader = new FileReader;
                 reader.onload = e => {
@@ -5831,7 +5840,7 @@
             this.previewContainer.appendChild(previewItem);
             return previewItem;
         }
-        addImage(src, previewItem) {
+        addImage(src, previewItem, fileId = null) {
             previewItem.innerHTML = "";
             const img = document.createElement("img");
             img.src = src;
@@ -5843,22 +5852,48 @@
             removeIcon.classList.add("remove-image");
             previewItem.appendChild(img);
             previewItem.appendChild(removeIcon);
+            if (fileId) previewItem.setAttribute("data-file-id", fileId);
         }
         handleRemove(event) {
             if (event.target.closest("svg.remove-image")) {
                 const previewItem = event.target.closest(".preview-item");
                 const index = Array.from(this.previewContainer.children).indexOf(previewItem);
-                this.files.splice(index, 1);
-                this.updateFileInput();
+                if (previewItem.hasAttribute("data-file-id")) {
+                    const fileId = previewItem.getAttribute("data-file-id");
+                    this.existingFiles = this.existingFiles.filter((file => file.id !== fileId));
+                } else {
+                    this.files.splice(index - this.existingFiles.length, 1);
+                    this.updateFileInput();
+                }
                 previewItem.remove();
             }
         }
         handleSort(event) {
             const oldIndex = event.oldIndex;
             const newIndex = event.newIndex;
-            const movedFile = this.files.splice(oldIndex, 1)[0];
-            this.files.splice(newIndex, 0, movedFile);
-            this.updateFileInput();
+            if (oldIndex < this.existingFiles.length && newIndex < this.existingFiles.length) {
+                const movedFile = this.existingFiles[oldIndex];
+                if (movedFile && movedFile.id) {
+                    this.existingFiles.splice(oldIndex, 1);
+                    this.existingFiles.splice(newIndex, 0, movedFile);
+                } else console.error("Invalid existing file at index", oldIndex);
+            } else if (oldIndex >= this.existingFiles.length && newIndex >= this.existingFiles.length) {
+                const adjustedOldIndex = oldIndex - this.existingFiles.length;
+                const adjustedNewIndex = newIndex - this.existingFiles.length;
+                const movedFile = this.files[adjustedOldIndex];
+                if (movedFile && movedFile instanceof File) {
+                    this.files.splice(adjustedOldIndex, 1);
+                    this.files.splice(adjustedNewIndex, 0, movedFile);
+                    this.updateFileInput();
+                }
+            }
+        }
+        updateFormOrder() {
+            const orderInput = document.querySelector('input[name="image_order"]');
+            orderInput.value = "";
+            const allFiles = [ ...this.existingFiles, ...this.files ];
+            const order = allFiles.map((file => file.id || "new"));
+            orderInput.value = JSON.stringify(order);
         }
     }
     class TogglePassword {
@@ -8703,7 +8738,7 @@
         threshold: .2,
         rootMargin: "0px",
         duration: 600,
-        distance: "100px"
+        distance: "200px"
     });
     const phoneMask = new PhoneMask(".phone-mask");
     phoneMask.applyMask();
