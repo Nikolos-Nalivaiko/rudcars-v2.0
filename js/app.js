@@ -5778,122 +5778,94 @@
         constructor(inputSelector, previewContainerSelector) {
             this.fileInput = document.querySelector(inputSelector);
             this.previewContainer = document.querySelector(previewContainerSelector);
+            this.imageOrderInput = document.querySelector('input[name="image_order"]');
+            this.deleteImagesInput = document.querySelector('input[name="delete_images"]');
             this.files = [];
-            this.existingFiles = [];
-            if (!this.fileInput || !this.previewContainer) return;
-            this.init();
+            this.deletedFiles = [];
+            if (this.fileInput && this.previewContainer && this.imageOrderInput && this.deleteImagesInput) this.init();
         }
         init() {
             this.fileInput.addEventListener("change", (event => this.handleFiles(event)));
-            this.previewContainer.addEventListener("click", (event => this.handleRemove(event)));
             this.initSortable();
+            this.previewContainer.addEventListener("click", (event => this.handleRemove(event)));
+            this.loadExistingImages();
+        }
+        loadExistingImages() {
+            const existingPreviews = this.previewContainer?.querySelectorAll(".preview-item") || [];
+            existingPreviews.forEach((previewItem => {
+                const filename = previewItem.getAttribute("data-filename");
+                if (filename) this.files.push({
+                    name: filename,
+                    isExisting: true
+                });
+            }));
+            this.updateFileOrder();
         }
         initSortable() {
+            if (!this.previewContainer) return;
             sortable_esm.create(this.previewContainer, {
                 animation: 150,
-                onEnd: event => this.handleSort(event)
+                onEnd: () => this.updateFileOrder()
             });
         }
         handleFiles(event) {
             const newFiles = Array.from(event.target.files);
-            this.files = this.files.concat(newFiles);
-            this.updateFileInput();
-            this.updatePreview();
-        }
-        updateFileInput() {
-            const dt = new DataTransfer;
-            this.files.forEach((file => {
-                if (file instanceof File) dt.items.add(file);
-            }));
-            this.fileInput.files = dt.files;
-        }
-        async updatePreview() {
-            for (const file of this.existingFiles) this.loadExistingFile(file);
-            for (const file of this.files) if (file instanceof File) await this.loadFile(file); else console.error("The provided item is not a valid file:", file);
-        }
-        loadExistingFile(fileData) {
-            const previewItem = this.createLoadingPreview();
-            this.addImage(fileData.url, previewItem, fileData.id);
-        }
-        loadFile(file) {
-            return new Promise(((resolve, reject) => {
-                if (!(file instanceof Blob)) {
-                    reject(new Error("The provided item is not a file."));
-                    return;
+            newFiles.forEach((file => {
+                if (!this.files.some((f => f.name === file.name && f.size === file.size))) {
+                    this.files.push(file);
+                    this.loadFilePreview(file);
                 }
-                const previewItem = this.createLoadingPreview();
-                const reader = new FileReader;
-                reader.onload = e => {
-                    this.addImage(e.target.result, previewItem);
-                    resolve();
-                };
-                reader.onerror = error => reject(error);
-                reader.readAsDataURL(file);
             }));
+            this.updateFileOrder();
         }
-        createLoadingPreview() {
+        loadFilePreview(file) {
             const previewItem = document.createElement("div");
             previewItem.classList.add("preview-item");
-            const spinner = document.createElement("div");
-            spinner.classList.add("spinner");
-            previewItem.appendChild(spinner);
-            this.previewContainer.appendChild(previewItem);
-            return previewItem;
-        }
-        addImage(src, previewItem, fileId = null) {
-            previewItem.innerHTML = "";
-            const img = document.createElement("img");
-            img.src = src;
-            img.classList.add("preview-image");
-            const removeIcon = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-            const useElement = document.createElementNS("http://www.w3.org/2000/svg", "use");
-            useElement.setAttributeNS("http://www.w3.org/1999/xlink", "xlink:href", "img/icons/icons.svg#close");
-            removeIcon.appendChild(useElement);
-            removeIcon.classList.add("remove-image");
-            previewItem.appendChild(img);
-            previewItem.appendChild(removeIcon);
-            if (fileId) previewItem.setAttribute("data-file-id", fileId);
+            previewItem.setAttribute("data-filename", file.name);
+            const reader = new FileReader;
+            reader.onload = e => {
+                const img = document.createElement("img");
+                img.src = e.target.result;
+                img.classList.add("preview-image");
+                previewItem.appendChild(img);
+                const removeIcon = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+                const useElement = document.createElementNS("http://www.w3.org/2000/svg", "use");
+                useElement.setAttributeNS("http://www.w3.org/1999/xlink", "xlink:href", "img/icons/icons.svg#close");
+                removeIcon.appendChild(useElement);
+                removeIcon.classList.add("remove-image");
+                previewItem.appendChild(removeIcon);
+                this.previewContainer.appendChild(previewItem);
+                this.updateFileOrder();
+            };
+            reader.readAsDataURL(file);
         }
         handleRemove(event) {
-            if (event.target.closest("svg.remove-image")) {
-                const previewItem = event.target.closest(".preview-item");
-                const index = Array.from(this.previewContainer.children).indexOf(previewItem);
-                if (previewItem.hasAttribute("data-file-id")) {
-                    const fileId = previewItem.getAttribute("data-file-id");
-                    this.existingFiles = this.existingFiles.filter((file => file.id !== fileId));
-                } else {
-                    this.files.splice(index - this.existingFiles.length, 1);
-                    this.updateFileInput();
-                }
-                previewItem.remove();
-            }
-        }
-        handleSort(event) {
-            const oldIndex = event.oldIndex;
-            const newIndex = event.newIndex;
-            if (oldIndex < this.existingFiles.length && newIndex < this.existingFiles.length) {
-                const movedFile = this.existingFiles[oldIndex];
-                if (movedFile && movedFile.id) {
-                    this.existingFiles.splice(oldIndex, 1);
-                    this.existingFiles.splice(newIndex, 0, movedFile);
-                } else console.error("Invalid existing file at index", oldIndex);
-            } else if (oldIndex >= this.existingFiles.length && newIndex >= this.existingFiles.length) {
-                const adjustedOldIndex = oldIndex - this.existingFiles.length;
-                const adjustedNewIndex = newIndex - this.existingFiles.length;
-                const movedFile = this.files[adjustedOldIndex];
-                if (movedFile && movedFile instanceof File) {
-                    this.files.splice(adjustedOldIndex, 1);
-                    this.files.splice(adjustedNewIndex, 0, movedFile);
-                    this.updateFileInput();
+            const removeButton = event.target.closest(".remove-image");
+            if (removeButton) {
+                const previewItem = removeButton.closest(".preview-item");
+                const filename = previewItem.getAttribute("data-filename");
+                const fileIndex = this.files.findIndex((file => file.name === filename));
+                if (fileIndex > -1) {
+                    if (this.files[fileIndex]?.isExisting) {
+                        this.deletedFiles.push(filename);
+                        this.updateDeletedFilesInput();
+                    }
+                    this.files.splice(fileIndex, 1);
+                    previewItem.remove();
+                    this.updateFileOrder();
                 }
             }
         }
-        updateFormOrder() {
-            const orderInput = document.querySelector('input[name="image_order"]');
-            orderInput.value = "";
-            const allFiles = [ ...this.existingFiles, ...this.files ];
-            const order = allFiles.map((file => file.id || "new"));
-            orderInput.value = JSON.stringify(order);
+        updateDeletedFilesInput() {
+            this.deleteImagesInput.value = JSON.stringify(this.deletedFiles);
+        }
+        updateFileOrder() {
+            const previews = this.previewContainer.querySelectorAll(".preview-item");
+            const imageOrderArray = Array.from(previews).map(((preview, index) => ({
+                filename: preview.getAttribute("data-filename"),
+                order: index
+            })));
+            this.imageOrderInput.value = JSON.stringify(imageOrderArray);
         }
     }
     class TogglePassword {
@@ -8606,6 +8578,48 @@
             }));
         }
     }
+    class LazyLoader {
+        constructor(imagesSelector) {
+            this.images = document.querySelectorAll(imagesSelector);
+            this.observer = new IntersectionObserver(this.onIntersection.bind(this), {
+                root: null,
+                threshold: .1
+            });
+        }
+        init() {
+            this.images.forEach((image => {
+                this.createSpinner(image);
+                this.observer.observe(image);
+            }));
+        }
+        onIntersection(entries) {
+            entries.forEach((entry => {
+                if (entry.isIntersecting) {
+                    this.loadImage(entry.target);
+                    this.observer.unobserve(entry.target);
+                }
+            }));
+        }
+        loadImage(image) {
+            const src = image.getAttribute("data-src");
+            if (src) {
+                image.onload = () => {
+                    image.classList.add("loaded");
+                    this.removeSpinner(image);
+                };
+                image.src = src;
+            }
+        }
+        createSpinner(image) {
+            const spinner = document.createElement("div");
+            spinner.classList.add("spinner");
+            image.parentElement.appendChild(spinner);
+        }
+        removeSpinner(image) {
+            const spinner = image.parentElement.querySelector(".spinner");
+            if (spinner) spinner.remove();
+        }
+    }
     const preloaderElement = document.getElementById("preloader");
     const contentElement = document.getElementById("content");
     const preloader = new Preloader(preloaderElement, contentElement);
@@ -8742,4 +8756,6 @@
     });
     const phoneMask = new PhoneMask(".phone-mask");
     phoneMask.applyMask();
+    const lazyLoader = new LazyLoader("img.lazy");
+    lazyLoader.init();
 })();

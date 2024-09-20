@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Play:wght@400; 700&display=swap');
 * {
   padding: 0;
   margin: 0;
@@ -573,6 +573,8 @@ body::after {
   position: relative;
   display: inline-block;
   margin: 10px;
+  width: 200px;
+  height: 150px;
   overflow: hidden;
   cursor: -webkit-grab;
   cursor: grab;

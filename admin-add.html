@@ -6,7 +6,7 @@
 	<meta charset="UTF-8">
 	<meta name="format-detection" content="telephone=no">
 	<!-- <style>body{opacity: 0;}</style> -->
-	<link rel="stylesheet" href="css/style.min.css?_v=20240916183502">
+	<link rel="stylesheet" href="css/style.min.css?_v=20240920145440">
 	<link rel="shortcut icon" href="favicon.ico">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js?_v=20240826114116"></script>
 	<!-- <meta name="robots" content="noindex, nofollow"> -->
@@ -322,7 +322,8 @@
 
 						<div class="admin__form-file-wrapper">
 							<input type="file" name="files[]" id="fileInput" class="admin__form-file" multiple accept="image.webp,image.webp, image.webp,image/webp">
-							<input type="hidden" name="image_order" value="" />
+							<input type="hidden" name="image_order" value="">
+							<input type="hidden" name="delete_images" value="">
 							<label for="fileInput" class="admin__form-file-label">
 								<svg>
 									<use xlink:href="img/icons/icons.svg#addImage"></use>
@@ -334,26 +335,26 @@
 						<div class="admin__form-file-wrapper">
 							<div class="admin__files-container" id="previewContainer">
 
-								<div class="preview-item">
+								<div class="preview-item" data-filename="Skoda.webp">
 									<img src="img/Skoda.webp" class="preview-image">
 									<svg class="remove-image">
 										<use xlink:href="img/icons/icons.svg#close"></use>
 									</svg>
 								</div>
 
-								<div class="preview-item">
+								<div class="preview-item" data-filename="Volvo.webp">
 									<img src="img/Volvo.webp" class="preview-image">
 									<svg class="remove-image">
 										<use xlink:href="img/icons/icons.svg#close"></use>
 									</svg>
 								</div>
 
-								<div class="preview-item">
-									<img src="img/VWPhaeton.webp" class="preview-image">
-									<svg class="remove-image">
-										<use xlink:href="img/icons/icons.svg#close"></use>
-									</svg>
-								</div>
+								<!-- <div class="preview-item" data-file-id="002">
+                                        <img src="img/VWPhaeton.webp" class="preview-image">
+                                        <svg class="remove-image">
+                                            <use xlink:href="img/icons/icons.svg#close"></use>
+                                        </svg>
+                                    </div> -->
 
 							</div>
 						</div>
@@ -369,7 +370,7 @@
 		</main>
 
 	</div>
-	<script src="js/app.min.js?_v=20240916183502"></script>
+	<script src="js/app.min.js?_v=20240920145440"></script>
 </body>
 
 </html>
