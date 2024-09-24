@@ -6,7 +6,7 @@
 	<meta charset="UTF-8">
 	<meta name="format-detection" content="telephone=no">
 	<!-- <style>body{opacity: 0;}</style> -->
-	<link rel="stylesheet" href="css/style.min.css?_v=20240920145440">
+	<link rel="stylesheet" href="css/style.min.css?_v=20240925003608">
 	<link rel="shortcut icon" href="favicon.ico">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js?_v=20240826114116"></script>
 	<!-- <meta name="robots" content="noindex, nofollow"> -->
@@ -93,52 +93,56 @@
 	</div>
 
 	<div class="wrapper" id="content">
-		<header class="header header__container">
+		<header class="header">
 
 			<div class="menu">
-				<div class="menu__header">
-
-					<a href="index.html">
-						<img src="img/logo.svg" alt="Логотип" class="logo">
-					</a>
-
-					<div class="menu__header-inner">
-						<button class="header__btn header__btn_mobile open-popup">Замовити авто</button>
-
-						<button class="menu__open">
-							<svg>
-								<use xlink:href="img/icons/icons.svg#menuAdmin"></use>
-							</svg>
-						</button>
-					</div>
-				</div>
-
-				<nav class="menu__content header__navbar">
+				<div class="menu__container">
 
 					<div class="menu__header">
+
 						<a href="index.html">
-							<img src="img/logo.svg" alt="Логотип" class="logo_mobile">
+							<img src="img/logo.svg" alt="Логотип" class="logo">
 						</a>
 
-						<button class="menu__close">
-							<svg>
-								<use xlink:href="img/icons/icons.svg#close"></use>
-							</svg>
-						</button>
+						<div class="menu__header-inner">
+							<button class="header__btn header__btn_mobile open-popup">Замовити авто</button>
 
+							<button class="menu__open">
+								<svg>
+									<use xlink:href="img/icons/icons.svg#menuAdmin"></use>
+								</svg>
+							</button>
+						</div>
 					</div>
 
-					<div class="menu__content-inner">
-						<ul class="menu__list">
-							<li class="menu__item nav__item--hover"><a href="index.html">Головна</a></li>
-							<li class="menu__item nav__item--hover"><a href="catalog.html">Асортимент</a></li>
-							<li class="menu__item nav__item--hover"><a href="/index.html#service" class="scroll-link">Послуги</a></li>
-							<li class="menu__item nav__item--hover"><a href="/index.html#contact" class="scroll-link">Контакти</a></li>
-						</ul>
+					<nav class="menu__content header__navbar">
 
-						<button class="header__btn open-popup">Замовити авто</button>
-					</div>
-				</nav>
+						<div class="menu__header">
+							<a href="index.html">
+								<img src="img/logo.svg" alt="Логотип" class="logo_mobile">
+							</a>
+
+							<button class="menu__close">
+								<svg>
+									<use xlink:href="img/icons/icons.svg#close"></use>
+								</svg>
+							</button>
+
+						</div>
+
+						<div class="menu__content-inner">
+							<ul class="menu__list">
+								<li class="menu__item nav__item--hover"><a href="index.html">Головна</a></li>
+								<li class="menu__item nav__item--hover"><a href="catalog.html">Асортимент</a></li>
+								<li class="menu__item nav__item--hover"><a href="/index.html#service" class="scroll-link">Послуги</a></li>
+								<li class="menu__item nav__item--hover"><a href="/index.html#contact" class="scroll-link">Контакти</a></li>
+							</ul>
+
+							<button class="header__btn open-popup">Замовити авто</button>
+						</div>
+					</nav>
+
+				</div>
 			</div>
 
 		</header>
@@ -146,12 +150,13 @@
 
 			<div class="popup" id="popup">
 				<div class="popup__wrapper">
+					<button data-close type="button" class="popup__close">
+						<svg>
+							<use xlink:href="img/icons/icons.svg#close"></use>
+						</svg>
+					</button>
+
 					<div class="popup__content">
-						<button data-close type="button" class="popup__close">
-							<svg>
-								<use xlink:href="img/icons/icons.svg#close"></use>
-							</svg>
-						</button>
 						<div class="popup__text">
 							<h3 class="popup__title">Замовити авто зараз</h3>
 
@@ -271,17 +276,17 @@
 			</div>
 
 
-			<section class="hero load-in">
+			<section class="hero">
 
 				<div class="hero__container">
 					<div class="hero__block">
 						<div class="hero__text">
-							<h1 class="hero__title">Пориньте в магію керування</h1>
-							<p class="hero__subtitle">Завдяки нашому вибору авто Ви почуєте люкс та відчуєте бездоганний комфорт на кожній дорозі! Оберіть Ваш ідеальний автомобіль тут і розкрийте справжню радість подорожей</p>
+							<h1 class="hero__title fade-in">Пориньте в магію керування</h1>
+							<p class="hero__subtitle fade-in">Завдяки нашому вибору авто Ви почуєте люкс та відчуєте бездоганний комфорт на кожній дорозі! Оберіть Ваш ідеальний автомобіль тут і розкрийте справжню радість подорожей</p>
 						</div>
 						<a href="catalog.html" class="hero__btn">Асортимент авто</a>
 
-						<div class="hero__slider swiper-container">
+						<div class="hero__slider swiper-container fade-in">
 							<div class="hero__wrapper swiper-wrapper">
 								<div class="hero__slide swiper-slide">
 									<div class="advantages__block">
@@ -333,17 +338,19 @@
 					</div>
 				</div>
 
-				<div class="hero__image">
-					<img class="lazy" data-src="img/heroBg.webp" alt="Hero background">
+				<div class="hero__image fade-in">
+					<div class="image-wrapper">
+						<img class="lazy" data-src="img/heroBg.webp" alt="Hero background">
+					</div>
 				</div>
 
 			</section>
 
 			<section id="offers" class="offers offers__container">
 
-				<h2 class="offers__title load-in">Акційні пропозиції</h2>
+				<h2 class="offers__title fade-in">Акційні пропозиції</h2>
 
-				<div class="offers__nav load-in">
+				<div class="offers__nav fade-in">
 					<div class="offers__list tabs-container">
 						<div class="tab offers__item nav__item--hover" data-target="#tab1">Офіційні авто</div>
 						<div class="tab offers__item nav__item--hover" data-target="#tab2">Авто із США</div>
@@ -358,14 +365,16 @@
 					</a>
 				</div>
 
-				<div class="load-in">
+				<div class="fade-in">
 					<div id="tab1" class="tab-content">
 						<div class="offers__slider swiper-container">
 							<div class="swiper-wrapper offers__wrapper" id="tab-cars">
 								<div class="swiper-slide offers__slide">
 									<a href="info.html" class="card">
 										<div class="card__image">
-											<img class="lazy" data-src="img/corvette1.webp">
+											<div class="image-wrapper">
+												<img class="lazy" data-src="img/corvette1.webp" alt="Car preview">
+											</div>
 										</div>
 
 										<div class="card__inner">
@@ -392,7 +401,9 @@
 								<div class="swiper-slide offers__slide">
 									<a href="" class="card">
 										<div class="card__image">
-											<img class="lazy" data-src="img/VWPhaeton.webp">
+											<div class="image-wrapper">
+												<img class="lazy" data-src="img/VWPhaeton.webp" alt="Car preview">
+											</div>
 										</div>
 
 										<div class="card__inner">
@@ -419,8 +430,9 @@
 								<div class="swiper-slide offers__slide">
 									<a href="" class="card">
 										<div class="card__image">
-											<img src="img/Skoda.webp" alt="Image">
-											<img class="lazy" data-src="img/Skoda.webp">
+											<div class="image-wrapper">
+												<img class="lazy" data-src="img/Skoda.webp" alt="Car preview">
+											</div>
 										</div>
 
 										<div class="card__inner">
@@ -447,7 +459,9 @@
 								<div class="swiper-slide offers__slide">
 									<a href="" class="card">
 										<div class="card__image">
-											<img class="lazy" data-src="img/Volvo.webp">
+											<div class="image-wrapper">
+												<img class="lazy" data-src="img/Volvo.webp" alt="Car preview">
+											</div>
 										</div>
 
 										<div class="card__inner">
@@ -480,7 +494,9 @@
 								<div class="swiper-slide offers__slide">
 									<a href="info.html" class="card">
 										<div class="card__image">
-											<img class="lazy" data-src="img/corvette1.webp">
+											<div class="image-wrapper">
+												<img class="lazy" data-src="img/corvette1.webp" alt="Car preview">
+											</div>
 										</div>
 
 										<div class="card__inner">
@@ -507,7 +523,9 @@
 								<div class="swiper-slide offers__slide">
 									<a href="" class="card">
 										<div class="card__image">
-											<img class="lazy" data-src="img/VWPhaeton.webp">
+											<div class="image-wrapper">
+												<img class="lazy" data-src="img/VWPhaeton.webp" alt="Car preview">
+											</div>
 										</div>
 
 										<div class="card__inner">
@@ -534,8 +552,9 @@
 								<div class="swiper-slide offers__slide">
 									<a href="" class="card">
 										<div class="card__image">
-											<img src="img/Skoda.webp" alt="Image">
-											<img class="lazy" data-src="img/Skoda.webp">
+											<div class="image-wrapper">
+												<img class="lazy" data-src="img/Skoda.webp" alt="Car preview">
+											</div>
 										</div>
 
 										<div class="card__inner">
@@ -562,7 +581,9 @@
 								<div class="swiper-slide offers__slide">
 									<a href="" class="card">
 										<div class="card__image">
-											<img class="lazy" data-src="img/Volvo.webp">
+											<div class="image-wrapper">
+												<img class="lazy" data-src="img/Volvo.webp" alt="Car preview">
+											</div>
 										</div>
 
 										<div class="card__inner">
@@ -595,7 +616,9 @@
 								<div class="swiper-slide offers__slide">
 									<a href="info.html" class="card">
 										<div class="card__image">
-											<img class="lazy" data-src="img/corvette1.webp">
+											<div class="image-wrapper">
+												<img class="lazy" data-src="img/corvette1.webp" alt="Car preview">
+											</div>
 										</div>
 
 										<div class="card__inner">
@@ -622,7 +645,9 @@
 								<div class="swiper-slide offers__slide">
 									<a href="" class="card">
 										<div class="card__image">
-											<img class="lazy" data-src="img/VWPhaeton.webp">
+											<div class="image-wrapper">
+												<img class="lazy" data-src="img/VWPhaeton.webp" alt="Car preview">
+											</div>
 										</div>
 
 										<div class="card__inner">
@@ -649,8 +674,9 @@
 								<div class="swiper-slide offers__slide">
 									<a href="" class="card">
 										<div class="card__image">
-											<img src="img/Skoda.webp" alt="Image">
-											<img class="lazy" data-src="img/Skoda.webp">
+											<div class="image-wrapper">
+												<img class="lazy" data-src="img/Skoda.webp" alt="Car preview">
+											</div>
 										</div>
 
 										<div class="card__inner">
@@ -677,7 +703,9 @@
 								<div class="swiper-slide offers__slide">
 									<a href="" class="card">
 										<div class="card__image">
-											<img class="lazy" data-src="img/Volvo.webp">
+											<div class="image-wrapper">
+												<img class="lazy" data-src="img/Volvo.webp" alt="Car preview">
+											</div>
 										</div>
 
 										<div class="card__inner">
@@ -710,7 +738,7 @@
 
 			<section class="steps__container section">
 
-				<div class="steps__inner load-in">
+				<div class="steps__inner fade-in">
 					<div class="steps__text">
 						<h2 class="steps__title">Кроки придбання авто у нашому салоні</h2>
 						<button class="steps__btn open-popup">Замовити авто</button>
@@ -724,20 +752,20 @@
 					</a>
 				</div>
 
-				<div class="steps__blocks load-in">
+				<div class="steps__blocks fade-in">
 					<div class="step__block">
 						<h3 class="step__title">Крок 1:</h3>
 						<p class="step__subtitle">Вибір автомобіля</p>
 						<p class="step__description">Наші експерти допоможуть знайти авто, що відповідатиме вашим вимогам та бюджету, забезпечуючи задоволення від покупки.</p>
 					</div>
 
-					<div class="step__block load-in">
+					<div class="step__block fade-in">
 						<h3 class="step__title">Крок 2:</h3>
 						<p class="step__subtitle">Придбання та оформлення</p>
 						<p class="step__description">Здійсніть покупку без зайвих клопотів. Ми надамо супровід, включаючи юридичне оформлення та фінансові консультації.</p>
 					</div>
 
-					<div class="step__block load-in">
+					<div class="step__block fade-in">
 						<h3 class="step__title">Крок 3:</h3>
 						<p class="step__subtitle">Супровід і підтримка</p>
 						<p class="step__description">Отримайте повний супровід після покупки. Ми організуємо доставку, митне оформлення та сертифікацію для вашого нового авто.</p>
@@ -747,15 +775,15 @@
 			</section>
 
 			<section id="service" class="delivery delivery__container section">
-				<img class="delivery__image load-in lazy" data-src="img/delivery.webp" alt="Image">
+				<img class="delivery__image fade-in lazy" data-src="img/delivery.webp" alt="Image">
 				<div class="delivery__inner">
-					<div class="delivery__text load-in">
-						<h2 class="delivery__title">Пригін авто з США або Европи</h2>
-						<p class="delivery__subtitle">Ваш шанс відчути справжню якість та стиль закордонних автомобілів. Ми допоможемо вам знайти ідеальне авто, що відповідатиме всім вашим вимогам, з найкращими характеристиками та бездоганною історією</p>
+					<div class="delivery__text fade-in">
+						<h2 class="delivery__title fade-in">Пригін авто з США або Европи</h2>
+						<p class="delivery__subtitle fade-in">Ваш шанс відчути справжню якість та стиль закордонних автомобілів. Ми допоможемо вам знайти ідеальне авто, що відповідатиме всім вашим вимогам, з найкращими характеристиками та бездоганною історією</p>
 					</div>
-					<button class="delivery__btn open-popup load-in">Замовити авто</button>
+					<button class="delivery__btn open-popup fade-in">Замовити авто</button>
 
-					<div class="delivery__advantages load-in">
+					<div class="delivery__advantages fade-in">
 						<div class="advantages__block">
 							<div class="advantages__icon">
 								<svg>
@@ -780,13 +808,13 @@
 			</section>
 
 			<section class="tradeIn tradeIn__container section">
-				<img class="tradeIn__image load-in lazy" data-src="img/tradeIn.webp" alt="Image">
+				<img class="tradeIn__image fade-in lazy" data-src="img/tradeIn.webp" alt="Image">
 				<div class="tradeIn__inner">
-					<div class="tradeIn__text load-in">
+					<div class="tradeIn__text fade-in">
 						<h2 class="tradeIn__title">Автомобільний трейд-ін</h2>
 						<p class="tradeIn__subtitle">У нашій програмі обміну автомобілів ви можете отримати нове авто, додавши до вашого власного нашу доплату або навпаки</p>
 					</div>
-					<div class="advantages__block tradeIn__advantages load-in">
+					<div class="advantages__block tradeIn__advantages fade-in">
 						<div class="advantages__icon advantages__icon_white">
 							<svg>
 								<use xlink:href="img/icons/icons.svg#money"></use>
@@ -799,7 +827,7 @@
 			</section>
 
 			<section id="contact" class="contacts contacts__container section">
-				<div class="contacts__header load-in">
+				<div class="contacts__header fade-in">
 					<h2>Контакти</h2>
 					<div class="contacts__socials">
 						<a href="" class="social">
@@ -823,30 +851,30 @@
 				</div>
 
 				<div class="contacts__inner">
-					<ul class="contacts__list load-in">
+					<ul class="contacts__list fade-in">
 						<li class="contacts__item-title">Адреса</li>
 						<li class="contacts__item-subtitle">Пр-кт. Лесі Українки, 52, м. Кременчук</li>
 					</ul>
 
-					<ul class="contacts__list load-in">
+					<ul class="contacts__list fade-in">
 						<li class="contacts__item-title">Номер телефону</li>
 						<li class="contacts__item-subtitle">+38(096)-00-300-10</li>
 					</ul>
 
-					<ul class="contacts__list load-in">
+					<ul class="contacts__list fade-in">
 						<li class="contacts__item-title">Графік роботи</li>
 						<li class="contacts__item-subtitle">Пн. - Пт. 9:00 - 19:00</li>
 					</ul>
 				</div>
 
-				<div class="load-in">
+				<div class="fade-in">
 					<iframe class="contacts__map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2611.168260608869!2d33.43760117628542!3d49.12143948215915!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40d75365f5f65b51%3A0xf0aefcfdb459ee9e!2z0JDQstGC0L7RgdCw0LvQvtC9IFJVRENBUlM!5e0!3m2!1sru!2sua!4v1722423196761!5m2!1sru!2sua" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 				</div>
 
 			</section>
 
 		</main>
-		<footer class="footer load-in">
+		<footer class="footer fade-in">
 			<div class="footer__container">
 				<div class="footer__wrapper">
 					<div class="footer__inner">
@@ -897,7 +925,7 @@
 			</div>
 		</footer>
 	</div>
-	<script src="js/app.min.js?_v=20240920145440"></script>
+	<script src="js/app.min.js?_v=20240925003608"></script>
 </body>
 
 </html>

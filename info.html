@@ -6,7 +6,7 @@
 	<meta charset="UTF-8">
 	<meta name="format-detection" content="telephone=no">
 	<!-- <style>body{opacity: 0;}</style> -->
-	<link rel="stylesheet" href="css/style.min.css?_v=20240920145440">
+	<link rel="stylesheet" href="css/style.min.css?_v=20240925003608">
 	<link rel="shortcut icon" href="favicon.ico">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js?_v=20240826114116"></script>
 	<!-- <meta name="robots" content="noindex, nofollow"> -->
@@ -91,52 +91,56 @@
 		<div class="loader"></div>
 	</div>
 	<div class="wrapper" id="content">
-		<header class="header header__container">
+		<header class="header">
 
 			<div class="menu">
-				<div class="menu__header">
-
-					<a href="index.html">
-						<img src="img/logo.svg" alt="Логотип" class="logo">
-					</a>
-
-					<div class="menu__header-inner">
-						<button class="header__btn header__btn_mobile open-popup">Замовити авто</button>
-
-						<button class="menu__open">
-							<svg>
-								<use xlink:href="img/icons/icons.svg#menuAdmin"></use>
-							</svg>
-						</button>
-					</div>
-				</div>
-
-				<nav class="menu__content header__navbar">
+				<div class="menu__container">
 
 					<div class="menu__header">
+
 						<a href="index.html">
-							<img src="img/logo.svg" alt="Логотип" class="logo_mobile">
+							<img src="img/logo.svg" alt="Логотип" class="logo">
 						</a>
 
-						<button class="menu__close">
-							<svg>
-								<use xlink:href="img/icons/icons.svg#close"></use>
-							</svg>
-						</button>
+						<div class="menu__header-inner">
+							<button class="header__btn header__btn_mobile open-popup">Замовити авто</button>
 
+							<button class="menu__open">
+								<svg>
+									<use xlink:href="img/icons/icons.svg#menuAdmin"></use>
+								</svg>
+							</button>
+						</div>
 					</div>
 
-					<div class="menu__content-inner">
-						<ul class="menu__list">
-							<li class="menu__item nav__item--hover"><a href="index.html">Головна</a></li>
-							<li class="menu__item nav__item--hover"><a href="catalog.html">Асортимент</a></li>
-							<li class="menu__item nav__item--hover"><a href="/index.html#service" class="scroll-link">Послуги</a></li>
-							<li class="menu__item nav__item--hover"><a href="/index.html#contact" class="scroll-link">Контакти</a></li>
-						</ul>
+					<nav class="menu__content header__navbar">
 
-						<button class="header__btn open-popup">Замовити авто</button>
-					</div>
-				</nav>
+						<div class="menu__header">
+							<a href="index.html">
+								<img src="img/logo.svg" alt="Логотип" class="logo_mobile">
+							</a>
+
+							<button class="menu__close">
+								<svg>
+									<use xlink:href="img/icons/icons.svg#close"></use>
+								</svg>
+							</button>
+
+						</div>
+
+						<div class="menu__content-inner">
+							<ul class="menu__list">
+								<li class="menu__item nav__item--hover"><a href="index.html">Головна</a></li>
+								<li class="menu__item nav__item--hover"><a href="catalog.html">Асортимент</a></li>
+								<li class="menu__item nav__item--hover"><a href="/index.html#service" class="scroll-link">Послуги</a></li>
+								<li class="menu__item nav__item--hover"><a href="/index.html#contact" class="scroll-link">Контакти</a></li>
+							</ul>
+
+							<button class="header__btn open-popup">Замовити авто</button>
+						</div>
+					</nav>
+
+				</div>
 			</div>
 
 		</header>
@@ -144,9 +148,9 @@
 			<section class="info__container page__new">
 				<div class="info__header">
 
-					<div class="info__sliders load-in">
+					<div class="info__sliders">
 
-						<div class="info__slider_main swiper-container">
+						<div class="info__slider_main swiper-container fade-in">
 							<div class="info__wrapper_main swiper-wrapper">
 
 								<div class="info__slide_main swiper-slide info__image">
@@ -196,7 +200,7 @@
 							</div>
 						</div>
 
-						<div class="info__slider_thumb swiper-container">
+						<div class="info__slider_thumb swiper-container fade-in">
 							<div class="info__wrapper_thumb swiper-wrapper">
 								<div class="info__slide_thumb swiper-slide">
 									<div class="info__image_thumb info__image">
@@ -233,42 +237,42 @@
 
 					</div>
 
-					<div class="info__details load-in">
-						<h3 class="info__title">Chevrolet Corvette</h3>
+					<div class="info__details">
+						<h3 class="info__title fade-in">Chevrolet Corvette</h3>
 
-						<ul class="info__details-list">
+						<ul class="info__details-list fade-in">
 							<li class="info__details-item">2015 рік</li>
 							<li class="info__details-item">Офіційне авто</li>
 							<li class="info__details-item">70,000 км.</li>
 						</ul>
 
-						<ul class="info__prices">
+						<ul class="info__prices fade-in">
 							<li class="info__price">75,000$</li>
 							<li class="info__price_old">78,000$</li>
 						</ul>
 
 						<div class="info__panel">
-							<ul class="info__panel-list">
+							<ul class="info__panel-list fade-in">
 								<li class="info__panel-item">Тип двигуна</li>
 								<li class="info__panel-item">Бензин</li>
 							</ul>
-							<ul class="info__panel-list">
+							<ul class="info__panel-list fade-in">
 								<li class="info__panel-item">Привід</li>
 								<li class="info__panel-item">Повний</li>
 							</ul>
-							<ul class="info__panel-list">
+							<ul class="info__panel-list fade-in">
 								<li class="info__panel-item">Об’єм двигуна</li>
 								<li class="info__panel-item">6.2</li>
 							</ul>
-							<ul class="info__panel-list">
+							<ul class="info__panel-list fade-in">
 								<li class="info__panel-item">VIN-код</li>
 								<li class="info__panel-item">JH4KA9660NC000001</li>
 							</ul>
-							<ul class="info__panel-list">
+							<ul class="info__panel-list fade-in">
 								<li class="info__panel-item">Потужність</li>
 								<li class="info__panel-item">659 к.с</li>
 							</ul>
-							<ul class="info__panel-list">
+							<ul class="info__panel-list fade-in">
 								<li class="info__panel-item">К-сть власників</li>
 								<li class="info__panel-item">1</li>
 							</ul>
@@ -279,23 +283,23 @@
 
 				<div class="info__footer">
 					<div class="info__fact">
-						<h3 class="info__fact-title load-in">Опис Chevrolet Corvette</h3>
-						<p class="info__fact-subtitle load-in">Цей автомобіль поєднує в собі класичну естетику з сучасними інноваціями, забезпечуючи захоплюючий досвід водіння</p>
+						<h3 class="info__fact-title fade-in">Опис Chevrolet Corvette</h3>
+						<p class="info__fact-subtitle fade-in">Цей автомобіль поєднує в собі класичну естетику з сучасними інноваціями, забезпечуючи захоплюючий досвід водіння</p>
 
 						<div class="info__fact-block">
-							<ul class="info__fact-list load-in">
+							<ul class="info__fact-list fade-in">
 								<li class="info__fact-item"><span>659 </span>к.с</li>
 								<li class="info__fact-subitem">Потужність</li>
 							</ul>
-							<ul class="info__fact-list load-in">
+							<ul class="info__fact-list fade-in">
 								<li class="info__fact-item"><span>20/100 </span>км.</li>
 								<li class="info__fact-subitem">Розхід палива (місто)</li>
 							</ul>
-							<ul class="info__fact-list load-in">
+							<ul class="info__fact-list fade-in">
 								<li class="info__fact-item"><span>255/50 </span></li>
 								<li class="info__fact-subitem">Розмір шини</li>
 							</ul>
-							<ul class="info__fact-list load-in">
+							<ul class="info__fact-list fade-in">
 								<li class="info__fact-item"><span>19 </span>дюймів</li>
 								<li class="info__fact-subitem">Розмір дисків</li>
 							</ul>
@@ -303,15 +307,15 @@
 
 					</div>
 					<div class="info__description">
-						<ul class="info__description-list load-in">
+						<ul class="info__description-list fade-in">
 							<li class="info__description-item">Комфорт</li>
 							<li class="info__description-subitem">Corvette 2015 року надає високий рівень комфорту як для водія, так і для пасажира. Салон оздоблений високоякісними матеріалами, включаючи шкіряні сидіння з підігрівом і вентиляцією, що забезпечують максимальний комфорт у будь-яку погоду. Регульовані сидіння з пам'яттю положень дозволяють легко налаштувати оптимальне положення для водіння. Сучасна мультимедійна система з великим сенсорним екраном, навігацією та можливістю підключення смартфонів робить поїздки ще більш приємними.</li>
 						</ul>
-						<ul class="info__description-list load-in">
+						<ul class="info__description-list fade-in">
 							<li class="info__description-item">Мотор</li>
 							<li class="info__description-subitem">Під капотом Chevrolet Corvette 2015 року знаходиться потужний 6.2-літровий V8 двигун, здатний розвивати до 455 кінських сил і 460 фунт-футів крутного моменту. Цей двигун забезпечує вражаючу динаміку розгону та високу максимальну швидкість. Corvette оснащений семиступінчастою механічною коробкою передач або восьмиступінчастою автоматичною коробкою передач з можливістю ручного перемикання, що дозволяє водієві максимально контролювати автомобіль у будь-яких умовах.</li>
 						</ul>
-						<ul class="info__description-list load-in">
+						<ul class="info__description-list fade-in">
 							<li class="info__description-item">Безпека</li>
 							<li class="info__description-subitem">Chevrolet Corvette 2015 року оснащений численними системами безпеки для забезпечення максимального захисту водія і пасажирів. Серед них системи антиблокування гальм (ABS), система контролю тяги (TCS), система стабілізації (ESC) та кілька подушок безпеки, включаючи передні, бічні та колінні. Крім того, автомобіль має камеру заднього виду, паркувальні сенсори та систему моніторингу сліпих зон, що робить процес паркування та маневрування більш безпечним і простим.</li>
 						</ul>
@@ -319,7 +323,7 @@
 				</div>
 			</section>
 		</main>
-		<footer class="footer load-in">
+		<footer class="footer fade-in">
 			<div class="footer__container">
 				<div class="footer__wrapper">
 					<div class="footer__inner">
@@ -370,7 +374,7 @@
 			</div>
 		</footer>
 	</div>
-	<script src="js/app.min.js?_v=20240920145440"></script>
+	<script src="js/app.min.js?_v=20240925003608"></script>
 </body>
 
 </html>

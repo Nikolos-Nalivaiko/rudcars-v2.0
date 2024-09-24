@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Play:wght@400; 700&display=swap');
 * {
   padding: 0;
   margin: 0;
@@ -331,7 +331,15 @@ h3 {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  position: relative
+  position: fixed;
+  width: 100%;
+  top: 0;
+  right: 0;
+  z-index: 20;
+  opacity: 1;
+  background-color: #fff;
+  transition: .5s ease;
+  padding: 40px 0
 }
 .menu__list {
   display: flex;
@@ -387,12 +395,36 @@ h3 {
   align-items: center;
   gap: 35px
 }
+.menu__container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%
+}
 body.menu-open {
   overflow: hidden
 }
+.menu_fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background-color: rgba(255,255,255,.87);
+  -webkit-backdrop-filter: blur(15px);
+  backdrop-filter: blur(15px);
+  border-bottom: 1px solid #ebebeb;
+  transition: .5s ease;
+  padding: 18px 0
+}
+.menu_fixed.visible {
+  border-bottom: 1px solid #ebebeb
+}
 body::after {
   content: "";
-  background-color: rgba(0,0,0,.5);
+  background-color: rgba(138,138,138,.411);
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
   position: fixed;
   width: 100%;
   height: 100%;
@@ -508,11 +540,20 @@ body::after {
   transform: scale(1)
 }
 .popup__close {
-  position: absolute
+  position: fixed;
+  background: 0 0;
+  border: none;
+  cursor: pointer;
+  z-index: 151
 }
 .popup__close svg {
-  color: red;
-  line-height: 0
+  line-height: 0;
+  color: #000;
+  transition: .3s
+}
+.popup__close svg:hover {
+  color: #646464;
+  transition: .3s
 }
 .tab {
   cursor: pointer;
@@ -649,18 +690,19 @@ body::after {
   -webkit-transform: scale(1.05);
   transform: scale(1.05)
 }
-.fade-in-hidden {
-  opacity: 0;
-  -webkit-transform: translateY(20px);
-  transform: translateY(20px);
-  transition: opacity .6s ease-out,-webkit-transform .6s ease-out;
-  transition: opacity .6s ease-out,transform .6s ease-out;
-  transition: opacity .6s ease-out,transform .6s ease-out,-webkit-transform .6s ease-out
+::-webkit-scrollbar-track {
+  background: #f6f6f6;
+  border-radius: 10px
 }
-.fade-in-visible {
-  opacity: 1;
-  -webkit-transform: translateY(0);
-  transform: translateY(0)
+::-webkit-scrollbar-thumb {
+  background: #1a1a1a
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #1a1a1a
+}
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #1a1a1a #f6f6f6
 }
 .custom-file-input-wrapper {
   position: relative;
@@ -753,10 +795,10 @@ body::after {
   flex-wrap: wrap
 }
 .hero {
+  margin-top: 8.4375rem;
   position: relative
 }
 .hero__block {
-  margin-top: 2.5rem;
   border-radius: 1.5625rem;
   background: #f9f9fb
 }
@@ -1976,7 +2018,7 @@ body::after {
     height: 2.8125rem
   }
   .page__new {
-    margin-top: 5.3125rem
+    margin-top: 11.25rem
   }
   .menu__list {
     font-size: 1.125rem
@@ -2573,7 +2615,7 @@ body::after {
     height: 2.5rem
   }
   .page__new {
-    margin-top: 4.0625rem
+    margin-top: 9.0625rem
   }
   .menu__list {
     font-size: 1rem
@@ -2639,10 +2681,10 @@ body::after {
     top: 1.25rem
   }
   .popup__close svg {
-    width: 1.125rem
+    width: 1.25rem
   }
   .popup__close svg {
-    height: 1.125rem
+    height: 1.25rem
   }
   .pagging {
     margin-top: 2.5rem
@@ -3264,7 +3306,7 @@ body::after {
     height: clamp(2.5rem ,2.4152542373rem + .4237288136vw ,2.8125rem)
   }
   .page__new {
-    margin-top: clamp(4.0625rem ,3.7235169492rem + 1.6949152542vw ,5.3125rem)
+    margin-top: clamp(9.0625rem ,8.469279661rem + 2.9661016949vw ,11.25rem)
   }
   .menu__list {
     font-size: clamp(1rem ,.9661016949rem + .1694915254vw ,1.125rem)
@@ -3312,10 +3354,10 @@ body::after {
     top: clamp(1.25rem ,1.1652542373rem + .4237288136vw ,1.5625rem)
   }
   .popup__close svg {
-    width: clamp(1.125rem ,1.0063559322rem + .593220339vw ,1.5625rem)
+    width: clamp(1.25rem ,1.1652542373rem + .4237288136vw ,1.5625rem)
   }
   .popup__close svg {
-    height: clamp(1.125rem ,1.0063559322rem + .593220339vw ,1.5625rem)
+    height: clamp(1.25rem ,1.1652542373rem + .4237288136vw ,1.5625rem)
   }
   .pagging {
     margin-top: clamp(2.5rem ,2.2457627119rem + 1.2711864407vw ,3.4375rem)
