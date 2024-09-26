@@ -18,8 +18,9 @@
         }
     }
     class MobileMenu {
-        constructor(contentSelector, openButtonSelector, closeButtonSelector) {
+        constructor(contentSelector, openButtonSelector, closeButtonSelector, options = {}) {
             this.menuContent = document.querySelector(contentSelector);
+            this.menuWrapper = this.menuContent.closest(".menu__wrapper");
             this.menu = this.menuContent.closest(".menu");
             this.openButton = document.querySelector(openButtonSelector);
             this.closeButton = document.querySelector(closeButtonSelector);
@@ -27,12 +28,21 @@
             this.isOpen = false;
             this.isScrollingDown = false;
             this.previousScrollY = window.scrollY;
+            this.options = {
+                sticky: options.sticky !== void 0 ? options.sticky : true,
+                orientation: options.orientation || "vertical"
+            };
             if (this.menuContent && this.openButton && this.closeButton) {
                 this.openButton.addEventListener("click", (() => this.openMenu()));
                 this.closeButton.addEventListener("click", (() => this.closeMenu()));
                 document.addEventListener("click", (e => this.handleOutsideClick(e)));
-                window.addEventListener("scroll", (() => this.handleScroll()));
+                this.addOrientationClass();
+                if (this.options.sticky) window.addEventListener("scroll", (() => this.handleScroll()));
             }
+        }
+        addOrientationClass() {
+            const orientationClass = this.options.orientation === "horizontal" ? "menu_horizontal" : "menu_vertical";
+            this.menuWrapper.classList.add(orientationClass);
         }
         openMenu() {
             this.isOpen = true;
@@ -9847,8 +9857,10 @@
     window.addEventListener("load", (() => {
         preloader.hide();
     }));
-    new MobileMenu(".menu__content", ".menu__open", ".menu__close");
-    new MobileMenu(".menu__content", ".panel__open", ".panel__close");
+    new MobileMenu(".menu__content", ".menu__open", ".menu__close", {
+        sticky: true,
+        orientation: "horizontal"
+    });
     new SwiperComponent(".hero__slider", {
         slidesPerView: 1,
         spaceBetween: 30,
