@@ -194,17 +194,6 @@ h3 {
   overflow: hidden;
   border-radius: .9375rem .9375rem 0 0
 }
-.card__image img {
-  position: absolute;
-  left: 0;
-  top: 65%;
-  -webkit-transform: translateY(-65%);
-  transform: translateY(-65%);
-  width: 100%;
-  height: auto;
-  -o-object-fit: cover;
-  object-fit: cover
-}
 .card__inner {
   padding: 1.25rem
 }
@@ -728,6 +717,178 @@ body::after {
   color: red;
   transition: .3s
 }
+.image-wrapper {
+  position: relative;
+  display: inline-block
+}
+img.lazy {
+  opacity: 0;
+  transition: opacity .5s ease;
+  max-width: 100%
+}
+img.lazy.loaded {
+  opacity: 1;
+  position: relative
+}
+.lazy-loader {
+  width: 70px;
+  height: 30px;
+  overflow: hidden;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%);
+  z-index: 10
+}
+.lazy-loader:before {
+  content: "";
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  inset: 0;
+  margin: auto;
+  background: #383838;
+  -webkit-transform-origin: bottom;
+  transform-origin: bottom;
+  -webkit-animation: l10-1 3s infinite;
+  animation: l10-1 3s infinite
+}
+.lazy-loader:after {
+  content: "";
+  position: absolute;
+  width: 8px;
+  height: 14px;
+  bottom: calc(50% - 4px);
+  background: red;
+  -webkit-animation: l10-2 3s infinite;
+  animation: l10-2 3s infinite
+}
+@-webkit-keyframes l10-1 {
+  0%,
+  10% {
+    -webkit-transform: translate(0) scale(1);
+    transform: translate(0) scale(1);
+    box-shadow: 60px 0,60px 0
+  }
+  20%,
+  40% {
+    -webkit-transform: translate(20px) scale(1);
+    transform: translate(20px) scale(1);
+    box-shadow: 60px 0,60px 0
+  }
+  48% {
+    -webkit-transform: translate(20px) scale(1);
+    transform: translate(20px) scale(1);
+    box-shadow: 8px 0,60px 0
+  }
+  50% {
+    -webkit-transform: translate(20px) scale(1.5);
+    transform: translate(20px) scale(1.5);
+    box-shadow: 0 0,60px 0
+  }
+  58% {
+    -webkit-transform: translate(20px) scale(1.5);
+    transform: translate(20px) scale(1.5);
+    box-shadow: 0 0,8px 0
+  }
+  60%,
+  70% {
+    -webkit-transform: translate(20px) scale(2);
+    transform: translate(20px) scale(2);
+    box-shadow: 0 0,0 0
+  }
+  85% {
+    -webkit-transform: translate(-50px) scale(2);
+    transform: translate(-50px) scale(2);
+    box-shadow: 0 0,0 0
+  }
+  87% {
+    -webkit-transform: translate(-50px) scale(1);
+    transform: translate(-50px) scale(1);
+    box-shadow: 0 0,0 0
+  }
+  100% {
+    -webkit-transform: translate(0) scale(1);
+    transform: translate(0) scale(1);
+    box-shadow: 0 0,0 0
+  }
+}
+@keyframes l10-1 {
+  0%,
+  10% {
+    -webkit-transform: translate(0) scale(1);
+    transform: translate(0) scale(1);
+    box-shadow: 60px 0,60px 0
+  }
+  20%,
+  40% {
+    -webkit-transform: translate(20px) scale(1);
+    transform: translate(20px) scale(1);
+    box-shadow: 60px 0,60px 0
+  }
+  48% {
+    -webkit-transform: translate(20px) scale(1);
+    transform: translate(20px) scale(1);
+    box-shadow: 8px 0,60px 0
+  }
+  50% {
+    -webkit-transform: translate(20px) scale(1.5);
+    transform: translate(20px) scale(1.5);
+    box-shadow: 0 0,60px 0
+  }
+  58% {
+    -webkit-transform: translate(20px) scale(1.5);
+    transform: translate(20px) scale(1.5);
+    box-shadow: 0 0,8px 0
+  }
+  60%,
+  70% {
+    -webkit-transform: translate(20px) scale(2);
+    transform: translate(20px) scale(2);
+    box-shadow: 0 0,0 0
+  }
+  85% {
+    -webkit-transform: translate(-50px) scale(2);
+    transform: translate(-50px) scale(2);
+    box-shadow: 0 0,0 0
+  }
+  87% {
+    -webkit-transform: translate(-50px) scale(1);
+    transform: translate(-50px) scale(1);
+    box-shadow: 0 0,0 0
+  }
+  100% {
+    -webkit-transform: translate(0) scale(1);
+    transform: translate(0) scale(1);
+    box-shadow: 0 0,0 0
+  }
+}
+@-webkit-keyframes l10-2 {
+  20%,
+  70% {
+    left: 50%
+  }
+  0%,
+  10%,
+  100%,
+  85% {
+    left: -25px
+  }
+}
+@keyframes l10-2 {
+  20%,
+  70% {
+    left: 50%
+  }
+  0%,
+  10%,
+  100%,
+  85% {
+    left: -25px
+  }
+}
 .swiper-container {
   overflow: hidden
 }
@@ -1187,6 +1348,9 @@ body::after {
   position: relative;
   overflow: hidden
 }
+.info__image_main {
+  width: 100%
+}
 .info__image_thumb {
   opacity: .6;
   transition: .3s;
@@ -1198,9 +1362,6 @@ body::after {
   transition: .3s
 }
 .info__image img {
-  position: absolute;
-  left: 0;
-  top: 0;
   width: 100%;
   height: 100%;
   -o-object-fit: cover;
