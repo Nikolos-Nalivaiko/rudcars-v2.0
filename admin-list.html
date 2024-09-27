@@ -6,7 +6,7 @@
 	<meta charset="UTF-8">
 	<meta name="format-detection" content="telephone=no">
 	<!-- <style>body{opacity: 0;}</style> -->
-	<link rel="stylesheet" href="css/style.min.css?_v=20240926131221">
+	<link rel="stylesheet" href="css/style.min.css?_v=20240927105518">
 	<link rel="shortcut icon" href="favicon.ico">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js?_v=20240826114116"></script>
 	<!-- <meta name="robots" content="noindex, nofollow"> -->
@@ -222,83 +222,91 @@
 		<main>
 			<section class="admin">
 
-				<div class="menu panel">
+				<aside class="side-menu">
+					<div class="side-menu__wrapper">
 
-					<div class="panel__header">
-						<a href="index.html" class="panel__logo">
-							<img src="img/logo.svg" alt="Logo">
-						</a>
-
-						<div class="panel__open panel__btn">
-							<svg>
-								<use xlink:href="img/icons/icons.svg#menuAdmin"></use>
-							</svg>
-						</div>
-					</div>
-
-					<div class="menu__content panel__menu-content">
-
-						<div class=" panel__header panel__header_mobile">
+						<div class="side-menu__header">
 							<a href="index.html" class="panel__logo">
 								<img src="img/logo.svg" alt="Logo">
 							</a>
 
-							<div class="panel__btn panel__close">
+							<button class="side-menu__open side-menu__btn">
 								<svg>
-									<use xlink:href="img/icons/icons.svg#close"></use>
+									<use xlink:href="img/icons/icons.svg#menuAdmin"></use>
 								</svg>
-							</div>
+							</button>
 						</div>
 
-						<ul class="panel__list">
-							<li class="panel__item">
-								<a href="admin-add.html" class="panel__link panel__link_active">
-									<svg>
-										<use xlink:href="img/icons/icons.svg#add"></use>
-									</svg>
-									Додати нове авто
-								</a>
-							</li>
-							<li class="panel__item">
-								<a href="admin-list.html" class="panel__link">
-									<svg>
-										<use xlink:href="img/icons/icons.svg#list"></use>
-									</svg>
-									Список авто
-								</a>
-							</li>
-							<li class="panel__item">
-								<a href="admin-setting.html" class="panel__link">
-									<svg>
-										<use xlink:href="img/icons/icons.svg#setting"></use>
-									</svg>
-									Налаштування
-								</a>
-							</li>
-							<li class="panel__item">
-								<a href="admin-messages.html" class="panel__link">
-									<svg>
-										<use xlink:href="img/icons/icons.svg#mail"></use>
-									</svg>
-									Повідомлення
-								</a>
-							</li>
-						</ul>
+						<nav class="side-menu__content">
 
-						<form action="" class="panel__exit">
-							<button type="submit" class="panel__exit-btn">
-								<div class="panel__exit-icon">
+							<div class="side-menu__header_mobile">
+								<a href="index.html" class="panel__logo">
+									<img src="img/logo.svg" alt="Logo">
+								</a>
+
+								<button class="side-menu__btn side-menu__close">
 									<svg>
-										<use xlink:href="img/icons/icons.svg#exit"></use>
+										<use xlink:href="img/icons/icons.svg#close"></use>
 									</svg>
-								</div>
-								Вийти
-							</button>
-						</form>
+								</button>
+							</div>
+
+							<ul class="side-menu__list">
+
+								<li class="side-menu__item">
+									<a href="admin-add.html" class="side-menu__link side-menu__link_active">
+										<svg>
+											<use xlink:href="img/icons/icons.svg#add"></use>
+										</svg>
+										Додати нове авто
+									</a>
+								</li>
+
+								<li class="side-menu__item">
+									<a href="admin-list.html" class="side-menu__link">
+										<svg>
+											<use xlink:href="img/icons/icons.svg#list"></use>
+										</svg>
+										Список авто
+									</a>
+								</li>
+
+								<li class="side-menu__item">
+									<a href="admin-setting.html" class="side-menu__link">
+										<svg>
+											<use xlink:href="img/icons/icons.svg#setting"></use>
+										</svg>
+										Налаштування
+									</a>
+								</li>
+
+								<li class="side-menu__item">
+									<a href="admin-messages.html" class="side-menu__link">
+										<svg>
+											<use xlink:href="img/icons/icons.svg#mail"></use>
+										</svg>
+										Повідомлення
+									</a>
+								</li>
+
+							</ul>
+
+							<form action="" class="side-menu__exit">
+								<button type="submit" class="side-menu__exit-btn">
+									<div class="side-menu__exit-icon">
+										<svg>
+											<use xlink:href="img/icons/icons.svg#exit"></use>
+										</svg>
+									</div>
+									Вийти
+								</button>
+							</form>
+
+						</nav>
 
 					</div>
+				</aside>
 
-				</div>
 
 				<div class="admin__content admin__container">
 
@@ -622,7 +630,7 @@
 		</main>
 
 	</div>
-	<script src="js/app.min.js?_v=20240926131221"></script>
+	<script src="js/app.min.js?_v=20240927105518"></script>
 </body>
 
 </html>

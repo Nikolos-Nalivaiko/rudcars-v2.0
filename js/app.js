@@ -17,32 +17,22 @@
             }), 1e3);
         }
     }
-    class MobileMenu {
-        constructor(contentSelector, openButtonSelector, closeButtonSelector, options = {}) {
+    class TopMenu {
+        constructor(menuSelector, contentSelector, openButtonSelector, closeButtonSelector, options = {}) {
+            this.menu = document.querySelector(menuSelector);
             this.menuContent = document.querySelector(contentSelector);
-            this.menuWrapper = this.menuContent.closest(".menu__wrapper");
-            this.menu = this.menuContent.closest(".menu");
             this.openButton = document.querySelector(openButtonSelector);
             this.closeButton = document.querySelector(closeButtonSelector);
-            this.scrollClass = "menu_fixed";
             this.isOpen = false;
-            this.isScrollingDown = false;
-            this.previousScrollY = window.scrollY;
             this.options = {
-                sticky: options.sticky !== void 0 ? options.sticky : true,
-                orientation: options.orientation || "vertical"
+                sticky: options.sticky !== void 0 ? options.sticky : true
             };
-            if (this.menuContent && this.openButton && this.closeButton) {
+            if (this.menu && this.menuContent && this.openButton && this.closeButton) {
                 this.openButton.addEventListener("click", (() => this.openMenu()));
                 this.closeButton.addEventListener("click", (() => this.closeMenu()));
                 document.addEventListener("click", (e => this.handleOutsideClick(e)));
-                this.addOrientationClass();
                 if (this.options.sticky) window.addEventListener("scroll", (() => this.handleScroll()));
             }
-        }
-        addOrientationClass() {
-            const orientationClass = this.options.orientation === "horizontal" ? "menu_horizontal" : "menu_vertical";
-            this.menuWrapper.classList.add(orientationClass);
         }
         openMenu() {
             this.isOpen = true;
@@ -58,22 +48,34 @@
             if (this.isOpen && !this.menuContent.contains(event.target) && !this.openButton.contains(event.target)) this.closeMenu();
         }
         handleScroll() {
-            const currentScrollY = window.scrollY;
-            const isScrollingDown = currentScrollY > this.previousScrollY;
-            if (currentScrollY > 50) {
-                if (!this.menu.classList.contains(this.scrollClass) && isScrollingDown) {
-                    this.menu.classList.add(this.scrollClass);
-                    requestAnimationFrame((() => {
-                        this.menu.classList.add("visible");
-                    }));
-                }
-            } else if (this.menu.classList.contains(this.scrollClass) && !isScrollingDown) {
-                this.menu.classList.remove("visible");
-                setTimeout((() => {
-                    this.menu.classList.remove(this.scrollClass);
-                }), 400);
+            if (window.scrollY > 50) this.menu.classList.add("menu_fixed"); else this.menu.classList.remove("menu_fixed");
+        }
+    }
+    class SideMenu {
+        constructor(menuSelector, contentSelector, openButtonSelector, closeButtonSelector) {
+            this.menu = document.querySelector(menuSelector);
+            this.menuContent = document.querySelector(contentSelector);
+            this.openButton = document.querySelector(openButtonSelector);
+            this.closeButton = document.querySelector(closeButtonSelector);
+            this.isOpen = false;
+            if (this.menu && this.menuContent && this.openButton && this.closeButton) {
+                this.openButton.addEventListener("click", (() => this.openMenu()));
+                this.closeButton.addEventListener("click", (() => this.closeMenu()));
+                document.addEventListener("click", (e => this.handleOutsideClick(e)));
             }
-            this.previousScrollY = currentScrollY;
+        }
+        openMenu() {
+            this.isOpen = true;
+            this.menuContent.classList.add("side-menu__content_open");
+            document.body.classList.add("side-menu-open");
+        }
+        closeMenu() {
+            this.isOpen = false;
+            this.menuContent.classList.remove("side-menu__content_open");
+            document.body.classList.remove("side-menu-open");
+        }
+        handleOutsideClick(event) {
+            if (this.isOpen && !this.menuContent.contains(event.target) && !this.openButton.contains(event.target)) this.closeMenu();
         }
     }
     function isObject(obj) {
@@ -9857,10 +9859,10 @@
     window.addEventListener("load", (() => {
         preloader.hide();
     }));
-    new MobileMenu(".menu__content", ".menu__open", ".menu__close", {
-        sticky: true,
-        orientation: "horizontal"
+    new TopMenu(".menu", ".menu__content", ".menu__open", ".menu__close", {
+        sticky: true
     });
+    new SideMenu(".side-menu", ".side-menu__content", ".side-menu__open", ".side-menu__close");
     new SwiperComponent(".hero__slider", {
         slidesPerView: 1,
         spaceBetween: 30,
